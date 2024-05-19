@@ -1,0 +1,254 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{book}
+\usepackage[a4paper,top=1.5in,bottom=1.5in,left=1in,right=1in]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{fourier-orns}
+\pagestyle{fancy}
+\usepackage{graphicx}
+\usepackage{lipsum} % for dummy text, you can remove this line in your actual document
+
+\usepackage{amsmath, amssymb, bm}
+\usepackage{caption}
+\usepackage{graphicx} 
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{subfigure}
+\usepackage{url}
+\usepackage{tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx} %Times Font
+\usepackage{titlesec}
+\titlespacing{\chapter}{0pt}{0pt}{0pt}
+\usepackage{fancyhdr}
+\usepackage{etoolbox}
+\usepackage{appendix}
+\usepackage{siunitx}
+\usepackage{nomencl}
+\newcommand{\nomunit}[1]{%
+\renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+\makenomenclature%
+\usepackage{caption}
+\usepackage{lipsum}
+\usepackage{algpseudocode}
+\usepackage{empheq}
+\usepackage{mdwlist}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\widowpenalty10000
+\clubpenalty10000
+\usepackage{moresize}
+
+\usepackage[style=apa]{biblatex}
+\addbibresource{References.bib}
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+       \step[fieldsource=title, match=\regexp{\b([A-Z]{2,})\b}, replace={{}{$1}}]
+    }
+  }
+}
+ 
+\DeclareCaptionType{appfigure}[Figure]
+\DeclareCaptionType{apptable}[Table]
+\renewcommand{\listappfigurename}{List of Appendix Figures}
+\renewcommand{\listapptablename}{List of Appendix Tables}
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+\renewcommand{\theappfigure}{\thechapter-\arabic{appfigure}}
+\renewcommand{\theapptable}{\thechapter-\arabic{apptable}}
+\renewcommand{\contentsname}{Table of Contents}
+
+\newcommand{\chapname}{Chapter }
+ 
+\titleformat{\chapter}[block]
+{\bfseries\LARGE\centering}
+{}{1em}{}[\rule{\textwidth}{0.3pt}]
+
+\titleformat{\section}
+{\bfseries\large}
+{\thesection}{1em}{}
+
+\titleformat{\subsection}
+{\normalfont\bfseries}
+{\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+{\normalfont\bfseries}
+{\thesubsubsection}{1em}{}
+
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage{multicol}
+
+\usepackage{placeins}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixColsc]{%
+  \hskip -\arraycolsep%
+  \let\@ifnextchar\new@ifnextchar%
+  \array{#1}}
+\makeatother
+
+\usepackage{enumitem}
+
+\usepackage{listings}
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+
+\newcommand{\codesize}{\fontsize{10pt}{11pt}\selectfont}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\codesize,
+    breakatwhitespace=true,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=false,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    showlines = true,
+    fontadjust = true,
+    framexleftmargin = 10 pt,
+    resetmargins = true,
+    basewidth = 0.5em
+}
+ 
+\lstset{style=mystyle}
+
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+
+\setlength{\floatsep}{0pt}
+
+\newenvironment{Figure}
+  {\noindent\minipage{\linewidth}}
+  {\endminipage}
+
+\setcounter{secnumdepth}{5}
+
+\hyphenpenalty10000
+\usepackage{multicol}
+ 
+%%%%%%%%% MATHEMATICS SHORTHANDS %%%%%%%%%%%%%%%%%%%% 
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\d}{\mathrm{d}}
+\renewcommand{\bf}[1]{\mathbf{#1}}
+
+\newcommand{\argmax}[1]{\underset{#1}{\operatorname{arg\,max}}}
+
+\newcommand{\kurt}{\mathrm{kurt}}
+\newcommand{\round}{\operatorname{round}}
+
+\newcommand{\E}{\operatorname{E}}
+\newcommand{\cov}{\operatorname{cov}}
+\newcommand{\pcov}{\operatorname{pcov}}
+
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}}
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
+
+\setlength{\nomlabelwidth}{3cm}
+\setlength{\nomitemsep}{-0.5\parsep}
+
+\usepackage{makecell}
+\usepackage{emptypage}
+
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\usepackage{textcomp}
+\usepackage{microtype}
+
+\renewcommand{\headrule}{%
+\vspace{-8pt}\hrulefill%
+\raisebox{-2.1pt}{\quad\decofourleft\decotwo\decofourright\quad}\hrulefill}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+
+
+
+\sloppy
+% \raggedright
+\raggedbottom
+
+% Set \headheight
+\setlength{\headheight}{16.64995pt}
+
+% Optionally adjust \topmargin
+\addtolength{\topmargin}{-4.64995pt}
+
+\usepackage{footmisc}
+
+\usepackage{footnote}
+
+\begin{document}
+
+\renewcommand{\thesection}{\arabic{section}.} % Change section numbering style
+
+
+\include{Title/titlepage}
+
+\include{Elements/Abstract/Abstract}
+\newpage
+
+\include{Elements/Acknowledgments/Acknowledgement}
+\newpage
+
+
+% Set the page style to "fancy"...
+\pagestyle{fancy}
+%... then configure it.
+
+% Clear all headers and footers (see also \fancyhf{})
+\fancyhead{}\fancyfoot{}
+
+% Set the header and footer for Even
+% pages but omit the zone (L, C or R)
+\fancyhead[L]{\nouppercase{\rightmark\hfill\leftmark}}
+\fancyhead[R]{\hfill\thepage}
+\fancyfoot[L]{\rule{\textwidth}{0.4pt}\hspace{1cm} Intelligent Field Robotic Systems}
+\fancyfoot[R]{\rule{\textwidth}{0.4pt}\hspace{1cm} U6972746} % Add the line before the footer text
+
+
+% Some content:
+% \renewcommand{\rightmark}{\thesection\ \leftmark} 
+
+
+
+
+
+
+
+
+
+% Sections start from here
+
+\include{Elements/Introduction/Introduction}
+\newpage
+
+\include{Elements/Literature_Review/literature_review}
+\newpage
+
+\include{Elements/Experimental_setup/Experimental_setup}
+\newpage
+
+
+
+\end{document}
