@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  19 MAY 2024 17:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  19 MAY 2024 22:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1315,7 +1315,7 @@ File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 \openout2 = `Title/titlepage.aux'.
 
  (./Title/titlepage.tex
-<Title/logo.png, id=159, 815.6874pt x 306.6657pt>
+<Title/logo.png, id=179, 815.6874pt x 306.6657pt>
 File: Title/logo.png Graphic file (type png)
 <use Title/logo.png>
 Package pdftex.def Info: Title/logo.png  used on input line 4.
@@ -1422,30 +1422,30 @@ Underfull \hbox (badness 2065) in paragraph at lines 822--823
 [40] [41] [42] [43] [44] [45]) [46] [47]
 \openout2 = `Elements/Experimental_setup/Experimental_setup.aux'.
 
- (./Elements/Experimental_setup/Experimental_setup.tex) [48
+ (./Elements/Experimental_setup/Experimental_setup.tex [48
 
 
 
-] (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Experimental_setup/Experimental_setup.aux))
+] [49] [50] [51]) [52] (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Experimental_setup/Experimental_setup.aux))
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D64027051C65096E8EED88CFA2420428;12709.
+(rerunfilecheck)             Checksum: 42B19A628C8F1B060FB363655E151A28;13356.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 42297 strings out of 478287
- 835224 string characters out of 5849290
- 1730758 words of memory out of 5000000
- 59500 multiletter control sequences out of 15000+600000
- 501629 words of font info for 204 fonts, out of 8000000 for 9000
+ 42338 strings out of 478287
+ 835724 string characters out of 5849290
+ 1730761 words of memory out of 5000000
+ 59508 multiletter control sequences out of 15000+600000
+ 502441 words of font info for 218 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  110i,12n,106p,1829b,5160s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-orns.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (48 pages, 421934 bytes).
+Output written on main.pdf (52 pages, 435696 bytes).
 PDF statistics:
- 414 PDF objects out of 1000 (max. 8388607)
- 350 compressed objects within 4 object streams
- 89 named destinations out of 1000 (max. 500000)
- 44354 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 456 PDF objects out of 1000 (max. 8388607)
+ 388 compressed objects within 4 object streams
+ 101 named destinations out of 1000 (max. 500000)
+ 44394 words of extra memory for PDF output out of 51595 (max. 10000000)
 
