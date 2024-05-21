@@ -70,3 +70,195 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
 
 \vspace*{6mm}  
 
+\subsubsection{First Behavior: Initial Coverage (change its name)}
+
+The algorithm begins by receiving the centroids of the overlaps between the regions of the raw points as input. It takes the initial position and orientation of the robot, where the position remains fixed while the orientation is treated as a temporary orientation. From this temporary orientation, the algorithm considers an angular range of twenty-four degrees on either side. Within this range, it samples six orientations on each side, resulting in a total of thirteen orientations, including the initial orientation.
+
+\vspace*{6mm}  
+
+The algorithm designates the current orientation as the leftmost extreme orientation. Using this position and orientation, it then starts selecting the next point to navigate to. At this stage, the algorithm employs the vision cone mechanism, characterized by an 11-degree angle on either side and extending 100 meters forward. The primary objective at this juncture is to select the next most suitable point within the vision cone.
+
+\vspace*{6mm}  
+
+To determine the next best suitable point, the algorithm extracts the five closest points from the current position and orientation within the vision cone. These points are regarded as intermediate potential points. For each of these intermediate points, the algorithm computes the distribution of points on either side of the current orientation across the entire vision cone. A combined score is then calculated for each intermediate point based on the distance from the robot and the distribution of points in the long run. Both the distance and the distribution are normalized before calculating the combined score. The point with the highest combined score is deemed the best potential candidate and is selected as the next point to navigate to. This scoring method is intelligent as it considers not only the distance but also the future distribution of points, thereby facilitating more efficient coverage as the robot progresses.
+
+\vspace*{6mm}  
+
+Once the best potential point is selected, it becomes the next point for navigation. The robot's orientation at this new point is updated based on the direction vector from the robot to the selected point. The robot then moves to this potential point with the updated orientation. This process is repeated, with the robot continually navigating to the next potential point until no points are visible within the vision cone. This pattern encourages the robot to move in an approximately straight line whenever possible. When the robot can no longer find any points within the vision cone, it indicates that the robot has reached the extreme end of the points. At this point, the number of points covered in this orientation is recorded.
+
+\vspace*{6mm}  
+
+Returning to Initial Position and Orientation
+
+After completing the initial coverage path, the robot will return to its starting position and orientation. The robot then considers the next orientation in the set of thirteen sampled orientations and proceeds to complete an approximately straight path in that direction, recording the number of points covered along each path. This process is repeated for all thirteen orientations. Upon completing paths for all orientations, the orientation that results in the maximum number of points covered is selected as the optimal orientation for further navigation.
+\vspace*{6mm}  
+
+Incorporating Non-Holonomic Constraints for Turns
+\vspace*{6mm}  
+
+When making a turn, the robot must adhere to its non-holonomic constraints. To address this, the algorithm considers a circular region around the robot with defined minimum and maximum radii. The minimum radius is set to one and a half times the robot's minimum turning radius, ensuring feasible turns. The initial maximum radius is set to three times the minimum turning radius. If no points are found within this initial circular region, the outer radius is incrementally increased by two units until the maximum radius limit is reached.
+\vspace*{6mm}  
+
+Within this circular region, the algorithm identifies all potential points and filters them further. The selection process involves evaluating each point based on a combined score, considering both the distance from the robot and the angle differnce between the robot's orientation and the vector from the robot to the potential point. both the entities are normalized before comparison. A lower distance and a smaller orientation deviation result in a higher score for the point. The point with the highest score is selected as the next potential point for the robot to navigate to when making a turn.
+\vspace*{6mm}  
+
+Orientation Towards Centroid
+
+At the beginning of the algorithm, the centroid of the entire set of points is computed. When selecting a point for the turn, the orientation is determined by the vector from the selected point towards this centroid. This selected point becomes the next navigation target, and the orientation towards the centroid becomes the new temporary orientation for the robot.
+
+\vspace*{6mm}  
+
+Continuing the Path and Making Turns
+
+Upon reaching the end of a complete path, the robot needs to execute a turn. This turn is represented by a single completed path, after which the robot continues the same pattern of operation. From the point where the turn is made, the robot selects thirteen orientations and navigates along each one, completing a path and recording the number of points covered. The orientation that results in the maximum number of points covered is then selected as the optimal orientation for continued navigation. This process is iterative and continues throughout the robot's operation.
+
+\vspace*{6mm}  
+
+Focus on Points Near the Centroid
+
+This first behavior of the robot emphasizes covering more points near the centroid of the data and not covering points on the outer sides. Initially, the robot covers a significant number of points with each path. However, as the number of turns increases, the coverage rate decreases. This reduction in efficiency occurs because the robot focuses on points near the centroid as after each turn it faces toward the centroid, resulting in majority of the points covered are in the central region. Consequently, while this behavior ensures substantial coverage, it becomes less efficient over time as fewer new points are covered with each turn.
+
+\vspace*{6mm}  
+
+Coverage Efficiency and Convergence Rate
+
+Although this behavior can cover most or all points in the data, the coverage rate diminishes, and convergence takes longer. This limitation highlights the need for a hierarchical approach with multiple behaviors. By transitioning between behaviors, the algorithm can maintain high efficiency and improve the convergence rate, ensuring comprehensive and timely coverage of all points.
+
+\vspace*{6mm}  
+
+
+
+\textbf{Second behavior: Intermediate behavior:} 
+
+\vspace*{6mm}   
+
+Boundary-Focused Coverage Strategy
+
+The second behavior of the algorithm is designed to enhance the coverage rate and improve the convergence efficiency. Upon transitioning from the first to the second behavior, the algorithm takes all remaining points as input, considering the current position and orientation of the robot. At this stage, the density of uncovered points is lower near the centroid and higher towards the boundaries of the operational area. Therefore, the second algorithm focuses on covering points located along the periphery rather than near the centroid.
+
+\vspace*{6mm}   
+
+Orientation Sampling and Path Selection
+
+The algorithm begins similarly by selecting thirteen orientations from the robot's current position and orientation. The robot navigates along each orientation, completing a path and recording the number of points covered. The orientation resulting in the highest number of points covered is selected as the optimal direction for continued navigation. This ensures that the robot always moves in the direction that maximizes point coverage.
+
+\vspace*{6mm}   
+
+Refined Criteria for Selecting Turning Points
+
+A critical difference in this behavior lies in the method for selecting the next best point to make a turn. The algorithm considers a circular region around the robot with predefined minimum and maximum radii similarly as of first behavior. Within this region, the algorithm evaluates all potential points, applying refined selection criteria. The criteria prioritize points with the smallest absolute orientation difference from the robot's current orientation and the shortest distance from the robot's current position. By doing so, the algorithm ensures that the robot makes smooth, efficient turns that align with its non-holonomic constraints.
+
+\vspace*{6mm}   
+
+The point with the least orientation difference and the shortest distance is chosen as the next point for making a turn. Unlike the first behavior, where the orientation towards the centroid was prioritized, the orientation of this potential point is directed towards the next point along the same moving orientation. For example, if the potential point lies clockwise to the robot's current orientation, the robot's new orientation will aim towards the next nearest point with the smallest clockwise orientation difference, and the same applies for counterclockwise points. This new orientation becomes the temporary orientation, and the robot continues the process of orientation sampling and selection with the goal of maximizing point coverage.
+
+\vspace*{6mm}   
+
+Enhanced Coverage and Convergence
+
+This behavior is particularly effective in covering points along the boundaries and in regions with higher point density, thereby increasing the overall coverage rate and convergence efficiency of the algorithm. While the first behavior predominantly focuses on points near the centroid, the second behavior shifts attention to the boundary points, ensuring a more balanced and comprehensive coverage pattern.
+
+\vspace*{6mm}   
+
+By following a systematic circular pattern, the robot can cover most of the points in the data set. This transition from centroid-focused coverage to boundary-focused coverage allows the algorithm to address the limitations of the first behavior, which tends to become less efficient as more points near the centroid are covered. The hierarchical combination of these behaviors ensures that the robot effectively covers the entire field, optimizing both the coverage rate and the overall efficiency of the operation.
+
+\vspace*{6mm}   
+
+Enhancing Coverage with Intermediate Points
+
+To further improve the coverage rate and convergence of the algorithm, an additional mechanism is incorporated into both the first and the second behaviors. This enhancement involves covering intermediate points along each path between two selected points. The algorithm checks for points that lie close to the current path within a certain threshold distance. Regardless of the distance between the two primary points on the path, these intermediate points are included in the coverage plan.
+
+\vspace*{6mm}   
+
+The orientation for these intermediate points is determined based on their position. If multiple points exist close to the path, the orientation is directed towards the next intermediate point in sequence. For the last intermediate point, the orientation is towards the final end point.
+
+\vspace*{6mm}   
+
+Another criterion for selecting intermediate points depends on the distance between the two primary points of the path. If this distance is substantial, points that are slightly farther but within the threshold are also considered. In such cases, the algorithm allows for a minor compromise on the straightness of the path to cover more points, thereby further enhancing the coverage rate and convergence efficiency.
+
+\vspace*{6mm}   
+
+Efficiency of Combined Behaviors
+
+Both the first and second behaviors, along with the enhancement for intermediate points, ensure complete coverage of the points. These behaviors have been experimentally validated to provide good coverage rates and convergence for the algorithm. However, the efficiency in terms of coverage rate, convergence speed, and path length diminishes after approximately eighty-five to ninety percent of the points are covered. At this stage, the algorithm tends to cover fewer points per turn and makes multiple turns to cover just two or three points.
+
+\vspace*{6mm}   
+
+This inefficiency results in longer paths and higher energy consumption, which contradicts the goal of minimizing path length and conserving energy. This challenge highlights the necessity for a third behavior. The third behavior aims to optimize the final stages of the coverage process by allowing slight deviations from straight paths to cover more points efficiently, thus reducing the overall path length and energy consumption.
+
+\vspace*{6mm}   
+
+
+
+
+
+\textbf{Final Behavior: Completing Coverage: }
+
+
+\vspace*{6mm}   
+
+Final Behavior: Completing Coverage
+The third and final behavior of the algorithm addresses the coverage of the few remaining points, which are sparsely distributed across the area. At this stage, the concept of the vision cone is removed, as maintaining strict straightness is no longer prioritized. Although straight paths are typically more energy-efficient, the robot would consume more energy traveling long straight paths while covering fewer points. Instead, small circular turns with a radius of 3 meters are preferred, allowing the robot to avoid long straight paths of up to 100 meters. This approach optimizes energy usage by prioritizing the coverage of remaining points over path straightness.
+
+\vspace*{6mm}   
+
+To determine the optimal path for these remaining points, the algorithm employs the Dubins open traveling salesman problem (TSP), leveraging the concepts described in a seminal paper by X.
+
+\vspace*{6mm}   
+
+Overview of the Traveling Salesman Problem (TSP)
+The traveling salesman problem is a classic optimization challenge in computer science and operations research. It seeks to find the shortest route that visits a set of cities and returns to the original city, with the primary challenge being to determine the optimal sequence of cities to minimize total travel distance. This problem is NP-hard, meaning there is no known polynomial-time algorithm that can solve it exactly for large instances.
+
+\vspace*{6mm}   
+
+Open Traveling Salesman Problem (Open TSP)
+The open TSP is a variant of the classic TSP where the salesman does not need to return to the starting city after visiting all other cities. This relaxation allows for more flexibility in route planning and can lead to different optimal solutions. The open TSP is particularly useful in scenarios where a return trip is unnecessary or infeasible, such as delivery routes or exploration missions. In our case, the robot does not need to return to the starting point, making the open TSP more suitable for our problem. Nevertheless, the non-holonomic constraints of the robot must be considered.
+
+\vspace*{6mm}   
+
+Dubins Open Traveling Salesman Problem (Dubins Open TSP)
+The Dubins open TSP extends the open TSP by accounting for the non-holonomic constraints of vehicles, such as turning radius and orientation. It seeks to find the shortest path that visits a set of points while respecting the vehicle's kinematic constraints. The Dubins path, named after mathematician L. F. Dubins, provides the shortest path for vehicles with a fixed turning radius. By applying Dubins paths to the open TSP, the algorithm can generate efficient and feasible routes for vehicles with non-holonomic constraints.
+
+\vspace*{6mm}   
+
+Application to the Final Coverage
+The final behavior leverages the Dubins open TSP to efficiently cover the remaining points. Initially, the shortest path between the points is computed using the open TSP. Subsequently, Dubins constraints are applied to ensure the path is feasible for the robot. This method not only ensures complete coverage of the remaining points but also reduces the overall path length and energy consumption. By adopting this approach, the algorithm significantly improves the coverage rate and convergence speed, achieving comprehensive coverage in an efficient manner.
+
+\vspace*{6mm}   
+
+This integrated strategy, comprising the first, second, and final behaviors, enables the robot to cover all points in the agricultural field effectively. Each behavior is tailored to optimize different stages of the coverage process, from focusing on dense central areas to sparsely populated boundaries and finally to the remaining isolated points. This hierarchical and adaptive approach ensures that the robot operates efficiently, minimizing both path length and energy consumption throughout the coverage process.
+
+
+\vspace*{6mm}   
+
+
+
+Hierarchical Behavioral Algorithm for Coverage Path Planning
+These three behaviors are meticulously designed to optimize the coverage of points in an area while minimizing the path length and energy consumption of the robot. The algorithm demonstrates a sophisticated approach to coverage path planning, particularly suited to agricultural fields, but adaptable to other domains as well.
+
+\vspace*{6mm}   
+
+\textbf{Automatic Shift Between Behaviors: }
+A critical aspect of this behavioral algorithm is the decision-making process for shifting from one behavior to the next. Different data distributions require varying coverage percentages to optimize this transition. Determining the optimal shift point is challenging and necessitates extensive experimentation and testing to achieve the best coverage rate and convergence.
+
+\vspace*{6mm}   
+
+The performance of the algorithm can significantly vary depending on when the shift between behaviors occurs. For the same dataset, different coverage percentages for behavior shifts can greatly influence the coverage rate and convergence efficiency. Therefore, it is essential to tailor the shift points for each specific dataset rather than relying on a fixed percentage.
+
+\vspace*{6mm}   
+
+Computing the Optimal Coverage Percentage
+One of the standout features of this behavioral algorithm is its ability to determine the near-optimal coverage percentage for shifting behaviors. Once the dataset is pre-processed, the algorithm computes the best percentage coverage for behavior shifts as follows:
+
+\begin{itemize}
+    \item \textbf{Centroid and Concentric Circles:  }The algorithm first computes the centroid of the dataset. Imaginary concentric circles are then centered at the centroid, with varying radii extending outward until all points are encompassed.
+    \item \textbf{Point Distribution Analysis:  }The percentage of points within each concentric region is calculated. The behavioral shift percentage is determined based on a threshold percentage found through experimentation and testing, which is 50 percent. The points are counted in each region, starting from the innermost circle, and the percentages are accumulated until the threshold is reached.
+    \item \textbf{Threshold Determination:  }The region where the threshold percentage is exceeded dictates the coverage percentage for the behavior shift. If the threshold is reached in the innermost region, indicating a dense point distribution near the centroid, the first behavior will be more effective, and the shift percentage will be automatically set to a higher percent (e.g., 60-70\%). Conversely, if the threshold is reached in the outer regions, suggesting denser distribution near the boundaries, the second behavior becomes more pertinent, and the shift percentage is automatically set to a lower percent (e.g., 30-40\%) by the algorithm.
+\end{itemize} 
+
+\vspace*{6mm}   
+
+This intellectually behavior shifting enables the algorithm to determine the optimal coverage percentage, thereby enhancing the overall coverage rate and convergence efficiency. By integrating these calculated shift points, the hierarchical behavioral algorithm adapts dynamically to different datasets, ensuring that the robot operates efficiently across various scenarios. This adaptive approach significantly improves the algorithm's performance, as demonstrated in the subsequent results.  
+
+\vspace*{6mm}   
+

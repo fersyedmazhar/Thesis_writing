@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  21 MAY 2024 17:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  22 MAY 2024 01:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/paltech/Thesis/Thesis_writing/Thesis_writing/main.tex
-(/home/paltech/Thesis/Thesis_writing/Thesis_writing/main.tex
+**/home/s_m/Creative/Thesis/Thesis_writing/main.tex
+(/home/s_m/Creative/Thesis/Thesis_writing/main.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2021/10/04 v1.4n Standard LaTeX document class
@@ -940,13 +940,6 @@ File: standard.bbx 2022/02/02 v3.17 biblatex bibliography style (PK/MW)
 )
 Package biblatex Info: Delimiter 'nameyeardelim' in context 'bib' already defined, overwriting.
 Package biblatex Info: Delimiter 'nameyeardelim' in context 'biblist' already defined, overwriting.
-
-
-Package biblatex Warning: The starred command '\DeclareDelimAlias*' is
-(biblatex)                deprecated.
-(biblatex)                Use the unstarred version '\DeclareDelimAlias'
-(biblatex)                instead.
-
 Package biblatex Info: Delimiter 'nonameyeardelim' in context 'bib' already defined, overwriting.
 Package biblatex Info: Delimiter 'nonameyeardelim' in context 'biblist' already defined, overwriting.
 )
@@ -1162,7 +1155,7 @@ Package translations Info: No language package found. I am going to use `english
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 201.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-) (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodolog/Brief_description/Brief_description.aux) (./Elements/Methodolog/Behavioral_algorithm/Behavioral_algorithm.aux))
+) (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodolog/Brief_description/Brief_description.aux) (./Elements/Methodolog/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodolog/Obstacle_avoidance/Obstacle_avoidance.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 201.
@@ -1322,16 +1315,16 @@ File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 \openout2 = `Title/titlepage.aux'.
 
  (./Title/titlepage.tex
-<Title/logo.png, id=199, 815.6874pt x 306.6657pt>
-File: Title/logo.png Graphic file (type png)
-<use Title/logo.png>
-Package pdftex.def Info: Title/logo.png  used on input line 4.
-(pdftex.def)             Requested size: 303.53377pt x 114.11963pt.
+<Title/ifros.png, id=203, 366.168pt x 141.52875pt>
+File: Title/ifros.png Graphic file (type png)
+<use Title/ifros.png>
+Package pdftex.def Info: Title/ifros.png  used on input line 4.
+(pdftex.def)             Requested size: 303.53377pt x 117.32198pt.
  [1
 
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./Title/logo.png>])
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./Title/ifros.png>])
 \openout2 = `Elements/Abstract/Abstract.aux'.
 
  (./Elements/Abstract/Abstract.tex [2
@@ -1454,26 +1447,33 @@ Underfull \hbox (badness 2065) in paragraph at lines 822--823
 
 
 
-] [57]) [58] (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodolog/Brief_description/Brief_description.aux) (./Elements/Methodolog/Behavioral_algorithm/Behavioral_algorithm.aux))
+] [57] [58] [59] [60] [61] [62] [63] [64]) [65]
+\openout2 = `Elements/Methodolog/Obstacle_avoidance/Obstacle_avoidance.aux'.
+
+ (./Elements/Methodolog/Obstacle_avoidance/Obstacle_avoidance.tex) [66
+
+
+
+] (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodolog/Brief_description/Brief_description.aux) (./Elements/Methodolog/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodolog/Obstacle_avoidance/Obstacle_avoidance.aux))
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 3375700531E6797338B06EE3D55A6384;14086.
+(rerunfilecheck)             Checksum: 5BB426AEB1D636EE3ECEF1CC7E72ED20;14241.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 42455 strings out of 478287
- 842088 string characters out of 5849290
- 1740170 words of memory out of 5000000
- 59581 multiletter control sequences out of 15000+600000
+ 42495 strings out of 478287
+ 844281 string characters out of 5849290
+ 1743307 words of memory out of 5000000
+ 59603 multiletter control sequences out of 15000+600000
  502673 words of font info for 222 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 110i,12n,106p,1839b,5160s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 110i,12n,106p,1829b,5160s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-orns.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (58 pages, 451303 bytes).
+Output written on main.pdf (66 pages, 234983 bytes).
 PDF statistics:
- 509 PDF objects out of 1000 (max. 8388607)
- 434 compressed objects within 5 object streams
- 115 named destinations out of 1000 (max. 500000)
- 44434 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 546 PDF objects out of 1000 (max. 8388607)
+ 464 compressed objects within 5 object streams
+ 125 named destinations out of 1000 (max. 500000)
+ 44442 words of extra memory for PDF output out of 51595 (max. 10000000)
 
