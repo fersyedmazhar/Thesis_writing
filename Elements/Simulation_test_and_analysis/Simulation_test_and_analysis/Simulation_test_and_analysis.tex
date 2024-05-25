@@ -1,0 +1,128 @@
+
+\section{Simulation Test and Analysis}
+
+
+This section presents a thorough exploration of the proposed complete coverage path planning algorithm tailored for agricultural field applications. It unfolds into three distinct sections:
+
+\vspace*{6mm}  
+
+\textbf{Simulation Setup:}
+
+This section is dedicated to providing a detailed exposition of the simulation setup. Meticulous attention is directed towards delineating the experimental framework within which the simulation tests are conducted.
+
+\vspace*{6mm}  
+
+\textbf{Simulation Results and Analysis:}
+
+Comprehensive empirical findings obtained from the meticulously designed simulation experiments within the aforementioned framework are detailed in this section. Key performance metrics are analyzed to provide a holistic assessment of the algorithm's performance under diverse scenarios. we conduct a thorough analysis of the empirical results, meticulously scrutinizing each detail. Through this examination, we aim to discern the operational dynamics of the algorithm, identify its strengths, and pinpoint areas for potential refinement.
+\vspace*{6mm}  
+
+\subsection{Simulation Setup}
+
+
+The simulation setup is meticulously designed to emulate the real-world operational environment of an agricultural field, ensuring that the algorithm's performance can be rigorously tested under realistic conditions. The global coverage path planning is initially performed using Matplotlib, followed by testing in a simulation environment leveraging the Robot Operating System (ROS) and the Gazebo simulator.
+
+\vspace*{6mm}  
+
+In the context of coverage path planning for agricultural fields, it is crucial to account for varying plant distributions. Therefore, different datasets are used to represent diverse scenarios, with the aim of assessing the algorithm's robustness under varying initial conditions and plant distributions. Specifically, the simulation setup incorporates different datasets with the same initial position and orientation of the robot to demonstrate the algorithm's adaptability.
+
+\vspace*{6mm}  
+
+Dataset Description
+To comprehensively evaluate the algorithm, six distinct datasets are employed within the flat field of 120m x 120m area, with each dataset containing different numbers of points: 250, 500, 2000, 4000, 6000, and 10,000. Each primary dataset is further subdivided into four sub-datasets, characterized by different spatial distributions:
+
+\begin{itemize}
+    \item Random Distribution: Points are distributed randomly throughout the field.
+    \item Clustered Distribution (4 Clusters): 20\% of the points are distributed randomly, while 80\% are distributed in four clusters with distinct Gaussian distribution variances.
+    \item Clustered Distribution (6 Clusters): 20\% of the points are distributed randomly, with the remaining 80\% distributed in six clusters, each with distinct means and variances.
+    \item Clustered Distribution (10 Clusters): Similar to the previous sub-datasets, 20\% of the points are randomly distributed, and 80\% are in ten clusters, each characterized by unique Gaussian distribution parameters.
+\end{itemize}
+
+This results in a total of 24 different datasets, meticulously crafted to test the algorithm's robustness across various scenarios, including variations in the number of points, their distribution patterns, the number of clusters, and the statistical properties of these clusters. Such comprehensive testing ensures that the algorithm is robust and adaptable to real-world agricultural environments, where plant distributions can significantly vary.
+
+\vspace*{6mm}  
+
+Performance Metrics
+The performance of the algorithm is evaluated using several critical metrics across all datasets:
+
+\begin{itemize}
+    \item Computational Time: The time required for the algorithm to compute the coverage path.
+    \item Field Operation Time: The actual time taken for the robot to complete the coverage task.
+    \item Total Path Length: The total distance traveled by the robot.
+    \item Number of Turns: The total number of turns the robot makes during its operation.
+    \item Energy Consumption: The energy used by the robot to complete the coverage task.
+    \item Coverage Efficiency: The percentage of points covered by the robot within the operational time.
+\end{itemize}
+These metrics provide a comprehensive assessment of the algorithm's efficiency, effectiveness, and overall performance under different test scenarios.
+
+\vspace*{6mm}  
+
+\textbf{Processor Specifications:}
+
+
+Processor: AMD® Ryzen 5 Pro 5675U with Radeon Graphics x 12.
+
+
+Processing Speed: 2.3 GHz, Number of Cores: 6, and RAM: 16 GB.
+
+
+\vspace*{6mm}  
+
+\textbf{Visual Representation of the Dataset}
+
+The distribution of points across the different datasets can be visualized in Figure X below, illustrating the varying scenarios used to test the algorithm's robustness.
+
+\subsection{Simulation Results and Analysis}
+
+This section presents the detailed results and analysis of the simulation experiments conducted to evaluate the robustness of the proposed complete coverage path planning behavioral algorithm without obstacles. The empirical findings are meticulously analyzed to provide insights into the algorithm's performance under diverse scenarios, enabling a comprehensive assessment of its efficiency and effectiveness. 
+
+\vspace*{6mm}  
+
+\textbf{Experimental Consistency}
+To ensure the validity of comparisons and isolate the effects of different datasets on the algorithm's performance, the initial position and orientation of the robot were kept constant throughout all experiments. Additionally, the parameters for both the robot and the algorithm were consistently maintained across all trials.
+
+
+\vspace*{6mm}  
+
+\textbf{Robot Constraints and Algorithm Parameters: } 
+
+
+The robot's constraints and operational parameters are set to realistic values to ensure the validity of the simulation results. These data can be visualized in Table \textbf{X} below, offering a comprehensive overview of the robot's physical and operational characteristics.
+
+\vspace*{6mm}  
+
+The algorithm parameters are also meticulously defined to ensure consistent performance across all experiments. The key parameters include the turning radius, the linear maximum speed of the robot, to name a few. These parameters are set based on the robot's physical constraints and operational requirements, ensuring that the algorithm operates within realistic boundaries.
+
+\vspace*{6mm}
+
+The algorithm was designed to initially compute the global coverage path using straight lines. Subsequently, Dubins paths are generated for each line segment to ensure the shortest feasible path between each pair of points, optimizing the overall path length. The figures below illustrate the straight paths generated by the algorithm for different datasets.
+
+
+\vspace*{6mm}
+
+
+Once the Dubins paths are generated from the straight paths, the resultant paths can be visualized in the following figures. These figures showcase the robot's traversal across different datasets, illustrating how the algorithm adapts to various point distributions.
+
+\vspace*{6mm}
+
+The performance metrics for all datasets are summarized in the table below. These metrics provide insights into the algorithm's computational efficiency, operational effectiveness, and overall robustness.
+
+\vspace*{6mm}
+
+
+The coverage rate plot over the field time offers a visual representation of the algorithm's performance across the whole datasets. This plot demonstrates how effectively the algorithm achieves coverage over time, allowing for a comparative analysis of its efficiency under varying point distributions and densities. This plot can be visualized in Figure X below. 
+
+\textbf{Analysis: }
+
+Need to write it properly after putting all the results.  
+
+The analysis of the results reveals several key insights into the algorithm's performance. Coverage efficiency remains consistently high across all datasets, demonstrating the algorithm's robustness in various scenarios. Computational time and field operation time scale predictably with the number of points, highlighting the algorithm's scalability. The number of turns and energy consumption metrics indicate that while Dubins path smoothing enhances path traversal efficiency, it also demands more computational resources.
+
+\vspace*{6mm}
+
+The coverage rate plot further corroborates the algorithm's effectiveness, showing high coverage efficiency across varying point distributions and densities. These findings suggest that the algorithm is well-suited for real-world agricultural applications, where plant distributions can vary significantly.
+
+\vspace*{6mm} 
+
+
+By analyzing the coverage rate, we can gain deeper insights into the algorithm's ability to maintain high coverage efficiency consistently. The results from this plot are crucial in validating the robustness and adaptability of the proposed path planning algorithm. 

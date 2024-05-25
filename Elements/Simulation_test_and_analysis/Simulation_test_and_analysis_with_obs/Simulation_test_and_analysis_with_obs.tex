@@ -1,0 +1,108 @@
+
+\section{Simulation Test and Analysis with obstacles} 
+
+
+This section presents a comprehensive examination of the proposed complete coverage path planning algorithm, tailored to handle static polygonal obstacles in agricultural field applications. The section is divided into two key parts: Simulation Setup and Results \& Analysis.
+
+\vspace*{6mm}  
+
+\subsection{Simulation Setup}
+
+This subsection provides a detailed description of the simulation setup, focusing on the experimental framework within which the tests are conducted.
+
+\vspace*{6mm}  
+
+
+The simulation environment is meticulously crafted to replicate real-world agricultural fields, incorporating static polygonal obstacles to simulate common structures such as trees, rocks, or buildings that serve as keep-out zones. This realistic setup ensures that the algorithm's performance is rigorously evaluated under practical conditions.
+
+\vspace*{6mm}  
+
+This simulation environment is setup utilizing a realistic field data obtained from the field manually and inclusion of the obstacles within the field. While the point distribution remains unchanged, the obstacles' shapes, sizes, and numbers vary across different scenarios. Strategic placement of obstacles tests the algorithm's adaptability and robustness. Five distinct datasets are used to assess the algorithm's performance under varying obstacle configurations, increasing in complexity with each set.
+
+
+
+\vspace*{6mm}  
+
+Dataset Description
+
+To thoroughly evaluate the algorithm, five distinct datasets are employed within a flat 120m x 120m field, each containing different numbers and configurations of obstacles:
+
+\begin{itemize}
+    \item Set1: Contains one rectangular obstacle of size 10m x 10m.
+    \item Set2: Contains two rectangular obstacles of sizes 10m x 10m and 4m x 4m.
+    \item Set3: Contains three convex polygonal obstacles of distinct sizes and shapes.
+    \item Set4: Contains six convex polygonal obstacles of different sizes and shapes.
+    \item Set5: Contains six polygonal obstacles of varying sizes and shapes, including concave and extremely long obstacles.
+\end{itemize}
+This hierarchical arrangement of datasets, with increasing complexity, ensures comprehensive testing of the algorithm's robustness and adaptability to real-world agricultural environments, where obstacles can vary significantly.
+
+\vspace*{6mm}  
+
+Performance Metrics
+The algorithm's performance is evaluated using several critical metrics across all datasets:
+
+\begin{itemize}
+    \item Computational Time: The time required for the algorithm to compute the coverage path.
+    \item Field Operation Time: The actual time taken for the robot to complete the coverage task.
+    \item Total Path Length: The total distance traveled by the robot.
+    \item Number of Turns: The total number of turns the robot makes during its operation.
+    \item Energy Consumption: The energy used by the robot to complete the coverage task.
+    \item Coverage Efficiency: The percentage of points covered by the robot within the operational time.
+\end{itemize}
+These metrics provide a comprehensive assessment of the algorithm's efficiency, effectiveness, and overall performance under different test scenarios.
+
+
+\vspace*{6mm}  
+
+\textbf{Visual Representation of the Dataset}
+
+The figure below illustrates the five different datasets used in the simulation experiments, showcasing the shapes, sizes, numbers, and locations of obstacles within the field. This visual representation aids in understanding the varying complexities introduced by the obstacles.
+
+
+
+\textbf{Simulation Results and Analysis:} 
+
+Comprehensive empirical findings obtained from the meticulously designed simulation experiments within the aforementioned framework are detailed in this section. Key performance metrics are analyzed to provide a holistic assessment of the algorithm's performance under diverse scenarios. we conduct a thorough analysis of the empirical results, meticulously scrutinizing each detail. Through this examination, we aim to discern the operational dynamics of the algorithm, identify its strengths, and pinpoint areas for potential refinement.
+\vspace*{6mm}  
+
+
+\subsection{Simulation Results and Analysis}
+
+This section details the results and analysis of simulation experiments designed to evaluate the robustness of the proposed complete coverage path planning algorithm in the presence of static polygonal obstacles. The empirical findings are meticulously analyzed to provide insights into the algorithm's performance across diverse scenarios, offering a comprehensive assessment of its efficiency and effectiveness.
+
+\vspace*{6mm}  
+
+\textbf{Experimental Consistency}
+To ensure the validity of comparisons and isolate the effects of different datasets on the algorithm's performance, the initial position and orientation of the robot were kept constant throughout all experiments. Additionally, the parameters for both the robot and the algorithm were consistently maintained across all trials.
+
+\vspace*{6mm}  
+
+\textbf{Robot Constraints and Algorithm Parameters: } 
+
+
+The robot's constraints and operational parameters are set to realistic values to ensure the validity of the simulation results. These data can be visualized in Table \textbf{X} below.
+
+\vspace*{6mm}  
+
+The algorithm parameters are also meticulously defined to ensure consistent performance across all experiments. These parameters are set based on the robot's physical constraints and operational requirements, ensuring that the algorithm operates within realistic boundaries.
+
+\vspace*{6mm} 
+
+The algorithm was designed to initially compute the global coverage path using straight lines. Subsequently, Dubins paths are generated for each line segment to ensure the shortest feasible path between each pair of points, optimizing the overall path length. The figures below illustrate the straight obstacle free paths generated by the algorithm for all the datasets.
+
+
+\vspace*{6mm}
+
+The resulting path after applying dubins constraints are depicted in the subsequent figures. These visual representations portray the robot's movement across diverse datasets, providing insight into the algorithm's adaptability amidst varying obstacles. 
+
+\vspace*{6mm}  
+
+The table below summarizes the performance metrics for all datasets, offering valuable insights into the algorithm's computational efficiency, operational effectiveness, and overall robustness.
+
+\vspace*{6mm}
+
+Additionally, the coverage rate plot over the field time provides a visual depiction of the algorithm's performance across all datasets. This plot illustrates how efficiently the algorithm achieves coverage over time, facilitating a comparative analysis of its efficiency under varying scenarios. Please refer to Figure X for visualization.
+
+\textbf{Analysis: }
+
+Need to write it properly after putting all the results.  
