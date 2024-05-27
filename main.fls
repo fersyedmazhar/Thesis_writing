@@ -1437,6 +1437,9 @@ INPUT Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulat
 INPUT ./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux
 INPUT Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux
 INPUT Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux
+INPUT ./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux
+INPUT Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux
+INPUT Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux
 OUTPUT main.aux
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1767,6 +1770,16 @@ INPUT ./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_
 INPUT Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.tex
 INPUT ./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.tex
 INPUT Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.tex
+INPUT ./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex
+INPUT ./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex
+INPUT ./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex
+OUTPUT Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux
+INPUT ./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex
+INPUT ./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex
+INPUT ./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex
+INPUT Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex
+INPUT ./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex
+INPUT Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex
 INPUT main.aux
 INPUT ./Title/titlepage.aux
 INPUT Title/titlepage.aux
@@ -1804,6 +1817,9 @@ INPUT Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulat
 INPUT ./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux
 INPUT Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux
 INPUT Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux
+INPUT ./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux
+INPUT Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux
+INPUT Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux
 INPUT ./main.out
 INPUT ./main.out
 INPUT main.run.xml

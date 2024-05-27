@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  25 MAY 2024 19:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  28 MAY 2024 01:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1162,7 +1162,7 @@ Package translations Info: No language package found. I am going to use `english
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 201.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-) (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodology/Brief_description/Brief_description.aux) (./Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux))
+) (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodology/Brief_description/Brief_description.aux) (./Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux) (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 201.
@@ -1322,7 +1322,7 @@ File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 \openout2 = `Title/titlepage.aux'.
 
  (./Title/titlepage.tex
-<Title/ifros.png, id=228, 366.168pt x 141.52875pt>
+<Title/ifros.png, id=240, 366.168pt x 141.52875pt>
 File: Title/ifros.png Graphic file (type png)
 <use Title/ifros.png>
 Package pdftex.def Info: Title/ifros.png  used on input line 4.
@@ -1475,26 +1475,33 @@ Underfull \hbox (badness 2065) in paragraph at lines 822--823
 
 
 
-] [75]) [76] (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodology/Brief_description/Brief_description.aux) (./Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux))
+] [75]) [76]
+\openout2 = `Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux'.
+
+ (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex [77
+
+
+
+] [78]) [79] (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodology/Brief_description/Brief_description.aux) (./Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux) (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux))
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 20AA3B4A83B7169EA3D4AEA262E8AB6E;15474.
+(rerunfilecheck)             Checksum: 6CD496A4A06A564DED134BE566F8D79B;16084.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 42576 strings out of 478287
- 851509 string characters out of 5849290
- 1749584 words of memory out of 5000000
- 59652 multiletter control sequences out of 15000+600000
+ 42614 strings out of 478287
+ 853793 string characters out of 5849290
+ 1752719 words of memory out of 5000000
+ 59676 multiletter control sequences out of 15000+600000
  502673 words of font info for 222 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  110i,12n,106p,1839b,5160s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-orns.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (76 pages, 261731 bytes).
+Output written on main.pdf (79 pages, 268387 bytes).
 PDF statistics:
- 617 PDF objects out of 1000 (max. 8388607)
- 524 compressed objects within 6 object streams
- 141 named destinations out of 1000 (max. 500000)
- 44490 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 644 PDF objects out of 1000 (max. 8388607)
+ 548 compressed objects within 6 object streams
+ 147 named destinations out of 1000 (max. 500000)
+ 44514 words of extra memory for PDF output out of 51595 (max. 10000000)
 
