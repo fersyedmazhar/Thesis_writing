@@ -58,6 +58,7 @@ These metrics provide a comprehensive assessment of the algorithm's efficiency, 
 
 The figure below illustrates the five different datasets used in the simulation experiments, showcasing the shapes, sizes, numbers, and locations of obstacles within the field. This visual representation aids in understanding the varying complexities introduced by the obstacles.
 
+\textbf{Images of the dataset}
 
 
 \textbf{Simulation Results and Analysis:} 
@@ -82,6 +83,62 @@ To ensure the validity of comparisons and isolate the effects of different datas
 
 The robot's constraints and operational parameters are set to realistic values to ensure the validity of the simulation results. These data can be visualized in Table \textbf{X} below.
 
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
+\begin{table}[]
+    \begin{tabular}{|c|c|}
+    \hline
+    \rowcolor[HTML]{FFCC67} 
+    \textit{\textbf{Constraints and Parameters}}                                    & \textit{\textbf{Values}}       \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Robot initial position}                                                 & {[}60.0, 1.0{]}                \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Robot initial orientation}                                              & 45                             \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Search angle of the vision cone}                                        & ±11                            \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Minimum search radius of the vision cone.}                              & 1.25                           \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Maximum search radius of the vision cone.}                              & 100                            \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Minimum turning radius allowed for the robot.}                          & 2.0                            \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{robot velocity on curved paths.}                                        & 0.4                            \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{robot velocity on straight paths.}                                      & 0.8                            \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Distance used to compute field time taken on curved paths.}             & 7.85                           \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Number of points to consider in the vision cone.}                       & 5                              \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Minimum distance between intermediate points, and start and end point.} & 2.7                            \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Minimum distance between intermediate points.}                          & 2                              \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Maximum distance of the intermediate point form the path.}              & 0.6                            \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Graph search extreme angles}                                            & ±11                            \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{buffer distance around obstacles.}                                      & 1                              \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Extend polygon distance for safe region.}                               & 1.4                            \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Graph generation step reduction iteration.}                             & 3                              \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Grid diameter.}                                                         & 0.4                            \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Max generation for graph generation.}                                   & 18                             \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Minimum step length for graph generation.}                              & 1.2                            \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Total operational area.}                                                & {[}{[}-2,0{]}, {[}90,120{]}{]} \\ \hline
+    \rowcolor[HTML]{CBF9FC} 
+    \textit{Distance between waypoints.}                                            & 10                             \\ \hline
+    \end{tabular}
+    \end{table}
+
+
 \vspace*{6mm}  
 
 The algorithm parameters are also meticulously defined to ensure consistent performance across all experiments. These parameters are set based on the robot's physical constraints and operational requirements, ensuring that the algorithm operates within realistic boundaries.
@@ -90,18 +147,45 @@ The algorithm parameters are also meticulously defined to ensure consistent perf
 
 The algorithm was designed to initially compute the global coverage path using straight lines. Subsequently, Dubins paths are generated for each line segment to ensure the shortest feasible path between each pair of points, optimizing the overall path length. The figures below illustrate the straight obstacle free paths generated by the algorithm for all the datasets.
 
+\textbf{Straight path images.}
 
 \vspace*{6mm}
 
 The resulting path after applying dubins constraints are depicted in the subsequent figures. These visual representations portray the robot's movement across diverse datasets, providing insight into the algorithm's adaptability amidst varying obstacles. 
 
+
+\textbf{Dubins path images.}
+
 \vspace*{6mm}  
 
 The table below summarizes the performance metrics for all datasets, offering valuable insights into the algorithm's computational efficiency, operational effectiveness, and overall robustness.
 
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
+\begin{table}[]
+    \begin{tabular}{llllll}
+    \hline
+    \rowcolor[HTML]{67D5DA} 
+    \textit{\textbf{Cases}} & \textit{\textbf{\begin{tabular}[c]{@{}l@{}}Computation \\ Time in secs.\end{tabular}}} & \textit{\textbf{\begin{tabular}[c]{@{}l@{}}Field Operation\\  Time in sec.\end{tabular}}} & \textit{\textbf{\begin{tabular}[c]{@{}l@{}}Route length\\  in meters\end{tabular}}} & \textit{\textbf{\begin{tabular}[c]{@{}l@{}}No. of \\ Turns.\end{tabular}}} & \textit{\textbf{\begin{tabular}[c]{@{}l@{}}Energy \\ Consumption \\ in KWh.\end{tabular}}} \\ \hline
+    \rowcolor[HTML]{FFFFC7} 
+    case 1                  & 13.32                                                                                  & 14612.4                                                                                   & 10637.003                                                                           & 134                                                                        & 13792.7026                                                                                 \\ \hline
+    \rowcolor[HTML]{FFFFC7} 
+    case 2                  & 20.762                                                                                 & 15170.4                                                                                   & 11028.086                                                                           & 141                                                                        & 14348.6364                                                                                 \\ \hline
+    \rowcolor[HTML]{FFFFC7} 
+    case 3                  & 35.71                                                                                  & 15094.8                                                                                   & 11079.932                                                                           & 127                                                                        & 14070.7815                                                                                 \\ \hline
+    \rowcolor[HTML]{FFFFC7} 
+    case 4                  & 93.918                                                                                 & 18694.8                                                                                   & 13738.529                                                                           & 155                                                                        & 17388.7787                                                                                 \\ \hline
+    \rowcolor[HTML]{FFFFC7} 
+    case 5                  & 58.307                                                                                 & 16160.4                                                                                   & 12010.546                                                                           & 117                                                                        & 14765.8961                                                                                 \\ \hline
+    \end{tabular}
+    \end{table}
+
 \vspace*{6mm}
 
 Additionally, the coverage rate plot over the field time provides a visual depiction of the algorithm's performance across all datasets. This plot illustrates how efficiently the algorithm achieves coverage over time, facilitating a comparative analysis of its efficiency under varying scenarios. Please refer to Figure X for visualization.
+
+\textbf{Coverage rate plot.}
 
 \textbf{Analysis: }
 

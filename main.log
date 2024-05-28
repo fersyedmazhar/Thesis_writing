@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  28 MAY 2024 01:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  28 MAY 2024 18:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -736,56 +736,151 @@ Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
 \minrowclearance=\skip81
 ) (/usr/share/texlive/texmf-dist/tex/latex/moresize/moresize.sty
 Package: moresize 1999/07/26 v1.9 (more font sizes)
+) (/usr/share/texlive/texmf-dist/tex/latex/tabularray/tabularray.sty
+Package: tabularray 2021-12-01 v2021Q Typeset tabulars and arrays with LaTeX3
+ (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2022-01-12 L3 Experimental document command parser
+)
+\l__tblr_a_int=\count352
+\l__tblr_c_int=\count353
+\l__tblr_r_int=\count354
+\l__tblr_d_dim=\dimen329
+\l__tblr_h_dim=\dimen330
+\l__tblr_o_dim=\dimen331
+\l__tblr_p_dim=\dimen332
+\l__tblr_q_dim=\dimen333
+\l__tblr_r_dim=\dimen334
+\l__tblr_s_dim=\dimen335
+\l__tblr_t_dim=\dimen336
+\l__tblr_v_dim=\dimen337
+\l__tblr_w_dim=\dimen338
+\l__tblr_a_box=\box80
+\l__tblr_b_box=\box81
+\l__tblr_c_box=\box82
+\l__tblr_d_box=\box83
+\g__tblr_table_count_int=\count355
+\c@rownum=\count356
+\c@colnum=\count357
+\c@rowcount=\count358
+\c@colcount=\count359
+\abovesep=\dimen339
+\belowsep=\dimen340
+\leftsep=\dimen341
+\rightsep=\dimen342
+\g_tblr_level_int=\count360
+\g__tblr_data_row_key_count_int=\count361
+\g__tblr_data_column_key_count_int=\count362
+\g__tblr_data_cell_key_count_int=\count363
+\g__tblr_array_int=\count364
+\l__tblr_key_count_int=\count365
+\l__tblr_key_quotient_int=\count366
+\l__tblr_key_quotient_two_int=\count367
+\l__tblr_key_remainder_int=\count368
+\g__tblr_data_str_value_count_int=\count369
+\rulewidth=\dimen343
+\l__multicolumn_cell_number_int=\count370
+\l__tblr_strut_ht_box=\box84
+\l__tblr_strut_dp_box=\box85
+\g__tblr_cell_wd_dim=\dimen344
+\g__tblr_cell_ht_dim=\dimen345
+\g__tblr_cell_head_dim=\dimen346
+\g__tblr_cell_foot_dim=\dimen347
+\l__column_target_dim=\dimen348
+\l__tblr_caption_box=\box86
+\l__tblr_caption_left_box=\box87
+\l__tblr_row_head_box=\box88
+\l__tblr_row_foot_box=\box89
+\l__tblr_row_head_foot_dim=\dimen349
+\tablewidth=\dimen350
+\l__tblr_table_firsthead_box=\box90
+\l__tblr_table_middlehead_box=\box91
+\l__tblr_table_lasthead_box=\box92
+\l__tblr_table_firstfoot_box=\box93
+\l__tblr_table_middlefoot_box=\box94
+\l__tblr_table_lastfoot_box=\box95
+\l__tblr_remain_height_dim=\dimen351
+\l__tblr_long_from_int=\count371
+\l__tblr_long_to_int=\count372
+\l__tblr_curr_i_int=\count373
+\l__tblr_prev_i_int=\count374
+\l__tblr_table_page_int=\count375
+\l__tblr_table_head_box=\box96
+\l__tblr_table_foot_box=\box97
+\l__tblr_table_head_foot_dim=\dimen352
+\l__tblr_table_head_body_foot_dim=\dimen353
+\l__tblr_table_box=\box98
+\l__tblr_table_hlines_box=\box99
+\l__tblr_hline_box=\box100
+\l__tblr_row_box=\box101
+\l__tblr_col_o_wd_dim=\dimen354
+\l__tblr_col_b_wd_dim=\dimen355
+\l__tblr_hline_leftskip_dim=\dimen356
+\l__tblr_hline_rightskip_dim=\dimen357
+\l__tblr_row_ht_dim=\dimen358
+\l__tblr_row_dp_dim=\dimen359
+\l__tblr_row_abovesep_dim=\dimen360
+\l__tblr_row_belowsep_dim=\dimen361
+\l__tblr_row_vlines_box=\box102
+\l__tblr_vline_box=\box103
+\l__tblr_cell_box=\box104
+\l__row_upper_dim=\dimen362
+\l__row_lower_dim=\dimen363
+\l__row_vpace_dim=\dimen364
+\l__tblr_vline_aboveskip_dim=\dimen365
+\l__tblr_vline_belowskip_dim=\dimen366
+\l__tblr_cell_wd_dim=\dimen367
+\l__tblr_cell_ht_dim=\dimen368
+\l__tblr_diag_box=\box105
 ) (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2022/02/02 v3.17 programmable bibliographies (PK/MW)
  (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count352
+\lrq@indent=\count376
  (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 ))
-\c@tabx@nest=\count353
-\c@listtotal=\count354
-\c@listcount=\count355
-\c@liststart=\count356
-\c@liststop=\count357
-\c@citecount=\count358
-\c@citetotal=\count359
-\c@multicitecount=\count360
-\c@multicitetotal=\count361
-\c@instcount=\count362
-\c@maxnames=\count363
-\c@minnames=\count364
-\c@maxitems=\count365
-\c@minitems=\count366
-\c@citecounter=\count367
-\c@maxcitecounter=\count368
-\c@savedcitecounter=\count369
-\c@uniquelist=\count370
-\c@uniquename=\count371
-\c@refsection=\count372
-\c@refsegment=\count373
-\c@maxextratitle=\count374
-\c@maxextratitleyear=\count375
-\c@maxextraname=\count376
-\c@maxextradate=\count377
-\c@maxextraalpha=\count378
-\c@abbrvpenalty=\count379
-\c@highnamepenalty=\count380
-\c@lownamepenalty=\count381
-\c@maxparens=\count382
-\c@parenlevel=\count383
-\blx@tempcnta=\count384
-\blx@tempcntb=\count385
-\blx@tempcntc=\count386
-\c@blx@maxsection=\count387
-\c@blx@maxsegment@0=\count388
-\blx@notetype=\count389
-\blx@parenlevel@text=\count390
-\blx@parenlevel@foot=\count391
-\c@blx@sectionciteorder@0=\count392
-\blx@entrysetcounter=\count393
-\blx@biblioinstance=\count394
+\c@tabx@nest=\count377
+\c@listtotal=\count378
+\c@listcount=\count379
+\c@liststart=\count380
+\c@liststop=\count381
+\c@citecount=\count382
+\c@citetotal=\count383
+\c@multicitecount=\count384
+\c@multicitetotal=\count385
+\c@instcount=\count386
+\c@maxnames=\count387
+\c@minnames=\count388
+\c@maxitems=\count389
+\c@minitems=\count390
+\c@citecounter=\count391
+\c@maxcitecounter=\count392
+\c@savedcitecounter=\count393
+\c@uniquelist=\count394
+\c@uniquename=\count395
+\c@refsection=\count396
+\c@refsegment=\count397
+\c@maxextratitle=\count398
+\c@maxextratitleyear=\count399
+\c@maxextraname=\count400
+\c@maxextradate=\count401
+\c@maxextraalpha=\count402
+\c@abbrvpenalty=\count403
+\c@highnamepenalty=\count404
+\c@lownamepenalty=\count405
+\c@maxparens=\count406
+\c@parenlevel=\count407
+\blx@tempcnta=\count408
+\blx@tempcntb=\count409
+\blx@tempcntc=\count410
+\c@blx@maxsection=\count411
+\c@blx@maxsegment@0=\count412
+\blx@notetype=\count413
+\blx@parenlevel@text=\count414
+\blx@parenlevel@foot=\count415
+\c@blx@sectionciteorder@0=\count416
+\blx@entrysetcounter=\count417
+\blx@biblioinstance=\count418
 \labelnumberwidth=\skip82
 \labelalphawidth=\skip83
 \biblabelsep=\skip84
@@ -797,9 +892,9 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 \blx@bcfin=\read3
 \blx@bcfout=\write5
 \blx@langwohyphens=\language87
-\c@mincomprange=\count395
-\c@maxcomprange=\count396
-\c@mincompwidth=\count397
+\c@mincomprange=\count419
+\c@maxcomprange=\count420
+\c@mincompwidth=\count421
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
@@ -812,84 +907,84 @@ File: apa.dbx 2021/12/24 v9.15 APA biblatex style data model
 )
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count398
-\c@savedafterword=\count399
-\c@annotator=\count400
-\c@savedannotator=\count401
-\c@author=\count402
-\c@savedauthor=\count403
-\c@bookauthor=\count404
-\c@savedbookauthor=\count405
-\c@commentator=\count406
-\c@savedcommentator=\count407
-\c@editor=\count408
-\c@savededitor=\count409
-\c@editora=\count410
-\c@savededitora=\count411
-\c@editorb=\count412
-\c@savededitorb=\count413
-\c@editorc=\count414
-\c@savededitorc=\count415
-\c@foreword=\count416
-\c@savedforeword=\count417
-\c@holder=\count418
-\c@savedholder=\count419
-\c@introduction=\count420
-\c@savedintroduction=\count421
-\c@namea=\count422
-\c@savednamea=\count423
-\c@nameb=\count424
-\c@savednameb=\count425
-\c@namec=\count426
-\c@savednamec=\count427
-\c@translator=\count428
-\c@savedtranslator=\count429
-\c@shortauthor=\count430
-\c@savedshortauthor=\count431
-\c@shorteditor=\count432
-\c@savedshorteditor=\count433
-\c@narrator=\count434
-\c@savednarrator=\count435
-\c@execproducer=\count436
-\c@savedexecproducer=\count437
-\c@execdirector=\count438
-\c@savedexecdirector=\count439
-\c@with=\count440
-\c@savedwith=\count441
-\c@labelname=\count442
-\c@savedlabelname=\count443
-\c@institution=\count444
-\c@savedinstitution=\count445
-\c@lista=\count446
-\c@savedlista=\count447
-\c@listb=\count448
-\c@savedlistb=\count449
-\c@listc=\count450
-\c@savedlistc=\count451
-\c@listd=\count452
-\c@savedlistd=\count453
-\c@liste=\count454
-\c@savedliste=\count455
-\c@listf=\count456
-\c@savedlistf=\count457
-\c@location=\count458
-\c@savedlocation=\count459
-\c@organization=\count460
-\c@savedorganization=\count461
-\c@origlocation=\count462
-\c@savedoriglocation=\count463
-\c@origpublisher=\count464
-\c@savedorigpublisher=\count465
-\c@publisher=\count466
-\c@savedpublisher=\count467
-\c@language=\count468
-\c@savedlanguage=\count469
-\c@origlanguage=\count470
-\c@savedoriglanguage=\count471
-\c@citation=\count472
-\c@savedcitation=\count473
-\c@pageref=\count474
-\c@savedpageref=\count475
+\c@afterword=\count422
+\c@savedafterword=\count423
+\c@annotator=\count424
+\c@savedannotator=\count425
+\c@author=\count426
+\c@savedauthor=\count427
+\c@bookauthor=\count428
+\c@savedbookauthor=\count429
+\c@commentator=\count430
+\c@savedcommentator=\count431
+\c@editor=\count432
+\c@savededitor=\count433
+\c@editora=\count434
+\c@savededitora=\count435
+\c@editorb=\count436
+\c@savededitorb=\count437
+\c@editorc=\count438
+\c@savededitorc=\count439
+\c@foreword=\count440
+\c@savedforeword=\count441
+\c@holder=\count442
+\c@savedholder=\count443
+\c@introduction=\count444
+\c@savedintroduction=\count445
+\c@namea=\count446
+\c@savednamea=\count447
+\c@nameb=\count448
+\c@savednameb=\count449
+\c@namec=\count450
+\c@savednamec=\count451
+\c@translator=\count452
+\c@savedtranslator=\count453
+\c@shortauthor=\count454
+\c@savedshortauthor=\count455
+\c@shorteditor=\count456
+\c@savedshorteditor=\count457
+\c@narrator=\count458
+\c@savednarrator=\count459
+\c@execproducer=\count460
+\c@savedexecproducer=\count461
+\c@execdirector=\count462
+\c@savedexecdirector=\count463
+\c@with=\count464
+\c@savedwith=\count465
+\c@labelname=\count466
+\c@savedlabelname=\count467
+\c@institution=\count468
+\c@savedinstitution=\count469
+\c@lista=\count470
+\c@savedlista=\count471
+\c@listb=\count472
+\c@savedlistb=\count473
+\c@listc=\count474
+\c@savedlistc=\count475
+\c@listd=\count476
+\c@savedlistd=\count477
+\c@liste=\count478
+\c@savedliste=\count479
+\c@listf=\count480
+\c@savedlistf=\count481
+\c@location=\count482
+\c@savedlocation=\count483
+\c@organization=\count484
+\c@savedorganization=\count485
+\c@origlocation=\count486
+\c@savedoriglocation=\count487
+\c@origpublisher=\count488
+\c@savedorigpublisher=\count489
+\c@publisher=\count490
+\c@savedpublisher=\count491
+\c@language=\count492
+\c@savedlanguage=\count493
+\c@origlanguage=\count494
+\c@savedoriglanguage=\count495
+\c@citation=\count496
+\c@savedcitation=\count497
+\c@pageref=\count498
+\c@savedpageref=\count499
 \shorthandwidth=\skip90
 \shortjournalwidth=\skip91
 \shortserieswidth=\skip92
@@ -913,19 +1008,19 @@ Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2022/02/02 v3.17 biblatex compatibility (PK/MW)
-\c@textcitecount=\count476
-\c@textcitetotal=\count477
-\c@textcitemaxnames=\count478
-\c@biburlbigbreakpenalty=\count479
-\c@biburlbreakpenalty=\count480
-\c@biburlnumpenalty=\count481
-\c@biburlucpenalty=\count482
-\c@biburllcpenalty=\count483
+\c@textcitecount=\count500
+\c@textcitetotal=\count501
+\c@textcitemaxnames=\count502
+\c@biburlbigbreakpenalty=\count503
+\c@biburlbreakpenalty=\count504
+\c@biburlnumpenalty=\count505
+\c@biburlucpenalty=\count506
+\c@biburllcpenalty=\count507
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count484
+\c@smartand=\count508
 )
 Package biblatex Info: Trying to load bibliography style 'apa'...
 Package biblatex Info: ... file 'apa.bbx' found.
@@ -935,8 +1030,8 @@ Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2022/02/02 v3.17 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count485
-\c@bbx:relatedtotal=\count486
+\c@bbx:relatedcount=\count509
+\c@bbx:relatedtotal=\count510
 )
 Package biblatex Info: Delimiter 'nameyeardelim' in context 'bib' already defined, overwriting.
 Package biblatex Info: Delimiter 'nameyeardelim' in context 'biblist' already defined, overwriting.
@@ -983,83 +1078,55 @@ Package biblatex Info: ... and expl3
 (biblatex)             2022-01-21 L3 programming layer (loader) 
 (biblatex)             is new enough (at least 2020/04/06),
 (biblatex)             setting 'casechanger=expl3'.
- (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Package: xparse 2022-01-12 L3 Experimental document command parser
-)
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
 Package: blx-case-expl3 2022/02/02 v3.17 expl3 case changing code for biblatex
 ))
-Package caption Info: Option `declare type' requires the `newfloat' package on input line 53.
+Package caption Info: Option `declare type' requires the `newfloat' package on input line 55.
  (/usr/share/texlive/texmf-dist/tex/latex/newfloat/newfloat.sty
 Package: newfloat 2019/09/02 v1.1l Defining new floating environments (AR)
 Package newfloat Info: Document class `book' detected (Hy).
 )
-Package newfloat Info: New float `appfigure' with options `' on input line 53.
-\c@appfigure=\count487
-Package newfloat Info: float type `appfigure'=4 on input line 53.
-\c@loappfiguredepth=\count488
+Package newfloat Info: New float `appfigure' with options `' on input line 55.
+\c@appfigure=\count511
+Package newfloat Info: float type `appfigure'=4 on input line 55.
+\c@loappfiguredepth=\count512
 Package tocbasic Info: babel extension for `loappfigure' omitted
-(tocbasic)             because of missing \bbl@set@language on input line 53.
-Package newfloat Info: New float `apptable' with options `' on input line 54.
-\c@apptable=\count489
-Package newfloat Info: float type `apptable'=8 on input line 54.
-\c@loapptabledepth=\count490
+(tocbasic)             because of missing \bbl@set@language on input line 55.
+Package newfloat Info: New float `apptable' with options `' on input line 56.
+\c@apptable=\count513
+Package newfloat Info: float type `apptable'=8 on input line 56.
+\c@loapptabledepth=\count514
 Package tocbasic Info: babel extension for `loapptable' omitted
-(tocbasic)             because of missing \bbl@set@language on input line 54.
+(tocbasic)             because of missing \bbl@set@language on input line 56.
  (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip104
-\multirow@cntb=\count491
+\multirow@cntb=\count515
 \multirow@dima=\skip105
-\bigstrutjot=\dimen329
+\bigstrutjot=\dimen369
 ) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
-\c@tracingmulticols=\count492
-\mult@box=\box80
-\multicol@leftmargin=\dimen330
-\c@unbalance=\count493
-\c@collectmore=\count494
-\doublecol@number=\count495
-\multicoltolerance=\count496
-\multicolpretolerance=\count497
-\full@width=\dimen331
-\page@free=\dimen332
-\premulticols=\dimen333
-\postmulticols=\dimen334
+\c@tracingmulticols=\count516
+\mult@box=\box106
+\multicol@leftmargin=\dimen370
+\c@unbalance=\count517
+\c@collectmore=\count518
+\doublecol@number=\count519
+\multicoltolerance=\count520
+\multicolpretolerance=\count521
+\full@width=\dimen371
+\page@free=\dimen372
+\premulticols=\dimen373
+\postmulticols=\dimen374
 \multicolsep=\skip106
 \multicolbaselineskip=\skip107
-\partial@page=\box81
-\last@line=\box82
-\maxbalancingoverflow=\dimen335
-\mult@rightbox=\box83
-\mult@grightbox=\box84
-\mult@firstbox=\box85
-\mult@gfirstbox=\box86
-\@tempa=\box87
-\@tempa=\box88
-\@tempa=\box89
-\@tempa=\box90
-\@tempa=\box91
-\@tempa=\box92
-\@tempa=\box93
-\@tempa=\box94
-\@tempa=\box95
-\@tempa=\box96
-\@tempa=\box97
-\@tempa=\box98
-\@tempa=\box99
-\@tempa=\box100
-\@tempa=\box101
-\@tempa=\box102
-\@tempa=\box103
-\@tempa=\box104
-\@tempa=\box105
-\@tempa=\box106
-\@tempa=\box107
-\@tempa=\box108
-\@tempa=\box109
-\@tempa=\box110
-\@tempa=\box111
-\@tempa=\box112
+\partial@page=\box107
+\last@line=\box108
+\maxbalancingoverflow=\dimen375
+\mult@rightbox=\box109
+\mult@grightbox=\box110
+\mult@firstbox=\box111
+\mult@gfirstbox=\box112
 \@tempa=\box113
 \@tempa=\box114
 \@tempa=\box115
@@ -1070,51 +1137,77 @@ Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \@tempa=\box120
 \@tempa=\box121
 \@tempa=\box122
-\c@minrows=\count498
-\c@columnbadness=\count499
-\c@finalcolumnbadness=\count500
-\last@try=\dimen336
-\multicolovershoot=\dimen337
-\multicolundershoot=\dimen338
-\mult@nat@firstbox=\box123
-\colbreak@box=\box124
-\mc@col@check@num=\count501
+\@tempa=\box123
+\@tempa=\box124
+\@tempa=\box125
+\@tempa=\box126
+\@tempa=\box127
+\@tempa=\box128
+\@tempa=\box129
+\@tempa=\box130
+\@tempa=\box131
+\@tempa=\box132
+\@tempa=\box133
+\@tempa=\box134
+\@tempa=\box135
+\@tempa=\box136
+\@tempa=\box137
+\@tempa=\box138
+\@tempa=\box139
+\@tempa=\box140
+\@tempa=\box141
+\@tempa=\box142
+\@tempa=\box143
+\@tempa=\box144
+\@tempa=\box145
+\@tempa=\box146
+\@tempa=\box147
+\@tempa=\box148
+\c@minrows=\count522
+\c@columnbadness=\count523
+\c@finalcolumnbadness=\count524
+\last@try=\dimen376
+\multicolovershoot=\dimen377
+\multicolundershoot=\dimen378
+\mult@nat@firstbox=\box149
+\colbreak@box=\box150
+\mc@col@check@num=\count525
 ) (/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
 ) (/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
 \labelindent=\skip108
-\enit@outerparindent=\dimen339
+\enit@outerparindent=\dimen379
 \enit@toks=\toks45
-\enit@inbox=\box125
-\enit@count@id=\count502
-\enitdp@description=\count503
+\enit@inbox=\box151
+\enit@count@id=\count526
+\enitdp@description=\count527
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count504
-\lst@gtempboxa=\box126
+\lst@mode=\count528
+\lst@gtempboxa=\box152
 \lst@token=\toks46
-\lst@length=\count505
-\lst@currlwidth=\dimen340
-\lst@column=\count506
-\lst@pos=\count507
-\lst@lostspace=\dimen341
-\lst@width=\dimen342
-\lst@newlines=\count508
-\lst@lineno=\count509
-\lst@maxwidth=\dimen343
+\lst@length=\count529
+\lst@currlwidth=\dimen380
+\lst@column=\count530
+\lst@pos=\count531
+\lst@lostspace=\dimen381
+\lst@width=\dimen382
+\lst@newlines=\count532
+\lst@lineno=\count533
+\lst@maxwidth=\dimen383
  (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count510
-\lst@skipnumbers=\count511
-\lst@framebox=\box127
+\c@lstnumber=\count534
+\lst@skipnumbers=\count535
+\lst@framebox=\box153
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
  (/usr/share/texlive/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen344
-\c@nlinenum=\count512
+\rotheadsize=\dimen384
+\c@nlinenum=\count536
 \TeXr@lab=\toks47
 ) (/usr/share/texlive/texmf-dist/tex/latex/emptypage/emptypage.sty
 Package: emptypage 2010/05/30 v1.2 Suppress page numbers and headings on empty pages
@@ -1123,14 +1216,14 @@ Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2021/12/10 v3.0b Micro-typographical refinements (RS)
 \MT@toks=\toks48
-\MT@count=\count513
-\MT@tempbox=\box128
+\MT@count=\count537
+\MT@tempbox=\box154
 LaTeX Info: Redefining \leftprotrusion on input line 1010.
 LaTeX Info: Redefining \rightprotrusion on input line 1018.
 LaTeX Info: Redefining \textls on input line 1173.
-\MT@outer@kern=\dimen345
+\MT@outer@kern=\dimen385
 LaTeX Info: Redefining \textmicrotypecontext on input line 1759.
-\MT@listname@count=\count514
+\MT@listname@count=\count538
  (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2021/12/10 v3.0b Definitions specific to pdftex (RS)
 LaTeX Info: Redefining \lsstyle on input line 897.
@@ -1143,8 +1236,8 @@ File: microtype.cfg 2021/12/10 v3.0b microtype main configuration file (RS)
 )) (/usr/share/texlive/texmf-dist/tex/latex/footmisc/footmisc.sty
 Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
 \FN@temptoken=\toks49
-\footnotemargin=\dimen346
-\c@pp@next@reset=\count515
+\footnotemargin=\dimen386
+\c@pp@next@reset=\count539
 Package footmisc Info: Declaring symbol style bringhurst on input line 855.
 Package footmisc Info: Declaring symbol style chicago on input line 863.
 Package footmisc Info: Declaring symbol style wiley on input line 872.
@@ -1153,36 +1246,36 @@ Package footmisc Info: Declaring symbol style lamport* on input line 903.
 Package footmisc Info: Declaring symbol style lamport*-robust on input line 924.
 ) (/usr/share/texlive/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
-\fn@notes=\box129
-\fn@width=\dimen347
+\fn@notes=\box155
+\fn@width=\dimen387
 )
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 201.
-\@quotelevel=\count516
-\@quotereset=\count517
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 201.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 205.
+\@quotelevel=\count540
+\@quotereset=\count541
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 205.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-) (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodology/Brief_description/Brief_description.aux) (./Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux) (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux))
+) (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodology/Brief_description/Brief_description.aux) (./Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux) (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux) (./Elements/Simulation_test_and_analysis/Comparison/Comparison.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1220,16 +1313,16 @@ LaTeX Font Info:    ... okay on input line 201.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count518
-\scratchdimen=\dimen348
-\scratchbox=\box130
-\nofMPsegments=\count519
-\nofMParguments=\count520
+\scratchcounter=\count542
+\scratchdimen=\dimen388
+\scratchbox=\box156
+\nofMPsegments=\count543
+\nofMParguments=\count544
 \everyMPshowfont=\toks50
-\MPscratchCnt=\count521
-\MPscratchDim=\dimen349
-\MPnumerator=\count522
-\makeMPintoPDFobject=\count523
+\MPscratchCnt=\count545
+\MPscratchDim=\dimen389
+\MPnumerator=\count546
+\makeMPintoPDFobject=\count547
 \everyMPtoPDFconversion=\toks51
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1243,7 +1336,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 201.
+Package hyperref Info: Link coloring ON on input line 205.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -1251,11 +1344,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count524
+\c@section@level=\count548
 )
-LaTeX Info: Redefining \ref on input line 201.
-LaTeX Info: Redefining \pageref on input line 201.
-LaTeX Info: Redefining \nameref on input line 201.
+LaTeX Info: Redefining \ref on input line 205.
+LaTeX Info: Redefining \pageref on input line 205.
+LaTeX Info: Redefining \nameref on input line 205.
  (./main.out) (./main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
@@ -1263,7 +1356,10 @@ LaTeX Info: Redefining \nameref on input line 201.
  (/usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 201.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 205.
+ (/usr/share/texlive/texmf-dist/tex/latex/ninecolors/ninecolors.sty
+Package: ninecolors 2021/05/24 v2021C Select colors with proper color contrast
+)
 Package biblatex Info: Trying to load language 'english' -> 'english-apa'...
 Package biblatex Info: ... file 'english-apa.lbx' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex-apa/english-apa.lbx
@@ -1294,17 +1390,17 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 201.
-Package biblatex Info: Reference segment=0 on input line 201.
+Package biblatex Info: Reference section=0 on input line 205.
+Package biblatex Info: Reference segment=0 on input line 205.
 Package newfloat Info: `float' package detected.
-\c@lstlisting=\count525
-LaTeX Info: Redefining \microtypecontext on input line 201.
-Package microtype Info: Applying patch `item' on input line 201.
-Package microtype Info: Applying patch `toc' on input line 201.
-Package microtype Info: Applying patch `eqnum' on input line 201.
+\c@lstlisting=\count549
+LaTeX Info: Redefining \microtypecontext on input line 205.
+Package microtype Info: Applying patch `item' on input line 205.
+Package microtype Info: Applying patch `toc' on input line 205.
+Package microtype Info: Applying patch `eqnum' on input line 205.
 
 
-Package microtype Warning: Unable to apply patch `footnote' on input line 201.
+Package microtype Warning: Unable to apply patch `footnote' on input line 205.
 
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
@@ -1312,7 +1408,7 @@ Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 201.
+LaTeX Info: Redefining \showhyphens on input line 205.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1468,40 +1564,83 @@ Underfull \hbox (badness 2065) in paragraph at lines 822--823
 
 
 
-] [71] [72]) [73]
+] [71]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 138.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 177.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 179.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 179.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 179.
+[72] [73]) [74]
 \openout2 = `Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux'.
 
- (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.tex [74
+ (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.tex [75
 
 
 
-] [75]) [76]
+]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 89.
+
+
+Overfull \hbox (2.52438pt too wide) in paragraph at lines 90--139
+[][] 
+ []
+
+[76] [77]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 166.
+
+) [78]
 \openout2 = `Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux'.
 
- (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex [77
+ (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex [79
 
 
 
-] [78]) [79] (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodology/Brief_description/Brief_description.aux) (./Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux) (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux))
+] [80]) [81]
+\openout2 = `Elements/Simulation_test_and_analysis/Comparison/Comparison.aux'.
+
+ (./Elements/Simulation_test_and_analysis/Comparison/Comparison.tex
+<experimental_data/new_table_image.png, id=601, 1776.6375pt x 862.22125pt>
+File: experimental_data/new_table_image.png Graphic file (type png)
+<use experimental_data/new_table_image.png>
+Package pdftex.def Info: experimental_data/new_table_image.png  used on input line 45.
+(pdftex.def)             Requested size: 452.9679pt x 219.83061pt.
+ [82
+
+
+
+]) [83 <./experimental_data/new_table_image.png>] (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodology/Brief_description/Brief_description.aux) (./Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux) (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux) (./Elements/Simulation_test_and_analysis/Comparison/Comparison.aux))
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 6CD496A4A06A564DED134BE566F8D79B;16084.
+(rerunfilecheck)             Checksum: D08A8A4C0098CB7AD9FCDB036215FF4D;16094.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 42614 strings out of 478287
- 853793 string characters out of 5849290
- 1752719 words of memory out of 5000000
- 59676 multiletter control sequences out of 15000+600000
- 502673 words of font info for 222 fonts, out of 8000000 for 9000
+ 44632 strings out of 478287
+ 904959 string characters out of 5849290
+ 1842957 words of memory out of 5000000
+ 61605 multiletter control sequences out of 15000+600000
+ 521642 words of font info for 287 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 110i,12n,106p,1839b,5160s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-orns.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (79 pages, 268387 bytes).
+ 110i,16n,106p,1839b,5160s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-orns.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (83 pages, 586086 bytes).
 PDF statistics:
- 644 PDF objects out of 1000 (max. 8388607)
- 548 compressed objects within 6 object streams
- 147 named destinations out of 1000 (max. 500000)
- 44514 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 679 PDF objects out of 1000 (max. 8388607)
+ 573 compressed objects within 6 object streams
+ 156 named destinations out of 1000 (max. 500000)
+ 74215 words of extra memory for PDF output out of 74296 (max. 10000000)
 
