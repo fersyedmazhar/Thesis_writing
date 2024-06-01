@@ -218,15 +218,12 @@
 \include{Elements/Acknowledgments/Acknowledgement}
 \newpage
 
-\tableofcontents
-\rhead{Table of Contents}
-\newpage
 
 %\include{Front/Nomenclature}
 %\newpage
 
 \renewcommand{\listfigurename}{Lists of Figures}
-\rhead{Lists of Figures}
+% \rhead{Lists of Figures}
 \listoffigures 
 \addcontentsline{toc}{chapter}{Lists of Figures}
 
@@ -235,8 +232,14 @@
 
 \listoftables 
 \addcontentsline{toc}{chapter}{Lists of Tables}
-\rhead{Lists of Tables}
+% \rhead{Lists of Tables}
 \newpage
+
+\tableofcontents
+\addcontentsline{toc}{chapter}{Table of Contents}
+% \rhead{Table of Contents}
+\newpage
+
 
 % Set the page style to "fancy"...
 \pagestyle{fancy}
@@ -247,10 +250,15 @@
 
 % Set the header and footer for Even
 % pages but omit the zone (L, C or R)
-\fancyhead[L]{\nouppercase{\rightmark\hfill\leftmark}}
-\fancyhead[R]{\hfill\thepage}
+\fancyhead[R]{\nouppercase{\rightmark\hfill\leftmark}}
+% \fancyhead[L]{\thepage} % Only show page number
+
+% \fancyhead[R]{\hfill\thepage}
+% \fancyhead[R]{\thepage} % Only show page number
 \fancyfoot[L]{\rule{\textwidth}{0.4pt}\hspace{1cm} Intelligent Field Robotic Systems}
-\fancyfoot[R]{\rule{\textwidth}{0.4pt}\hspace{1cm} U6972746} % Add the line before the footer text
+% \fancyfoot[R]{\rule{\textwidth}{0.4pt}\hspace{1cm} U6972746} % Add the line before the footer text
+\fancyfoot[R]{\rule{\textwidth}{0.4pt}\hspace{1cm} \thepage} % Add the line before the footer text
+% \fancyfoot[R]{\thepage} % Only show page number
 
 
 % Some content:
