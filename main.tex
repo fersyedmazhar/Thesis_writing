@@ -14,7 +14,7 @@
 \usepackage[colorlinks=true, allcolors=black]{hyperref}
 \usepackage{float}
 \usepackage{setspace}
-\usepackage{subfigure}
+% \usepackage{subfigure}
 \usepackage{url}
 \usepackage{tabularx}
 \usepackage[utf8]{inputenc}
@@ -40,9 +40,10 @@
 \clubpenalty10000
 \usepackage{moresize}
 \usepackage{tabularray}
-
-
 \usepackage[style=apa]{biblatex}
+\usepackage{subcaption}
+\usepackage{array}
+
 \addbibresource{References.bib}
 \DeclareSourcemap{
   \maps[datatype=bibtex]{
@@ -61,6 +62,8 @@
 \renewcommand{\theappfigure}{\thechapter-\arabic{appfigure}}
 \renewcommand{\theapptable}{\thechapter-\arabic{apptable}}
 \renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thetable}{\arabic{table}}
 
 \newcommand{\chapname}{Chapter }
  
@@ -215,6 +218,25 @@
 \include{Elements/Acknowledgments/Acknowledgement}
 \newpage
 
+\tableofcontents
+\rhead{Table of Contents}
+\newpage
+
+%\include{Front/Nomenclature}
+%\newpage
+
+\renewcommand{\listfigurename}{Lists of Figures}
+\rhead{Lists of Figures}
+\listoffigures 
+\addcontentsline{toc}{chapter}{Lists of Figures}
+
+\newpage
+
+
+\listoftables 
+\addcontentsline{toc}{chapter}{Lists of Tables}
+\rhead{Lists of Tables}
+\newpage
 
 % Set the page style to "fancy"...
 \pagestyle{fancy}
@@ -279,5 +301,8 @@
 
 \include{Elements/Simulation_test_and_analysis/Comparison/Comparison}  
 \newpage
+
+% (\autoref{fig:Dataset})
+% \caption{Dataset.\label{fig:Dataset}}
 
 \end{document}

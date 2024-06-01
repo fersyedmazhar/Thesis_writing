@@ -10,16 +10,34 @@ This subsection provides a comprehensive description of the real robot setup, em
 \vspace*{6mm}   
 
 
-The real-world experiments were conducted using a specially designed robot platform equipped with a camera for weed detection and extraction, and a GPS module for localization. This robot is specifically engineered to operate in grass fields. The robot can be visualized in Figure X below.  
+The real-world experiments were conducted using a specially designed robot platform equipped with a camera for weed detection and extraction, and a GPS module for localization. This robot is specifically engineered to operate in grass fields. The robot can be visualized in (\autoref{fig:real_robot}).   
+\begin{figure}[htbp]
+    \centering
+    % \includegraphics[width=\textwidth]{Images/real_robot/robot.png}
+    \includegraphics[width=0.5\textwidth]{Images/real_robot/robot.png}
+    \caption{Real robot.}
+    \label{fig:real_robot}
+\end{figure}
 
-\textbf{Figure X: Real Robot Platform} 
 
 \vspace*{6mm}   
 
 
-To perform the tests on the real robot platform, a small region of the complete field was selected, and only the weed positions within this area were considered. Testing on the entire field was impractical due to its extensive size and the significant time required for complete coverage. Therefore, a smaller region was chosen for practical testing purposes. Additionally, complete coverage was not pursued due to time constraints. Instead, the robot was programmed to cover 42\% of the points, with the expectation that the robot would behave similarly even with full coverage. This assumption is based on the robot's ability to mimic its behavior in the simulation accurately. The selected region for experimentation and the specific points utilized for the tests are shown in the figures below. 
+To perform the tests on the real robot platform, a small region of the complete field was selected, and only the weed positions within this area were considered. Testing on the entire field was impractical due to its extensive size and the significant time required for complete coverage. Therefore, a smaller region was chosen for practical testing purposes and is demonstrated in the (\autoref{fig:field_region}). Additionally, complete coverage was not pursued due to time constraints. Instead, the robot was programmed to cover 42\% of the points, with the expectation that the robot would behave similarly even with full coverage. This assumption is based on the robot's ability to mimic its behavior in the simulation accurately. The selected region for experimentation and the specific points utilized for the tests are demonstrated in the (\autoref{fig:field_region}). 
 
-\textbf{Images for the two environments}  
+% seleced field region.
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{ccc} 
+        \includegraphics[height=46mm,width=0.4\textwidth]{Images/real_robot/field_with_region.png}
+        & \includegraphics[height=46mm,width=0.4\textwidth]{Images/real_robot/field_region_points.png} 
+
+    \end{tabular}
+    \caption{Selected field region.\label{fig:field_region}} 
+\end{figure}
+
+
+
 \vspace*{6mm}   
 
 

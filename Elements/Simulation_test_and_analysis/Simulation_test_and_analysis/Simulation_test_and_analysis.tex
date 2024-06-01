@@ -1,7 +1,8 @@
 
 \section{Simulation Test and Analysis}
 
-This section presents a thorough exploration of the proposed complete coverage path planning algorithm tailored for agricultural field applications. It unfolds into three distinct sections:
+
+This section presents a thorough exploration of the proposed complete coverage path planning algorithm tailored for agricultural field applications. It unfolds into two distinct sections:
 
 \vspace*{6mm}  
 
@@ -11,10 +12,10 @@ This section is dedicated to providing a detailed exposition of the simulation s
 
 \vspace*{6mm}  
 
-\textbf{Simulation Results and Analysis:}
+\textbf{Simulation Results and Analysis:}  
 
 Comprehensive empirical findings obtained from the meticulously designed simulation experiments within the aforementioned framework are detailed in this section. Key performance metrics are analyzed to provide a holistic assessment of the algorithm's performance under diverse scenarios. we conduct a thorough analysis of the empirical results, meticulously scrutinizing each detail. Through this examination, we aim to discern the operational dynamics of the algorithm, identify its strengths, and pinpoint areas for potential refinement.
-\vspace*{6mm}  
+\vspace*{6mm}   
 
 \subsection{Simulation Setup}
 
@@ -27,7 +28,9 @@ In the context of coverage path planning for agricultural fields, it is crucial 
 
 \vspace*{6mm}  
 
-Dataset Description
+Dataset Description:
+
+
 To comprehensively evaluate the algorithm, six distinct datasets are employed within the flat field of 120m x 120m area, with each dataset containing different numbers of points: 250, 500, 2000, 4000, 6000, and 10,000. Each primary dataset is further subdivided into four sub-datasets, characterized by different spatial distributions:
 
 \begin{itemize}
@@ -69,54 +72,52 @@ Processing Speed: 2.3 GHz, Number of Cores: 6, and RAM: 16 GB.
 
 \textbf{Visual Representation of the Dataset}
 
-The distribution of points across the different datasets can be visualized in Figure X below, illustrating the varying scenarios used to test the algorithm's robustness.
+The distribution of points across the different datasets can be visualized in (\autoref{fig:Dataset}), illustrating the varying scenarios used to test the algorithm's robustness.
 
 
+% Dataset visualization
+\begin{figure}[p]
+    \centering
+    \begin{tabular}{ccc}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/01.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/02.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/03.png}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/04.png}\\[-4pt]
 
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/data/Zeroth_case/1.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Zeroth_case/2.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Zeroth_case/3.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Zeroth_case/4.png}
-%     % \\[\smallskipamount]
-% \end{figure}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/11.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/12.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/13.png}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/14.png}\\[-4pt]
 
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/data/First_case/1.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/First_case/2.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/First_case/3.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/First_case/4.png}
-% \end{figure}
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/data/Second_case/1.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Second_case/2.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Second_case/3.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Second_case/4.png}
-% \end{figure}
-% \begin{figure}  
-%     \includegraphics[width=.24\textwidth]{Images/data/Third_case/1.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Third_case/2.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Third_case/3.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Third_case/4.png}
-% \end{figure}
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/data/Fourth_case/1.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Fourth_case/2.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Fourth_case/3.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Fourth_case/4.png}
-% \end{figure}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/21.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/22.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/23.png}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/24.png}\\[-4pt]
 
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/data/Fifth_case/1.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Fifth_case/2.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Fifth_case/3.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/data/Fifth_case/4.png}
-%     \caption{Write caption explaining images}\label{fig:foobar}
-% \end{figure}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/31.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/32.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/33.png}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/34.png}\\[-4pt]
+
+
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/41.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/42.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/43.png}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/44.png}\\[-4pt]
+
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/51.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/52.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/53.png}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/data/54.png}\\[-4pt]
+        
+    \end{tabular}
+    \caption{Dataset.\label{fig:Dataset}}
+\end{figure}
+
 
 \subsection{Simulation Results and Analysis}
 
-This section presents the detailed results and analysis of the simulation experiments conducted to evaluate the robustness of the proposed complete coverage path planning behavioral algorithm without obstacles. The empirical findings are meticulously analyzed to provide insights into the algorithm's performance under diverse scenarios, enabling a comprehensive assessment of its efficiency and effectiveness. 
+This section presents the detailed results and analysis of the simulation experiments conducted to evaluate the robustness of the proposed complete coverage path planning behavioral algorithm. The empirical findings are meticulously analyzed to provide insights into the algorithm's performance under diverse scenarios, enabling a comprehensive assessment of its efficiency and effectiveness. 
 
 \vspace*{6mm}  
 
@@ -129,13 +130,13 @@ To ensure the validity of comparisons and isolate the effects of different datas
 \textbf{Robot Constraints and Algorithm Parameters: } 
 
 
-The robot's constraints and operational parameters are set to realistic values to ensure the validity of the simulation results. These data can be visualized in Table \textbf{X} below, offering a comprehensive overview of the robot's physical and operational characteristics.
+The robot's constraints and operational parameters are set to realistic values to ensure the validity of the simulation results. The parameters' data can be visualized in (\autoref{tab:constraints_and_parameters_1}), offering a comprehensive overview of the robot's physical and operational characteristics.
 
-
-% Please add the following required packages to your document preamble:
-% \usepackage[table,xcdraw]{xcolor}
-% Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
-\begin{table}[]
+% Table robot parameters 1
+\begin{table}[H] 
+    \centering
+    \caption{Robot and algorithm Constraints and Parameters}
+    \label{tab:constraints_and_parameters_1}
     \begin{tabular}{|c|c|}
     \hline
     \rowcolor[HTML]{FFCC67} 
@@ -174,7 +175,111 @@ The robot's constraints and operational parameters are set to realistic values t
 \vspace*{6mm}   
 
 
+
+
+
+
+
+The algorithm parameters are also meticulously defined to ensure consistent performance across all experiments. These parameters are set based on the robot's physical constraints and operational requirements, ensuring that the algorithm operates within realistic boundaries.
+
+\vspace*{6mm}
+
+The algorithm was designed to initially compute the global coverage path using straight lines. Subsequently, Dubins paths are generated for each line segment to ensure the shortest feasible path between each pair of points, optimizing the overall path length. The (\autoref{fig:straight_path}) illustrate the straight paths generated by the algorithm for different datasets.
+
+% Straight_path
+\begin{figure}[p]
+    \centering
+    \begin{tabular}{ccc}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/01.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/02.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/03.png}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/04.png}\\[-4pt]
+
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/11.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/12.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/13.png}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/14.png}\\[-4pt]
+
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/21.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/22.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/23.png}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/24.png}\\[-4pt]
+
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/31.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/32.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/33.png}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/34.png}\\[-4pt]
+
+
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/41.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/42.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/43.png}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/44.png}\\[-4pt]
+
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/51.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/52.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/53.png}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/straight_paths/54.png}\\[-4pt]
+
+    \end{tabular}
+    \caption{Straight Path.\label{fig:straight_path}}
+\end{figure}
+
+
+\vspace*{6mm}
+
+
+Once the Dubins paths are generated from the straight paths, the resultant paths can be visualized in the (\autoref{fig:dubins_path}). These figures showcase the robot's traversal across different datasets, illustrating how the algorithm adapts to various point distributions.
+% Dubin's path
+\begin{figure}[p]
+    \centering
+    \begin{tabular}{ccc}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/01.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/02.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/03.png}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/04.png}\\[-4pt]
+
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/11.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/12.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/13.png}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/14.png}\\[-4pt]
+
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/21.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/22.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/23.png}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/24.png}\\[-4pt]
+
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/31.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/32.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/33.png}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/34.png}\\[-4pt]
+
+
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/41.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/42.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/43.png}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/44.png}\\[-4pt]
+
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/51.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/52.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/53.png}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/dubins_path/54.png}\\[-4pt]
+
+    \end{tabular}
+    \caption{Dubin's Path.\label{fig:dubins_path}}
+\end{figure}
+
+
+
+\vspace*{6mm}
+
+The performance metrics for all datasets are summarized in the (\autoref{tab:performance_metrics}). These metrics provide insights into the algorithm's computational efficiency, operational effectiveness, and overall robustness.
+
+% Metrics for CPP.
 \begin{table}[]
+    \centering
+    \caption{Results for the performance metrics.}
+    \label{tab:performance_metrics}
     \small
     \begin{tabular}{cllllll}
     \hline
@@ -232,160 +337,51 @@ The robot's constraints and operational parameters are set to realistic values t
     \end{table}
 
 
-\vspace*{6mm}  
-
-
-
-
-
-
-The algorithm parameters are also meticulously defined to ensure consistent performance across all experiments. The key parameters include the turning radius, the linear maximum speed of the robot, to name a few. These parameters are set based on the robot's physical constraints and operational requirements, ensuring that the algorithm operates within realistic boundaries.
-
-\vspace*{6mm}
-
-The algorithm was designed to initially compute the global coverage path using straight lines. Subsequently, Dubins paths are generated for each line segment to ensure the shortest feasible path between each pair of points, optimizing the overall path length. The figures below illustrate the straight paths generated by the algorithm for different datasets.
-
-
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/01.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/02.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/03.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/04.png}
-%     \\[\smallskipamount]
-% \end{figure}
-
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/11.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/12.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/13.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/14.png}
-% \end{figure}
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/21.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/22.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/23.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/24.png}
-% \end{figure}
-% \begin{figure}  
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/31.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/32.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/33.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/34.png}
-% \end{figure}
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/41.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/42.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/43.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/44.png}
-% \end{figure}
-
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/51.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/52.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/53.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/straight_paths/54.png}
-%     \caption{Write caption explaining images}\label{fig:foobar}
-% \end{figure}
-
-\vspace*{6mm}
-
-
-Once the Dubins paths are generated from the straight paths, the resultant paths can be visualized in the following figures. These figures showcase the robot's traversal across different datasets, illustrating how the algorithm adapts to various point distributions.
-
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/01.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/02.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/03.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/04.png}
-%     \\[\smallskipamount]
-% \end{figure}
-
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/11.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/12.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/13.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/14.png}
-% \end{figure}
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/21.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/22.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/23.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/24.png}
-% \end{figure}
-% \begin{figure}  
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/31.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/32.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/33.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/34.png}
-% \end{figure}
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/41.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/42.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/43.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/44.png}
-% \end{figure}
-
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/51.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/52.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/53.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/dubins_path/54.png}
-%     \caption{Write caption explaining images}\label{fig:foobar}
-% \end{figure}
-
-
-\vspace*{6mm}
-
-The performance metrics for all datasets are summarized in the table below. These metrics provide insights into the algorithm's computational efficiency, operational effectiveness, and overall robustness.
-
-\textbf{Table for the performance metrics.} 
 
 \vspace*{6mm} 
 
 
-The coverage rate plot over the field time offers a visual representation of the algorithm's performance across the whole datasets. This plot demonstrates how effectively the algorithm achieves coverage over time, allowing for a comparative analysis of its efficiency under varying point distributions and densities. This plot can be visualized in Figure X below.   
+The coverage rate plot over the field time offers a visual representation of the algorithm's performance across the whole datasets. This plot demonstrates how effectively the algorithm achieves coverage over time, allowing for a comparative analysis of its efficiency under varying point distributions and densities. This plot can be visualized in (\autoref{fig:coverage_plots}).   
+
+% Coverage rate plot
+\begin{figure}[p]
+    \centering
+    \begin{tabular}{ccc}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/01.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/02.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/03.png}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/04.png}\\[-4pt]
+
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/11.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/12.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/13.png}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/14.png}\\[-4pt]
+
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/21.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/22.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/23.png}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/24.png}\\[-4pt]
+
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/31.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/32.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/33.png}
+         \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/34.png}\\[-4pt]
 
 
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/01.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/02.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/03.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/04.png}
-%     \\[\smallskipamount]
-% \end{figure}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/41.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/42.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/43.png}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/44.png}\\[-4pt]
 
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/11.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/12.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/13.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/14.png}
-% \end{figure}
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/21.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/22.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/23.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/24.png}
-% \end{figure} 
-% \begin{figure}   
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/31.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/32.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/33.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/34.png}
-% \end{figure} 
-% \begin{figure} 
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/41.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/42.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/43.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/44.png}
-% \end{figure} 
- 
-% \begin{figure}
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/51.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/52.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/53.png}\hfill
-%     \includegraphics[width=.24\textwidth]{Images/simulation_no_obs/coverage_plots/54.png}
-%     \caption{Write caption explaining images}\label{fig:foobar}
-% \end{figure}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/51.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/52.png}
+        & \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/53.png}
+        \includegraphics[height=36mm,width=0.24\textwidth]{Images/simulation_no_obs/coverage_plots/54.png}\\[-4pt]
+
+    \end{tabular}
+    \caption{Coverage plots.\label{fig:coverage_plots}}
+    \end{figure}
+
 
 \textbf{Performance Metrics plots.}  
 

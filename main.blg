@@ -1,9 +1,0 @@
-[0] Config.pm:307> INFO - This is Biber 2.17
-[0] Config.pm:310> INFO - Logfile is 'main.blg'
-[57] biber:340> INFO - === Tue May 28, 2024, 16:44:16
-[67] Biber.pm:418> INFO - Reading 'main.bcf'
-[113] Biber.pm:972> INFO - Found 0 citekeys in bib section 0
-[124] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[125] bbl.pm:757> INFO - Output to main.bbl
-[125] Biber.pm:130> WARN - The file 'main.bcf' does not contain any citations!
-[125] Biber.pm:132> INFO - WARNINGS: 1
