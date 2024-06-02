@@ -63,3 +63,8 @@
 \contentsline {subsection}{\numberline {7..3}Real robot testing and analysis}{86}{subsection.0.7.3}%
 \contentsline {subsection}{\numberline {7..4}Experimental Setup}{86}{subsection.0.7.4}%
 \contentsline {subsection}{\numberline {7..5}Comparison with other approaches.}{93}{subsection.0.7.5}%
+\contentsline {subsection}{\numberline {7..6}Discussion}{98}{subsection.0.7.6}%
+\contentsline {subsubsection}{\numberline {7..6.1}Lawnmower Approach}{98}{subsubsection.0.7.6.1}%
+\contentsline {subsubsection}{\numberline {7..6.2}Graph Search Approach}{98}{subsubsection.0.7.6.2}%
+\contentsline {subsubsection}{\numberline {7..6.3}Behavioral Approach}{98}{subsubsection.0.7.6.3}%
+\contentsline {subsection}{\numberline {7..7}Future Directions}{100}{subsection.0.7.7}%

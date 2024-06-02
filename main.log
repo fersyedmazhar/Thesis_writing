@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  2 JUN 2024 01:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  2 JUN 2024 13:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1058,55 +1058,88 @@ Package: blx-case-expl3 2022/02/02 v3.17 expl3 case changing code for biblatex
 Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
 \c@subfigure=\count507
 \c@subtable=\count508
+) (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2020/08/19 v1.3 Adjusting TeX boxes (trim, clip, ...)
+ (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back-ends (calc, etex, pgfmath)
+) (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
+ (/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box106
 )
-Package caption Info: Option `declare type' requires the `newfloat' package on input line 56.
+\tc@llx=\dimen367
+\tc@lly=\dimen368
+\tc@urx=\dimen369
+\tc@ury=\dimen370
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+ (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen371
+\adjbox@Height=\dimen372
+\adjbox@Depth=\dimen373
+\adjbox@Totalheight=\dimen374
+\adjbox@pwidth=\dimen375
+\adjbox@pheight=\dimen376
+\adjbox@pdepth=\dimen377
+\adjbox@ptotalheight=\dimen378
+ (/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count509
+) (/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box107
+\sift@deathcycles=\count510
+\@vwid@loff=\dimen379
+\@vwid@roff=\dimen380
+))
+Package caption Info: Option `declare type' requires the `newfloat' package on input line 57.
  (/usr/share/texlive/texmf-dist/tex/latex/newfloat/newfloat.sty
 Package: newfloat 2019/09/02 v1.1l Defining new floating environments (AR)
 Package newfloat Info: Document class `book' detected (Hy).
 )
-Package newfloat Info: New float `appfigure' with options `' on input line 56.
-\c@appfigure=\count509
-Package newfloat Info: float type `appfigure'=4 on input line 56.
+Package newfloat Info: New float `appfigure' with options `' on input line 57.
+\c@appfigure=\count511
+Package newfloat Info: float type `appfigure'=4 on input line 57.
 Package tocbasic Info: babel extension for `loappfigure' omitted
-(tocbasic)             because of missing \bbl@set@language on input line 56.
-\c@subappfigure=\count510
-Package newfloat Info: New float `apptable' with options `' on input line 57.
-\c@apptable=\count511
-Package newfloat Info: float type `apptable'=8 on input line 57.
-Package tocbasic Info: babel extension for `loapptable' omitted
 (tocbasic)             because of missing \bbl@set@language on input line 57.
-\c@subapptable=\count512
+\c@subappfigure=\count512
+Package newfloat Info: New float `apptable' with options `' on input line 58.
+\c@apptable=\count513
+Package newfloat Info: float type `apptable'=8 on input line 58.
+Package tocbasic Info: babel extension for `loapptable' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 58.
+\c@subapptable=\count514
  (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip98
-\multirow@cntb=\count513
+\multirow@cntb=\count515
 \multirow@dima=\skip99
-\bigstrutjot=\dimen367
+\bigstrutjot=\dimen381
 ) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
-\c@tracingmulticols=\count514
-\mult@box=\box106
-\multicol@leftmargin=\dimen368
-\c@unbalance=\count515
-\c@collectmore=\count516
-\doublecol@number=\count517
-\multicoltolerance=\count518
-\multicolpretolerance=\count519
-\full@width=\dimen369
-\page@free=\dimen370
-\premulticols=\dimen371
-\postmulticols=\dimen372
+\c@tracingmulticols=\count516
+\mult@box=\box108
+\multicol@leftmargin=\dimen382
+\c@unbalance=\count517
+\c@collectmore=\count518
+\doublecol@number=\count519
+\multicoltolerance=\count520
+\multicolpretolerance=\count521
+\full@width=\dimen383
+\page@free=\dimen384
+\premulticols=\dimen385
+\postmulticols=\dimen386
 \multicolsep=\skip100
 \multicolbaselineskip=\skip101
-\partial@page=\box107
-\last@line=\box108
-\maxbalancingoverflow=\dimen373
-\mult@rightbox=\box109
-\mult@grightbox=\box110
-\mult@firstbox=\box111
-\mult@gfirstbox=\box112
-\@tempa=\box113
-\@tempa=\box114
+\partial@page=\box109
+\last@line=\box110
+\maxbalancingoverflow=\dimen387
+\mult@rightbox=\box111
+\mult@grightbox=\box112
+\mult@firstbox=\box113
+\mult@gfirstbox=\box114
 \@tempa=\box115
 \@tempa=\box116
 \@tempa=\box117
@@ -1141,51 +1174,53 @@ Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \@tempa=\box146
 \@tempa=\box147
 \@tempa=\box148
-\c@minrows=\count520
-\c@columnbadness=\count521
-\c@finalcolumnbadness=\count522
-\last@try=\dimen374
-\multicolovershoot=\dimen375
-\multicolundershoot=\dimen376
-\mult@nat@firstbox=\box149
-\colbreak@box=\box150
-\mc@col@check@num=\count523
+\@tempa=\box149
+\@tempa=\box150
+\c@minrows=\count522
+\c@columnbadness=\count523
+\c@finalcolumnbadness=\count524
+\last@try=\dimen388
+\multicolovershoot=\dimen389
+\multicolundershoot=\dimen390
+\mult@nat@firstbox=\box151
+\colbreak@box=\box152
+\mc@col@check@num=\count525
 ) (/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
 ) (/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
 \labelindent=\skip102
-\enit@outerparindent=\dimen377
+\enit@outerparindent=\dimen391
 \enit@toks=\toks45
-\enit@inbox=\box151
-\enit@count@id=\count524
-\enitdp@description=\count525
+\enit@inbox=\box153
+\enit@count@id=\count526
+\enitdp@description=\count527
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count526
-\lst@gtempboxa=\box152
+\lst@mode=\count528
+\lst@gtempboxa=\box154
 \lst@token=\toks46
-\lst@length=\count527
-\lst@currlwidth=\dimen378
-\lst@column=\count528
-\lst@pos=\count529
-\lst@lostspace=\dimen379
-\lst@width=\dimen380
-\lst@newlines=\count530
-\lst@lineno=\count531
-\lst@maxwidth=\dimen381
+\lst@length=\count529
+\lst@currlwidth=\dimen392
+\lst@column=\count530
+\lst@pos=\count531
+\lst@lostspace=\dimen393
+\lst@width=\dimen394
+\lst@newlines=\count532
+\lst@lineno=\count533
+\lst@maxwidth=\dimen395
  (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count532
-\lst@skipnumbers=\count533
-\lst@framebox=\box153
+\c@lstnumber=\count534
+\lst@skipnumbers=\count535
+\lst@framebox=\box155
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
  (/usr/share/texlive/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen382
-\c@nlinenum=\count534
+\rotheadsize=\dimen396
+\c@nlinenum=\count536
 \TeXr@lab=\toks47
 ) (/usr/share/texlive/texmf-dist/tex/latex/emptypage/emptypage.sty
 Package: emptypage 2010/05/30 v1.2 Suppress page numbers and headings on empty pages
@@ -1194,14 +1229,14 @@ Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2021/12/10 v3.0b Micro-typographical refinements (RS)
 \MT@toks=\toks48
-\MT@count=\count535
-\MT@tempbox=\box154
+\MT@count=\count537
+\MT@tempbox=\box156
 LaTeX Info: Redefining \leftprotrusion on input line 1010.
 LaTeX Info: Redefining \rightprotrusion on input line 1018.
 LaTeX Info: Redefining \textls on input line 1173.
-\MT@outer@kern=\dimen383
+\MT@outer@kern=\dimen397
 LaTeX Info: Redefining \textmicrotypecontext on input line 1759.
-\MT@listname@count=\count536
+\MT@listname@count=\count538
  (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2021/12/10 v3.0b Definitions specific to pdftex (RS)
 LaTeX Info: Redefining \lsstyle on input line 897.
@@ -1214,8 +1249,8 @@ File: microtype.cfg 2021/12/10 v3.0b microtype main configuration file (RS)
 )) (/usr/share/texlive/texmf-dist/tex/latex/footmisc/footmisc.sty
 Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
 \FN@temptoken=\toks49
-\footnotemargin=\dimen384
-\c@pp@next@reset=\count537
+\footnotemargin=\dimen398
+\c@pp@next@reset=\count539
 Package footmisc Info: Declaring symbol style bringhurst on input line 855.
 Package footmisc Info: Declaring symbol style chicago on input line 863.
 Package footmisc Info: Declaring symbol style wiley on input line 872.
@@ -1224,36 +1259,36 @@ Package footmisc Info: Declaring symbol style lamport* on input line 903.
 Package footmisc Info: Declaring symbol style lamport*-robust on input line 924.
 ) (/usr/share/texlive/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
-\fn@notes=\box155
-\fn@width=\dimen385
+\fn@notes=\box157
+\fn@width=\dimen399
 )
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 208.
-\@quotelevel=\count538
-\@quotereset=\count539
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 208.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 209.
+\@quotelevel=\count540
+\@quotereset=\count541
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 209.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-) (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodology/Brief_description/Brief_description.aux) (./Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux) (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux) (./Elements/Simulation_test_and_analysis/Comparison/Comparison.aux))
+) (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodology/Brief_description/Brief_description.aux) (./Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux) (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux) (./Elements/Simulation_test_and_analysis/Comparison/Comparison.aux) (./Elements/Discussion/discussion.aux) (./Elements/Future_directions/future_directions.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 208.
-LaTeX Font Info:    ... okay on input line 208.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 208.
-LaTeX Font Info:    ... okay on input line 208.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 208.
-LaTeX Font Info:    ... okay on input line 208.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 208.
-LaTeX Font Info:    ... okay on input line 208.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 208.
-LaTeX Font Info:    ... okay on input line 208.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 208.
-LaTeX Font Info:    ... okay on input line 208.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 208.
-LaTeX Font Info:    ... okay on input line 208.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 208.
-LaTeX Font Info:    ... okay on input line 208.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 208.
-LaTeX Font Info:    ... okay on input line 208.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1291,16 +1326,16 @@ LaTeX Font Info:    ... okay on input line 208.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count540
-\scratchdimen=\dimen386
-\scratchbox=\box156
-\nofMPsegments=\count541
-\nofMParguments=\count542
+\scratchcounter=\count542
+\scratchdimen=\dimen400
+\scratchbox=\box158
+\nofMPsegments=\count543
+\nofMParguments=\count544
 \everyMPshowfont=\toks50
-\MPscratchCnt=\count543
-\MPscratchDim=\dimen387
-\MPnumerator=\count544
-\makeMPintoPDFobject=\count545
+\MPscratchCnt=\count545
+\MPscratchDim=\dimen401
+\MPnumerator=\count546
+\makeMPintoPDFobject=\count547
 \everyMPtoPDFconversion=\toks51
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1313,7 +1348,7 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 208.
+Package hyperref Info: Link coloring ON on input line 209.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -1321,11 +1356,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count546
+\c@section@level=\count548
 )
-LaTeX Info: Redefining \ref on input line 208.
-LaTeX Info: Redefining \pageref on input line 208.
-LaTeX Info: Redefining \nameref on input line 208.
+LaTeX Info: Redefining \ref on input line 209.
+LaTeX Info: Redefining \pageref on input line 209.
+LaTeX Info: Redefining \nameref on input line 209.
  (./main.out) (./main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
@@ -1333,7 +1368,7 @@ LaTeX Info: Redefining \nameref on input line 208.
  (/usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 208.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 209.
  (/usr/share/texlive/texmf-dist/tex/latex/ninecolors/ninecolors.sty
 Package: ninecolors 2021/05/24 v2021C Select colors with proper color contrast
 )
@@ -1367,17 +1402,17 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 208.
-Package biblatex Info: Reference segment=0 on input line 208.
+Package biblatex Info: Reference section=0 on input line 209.
+Package biblatex Info: Reference segment=0 on input line 209.
 Package newfloat Info: `float' package detected.
-\c@lstlisting=\count547
-LaTeX Info: Redefining \microtypecontext on input line 208.
-Package microtype Info: Applying patch `item' on input line 208.
-Package microtype Info: Applying patch `toc' on input line 208.
-Package microtype Info: Applying patch `eqnum' on input line 208.
+\c@lstlisting=\count549
+LaTeX Info: Redefining \microtypecontext on input line 209.
+Package microtype Info: Applying patch `item' on input line 209.
+Package microtype Info: Applying patch `toc' on input line 209.
+Package microtype Info: Applying patch `eqnum' on input line 209.
 
 
-Package microtype Warning: Unable to apply patch `footnote' on input line 208.
+Package microtype Warning: Unable to apply patch `footnote' on input line 209.
 
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
@@ -1385,7 +1420,7 @@ Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 208.
+LaTeX Info: Redefining \showhyphens on input line 209.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1395,7 +1430,7 @@ File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 \openout2 = `Title/titlepage.aux'.
 
  (./Title/titlepage.tex
-<Title/ifros.png, id=252, 366.168pt x 141.52875pt>
+<Title/ifros.png, id=260, 366.168pt x 141.52875pt>
 File: Title/ifros.png Graphic file (type png)
 <use Title/ifros.png>
 Package pdftex.def Info: Title/ifros.png  used on input line 4.
@@ -1488,7 +1523,7 @@ Underfull \hbox (badness 1436) in paragraph at lines 22--22
 \tf@toc=\write9
 \openout9 = `main.toc'.
 
-LaTeX Font Info:    Trying to load font information for U+futs on input line 241.
+LaTeX Font Info:    Trying to load font information for U+futs on input line 242.
  (/usr/share/texlive/texmf-dist/tex/latex/fourier/ufuts.fd
 File: ufuts.fd 2004/03/02 Fontinst v1.926 font definitions for U/futs.
 ) [12]
@@ -1634,28 +1669,28 @@ LaTeX Warning: Reference `fig:remaining_points_obs' on page 83 undefined on inpu
 
 LaTeX Warning: Reference `fig:remaining_path_obs' on page 83 undefined on input line 259.
 
-<Images/plots/obs/computation_time.png, id=726, 1628.0825pt x 511.9125pt>
+<Images/plots/obs/computation_time.png, id=738, 1628.0825pt x 511.9125pt>
 File: Images/plots/obs/computation_time.png Graphic file (type png)
 <use Images/plots/obs/computation_time.png>
 Package pdftex.def Info: Images/plots/obs/computation_time.png  used on input line 282.
 (pdftex.def)             Requested size: 452.9679pt x 142.42061pt.
-<Images/plots/obs/Energy.png, id=728, 1617.04124pt x 527.9725pt>
+<Images/plots/obs/Energy.png, id=740, 1617.04124pt x 527.9725pt>
 File: Images/plots/obs/Energy.png Graphic file (type png)
 <use Images/plots/obs/Energy.png>
 Package pdftex.def Info: Images/plots/obs/Energy.png  used on input line 289.
 (pdftex.def)             Requested size: 452.9679pt x 147.89574pt.
 [83 <./Images/plots/obs/computation_time.png>]
-<Images/plots/obs/route_length.png, id=734, 1618.045pt x 519.9425pt>
+<Images/plots/obs/route_length.png, id=746, 1618.045pt x 519.9425pt>
 File: Images/plots/obs/route_length.png Graphic file (type png)
 <use Images/plots/obs/route_length.png>
 Package pdftex.def Info: Images/plots/obs/route_length.png  used on input line 296.
 (pdftex.def)             Requested size: 452.9679pt x 145.55116pt.
-<Images/plots/obs/Field time.png, id=735, 1618.045pt x 519.9425pt>
+<Images/plots/obs/Field time.png, id=747, 1618.045pt x 519.9425pt>
 File: Images/plots/obs/Field time.png Graphic file (type png)
 <use Images/plots/obs/Field time.png>
 Package pdftex.def Info: Images/plots/obs/Field time.png  used on input line 303.
 (pdftex.def)             Requested size: 452.9679pt x 145.55116pt.
-<Images/plots/obs/Number of turns.png, id=736, 1611.01875pt x 517.935pt>
+<Images/plots/obs/Number of turns.png, id=748, 1611.01875pt x 517.935pt>
 File: Images/plots/obs/Number of turns.png Graphic file (type png)
 <use Images/plots/obs/Number of turns.png>
 Package pdftex.def Info: Images/plots/obs/Number of turns.png  used on input line 310.
@@ -1664,17 +1699,17 @@ Package pdftex.def Info: Images/plots/obs/Number of turns.png  used on input lin
 \openout2 = `Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux'.
 
  (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.tex
-<Images/real_robot/robot.png, id=751, 340.27126pt x 289.08pt>
+<Images/real_robot/robot.png, id=763, 340.27126pt x 289.08pt>
 File: Images/real_robot/robot.png Graphic file (type png)
 <use Images/real_robot/robot.png>
 Package pdftex.def Info: Images/real_robot/robot.png  used on input line 17.
 (pdftex.def)             Requested size: 226.48395pt x 192.41222pt.
-<Images/real_robot/field_with_region.png, id=753, 937.5025pt x 720.6925pt>
+<Images/real_robot/field_with_region.png, id=765, 937.5025pt x 720.6925pt>
 File: Images/real_robot/field_with_region.png Graphic file (type png)
 <use Images/real_robot/field_with_region.png>
 Package pdftex.def Info: Images/real_robot/field_with_region.png  used on input line 35.
 (pdftex.def)             Requested size: 181.18439pt x 139.27533pt.
-<Images/real_robot/field_region_points.png, id=754, 948.54375pt x 899.36pt>
+<Images/real_robot/field_region_points.png, id=766, 948.54375pt x 899.36pt>
 File: Images/real_robot/field_region_points.png Graphic file (type png)
 <use Images/real_robot/field_region_points.png>
 Package pdftex.def Info: Images/real_robot/field_region_points.png  used on input line 41.
@@ -1684,56 +1719,56 @@ Package pdftex.def Info: Images/real_robot/field_region_points.png  used on inpu
 
 
  <./Images/real_robot/robot.png>]
-<Images/real_robot/no_obs_scene.png, id=761, 680.0607pt x 641.7576pt>
+<Images/real_robot/no_obs_scene.png, id=773, 680.0607pt x 641.7576pt>
 File: Images/real_robot/no_obs_scene.png Graphic file (type png)
 <use Images/real_robot/no_obs_scene.png>
 Package pdftex.def Info: Images/real_robot/no_obs_scene.png  used on input line 61.
 (pdftex.def)             Requested size: 181.18439pt x 170.97565pt.
-<Images/real_robot/obs_scene.png, id=762, 650.43pt x 641.7576pt>
+<Images/real_robot/obs_scene.png, id=774, 650.43pt x 641.7576pt>
 File: Images/real_robot/obs_scene.png Graphic file (type png)
 <use Images/real_robot/obs_scene.png>
 Package pdftex.def Info: Images/real_robot/obs_scene.png  used on input line 67.
 (pdftex.def)             Requested size: 181.18439pt x 178.76062pt.
  [87 <./Images/real_robot/field_with_region.png> <./Images/real_robot/field_region_points.png> <./Images/real_robot/no_obs_scene.png> <./Images/real_robot/obs_scene.png>]
-<Images/real_robot/no_obs_path.png, id=773, 650.43pt x 649.7073pt>
+<Images/real_robot/no_obs_path.png, id=785, 650.43pt x 649.7073pt>
 File: Images/real_robot/no_obs_path.png Graphic file (type png)
 <use Images/real_robot/no_obs_path.png>
 Package pdftex.def Info: Images/real_robot/no_obs_path.png  used on input line 98.
 (pdftex.def)             Requested size: 181.18439pt x 180.97499pt.
-<Images/real_robot/no_obs_real_path.png, id=774, 955.57pt x 854.19125pt>
+<Images/real_robot/no_obs_real_path.png, id=786, 955.57pt x 854.19125pt>
 File: Images/real_robot/no_obs_real_path.png Graphic file (type png)
 <use Images/real_robot/no_obs_real_path.png>
 Package pdftex.def Info: Images/real_robot/no_obs_real_path.png  used on input line 104.
 (pdftex.def)             Requested size: 181.18439pt x 161.95914pt.
-<Images/real_robot/path_with_2_obs_v.png, id=776, 650.43pt x 649.7073pt>
+<Images/real_robot/path_with_2_obs_v.png, id=788, 650.43pt x 649.7073pt>
 File: Images/real_robot/path_with_2_obs_v.png Graphic file (type png)
 <use Images/real_robot/path_with_2_obs_v.png>
 Package pdftex.def Info: Images/real_robot/path_with_2_obs_v.png  used on input line 134.
 (pdftex.def)             Requested size: 181.18439pt x 180.97499pt.
-<Images/real_robot/with_obs_real.png, id=777, 894.34125pt x 849.1725pt>
+<Images/real_robot/with_obs_real.png, id=789, 894.34125pt x 849.1725pt>
 File: Images/real_robot/with_obs_real.png Graphic file (type png)
 <use Images/real_robot/with_obs_real.png>
 Package pdftex.def Info: Images/real_robot/with_obs_real.png  used on input line 140.
 (pdftex.def)             Requested size: 181.18439pt x 172.03423pt.
  [88 <./Images/real_robot/no_obs_path.png> <./Images/real_robot/no_obs_real_path.png>]
-<Images/real_robot/obs_compare.png, id=785, 1360.1214pt x 641.7576pt>
+<Images/real_robot/obs_compare.png, id=797, 1360.1214pt x 641.7576pt>
 File: Images/real_robot/obs_compare.png Graphic file (type png)
 <use Images/real_robot/obs_compare.png>
 Package pdftex.def Info: Images/real_robot/obs_compare.png  used on input line 157.
 (pdftex.def)             Requested size: 452.9679pt x 213.72935pt.
  [89 <./Images/real_robot/path_with_2_obs_v.png> <./Images/real_robot/with_obs_real.png>]
-<Images/real_robot/minh_planned.png, id=793, 578.16pt x 433.62pt>
+<Images/real_robot/minh_planned.png, id=805, 578.16pt x 433.62pt>
 File: Images/real_robot/minh_planned.png Graphic file (type png)
 <use Images/real_robot/minh_planned.png>
 Package pdftex.def Info: Images/real_robot/minh_planned.png  used on input line 175.
 (pdftex.def)             Requested size: 181.18439pt x 135.88306pt.
-<Images/real_robot/minh_simu.png, id=794, 1077.02374pt x 788.9475pt>
+<Images/real_robot/minh_simu.png, id=806, 1077.02374pt x 788.9475pt>
 File: Images/real_robot/minh_simu.png Graphic file (type png)
 <use Images/real_robot/minh_simu.png>
 Package pdftex.def Info: Images/real_robot/minh_simu.png  used on input line 181.
 (pdftex.def)             Requested size: 181.18439pt x 132.72284pt.
  [90 <./Images/real_robot/obs_compare.png> <./Images/real_robot/minh_planned.png> <./Images/real_robot/minh_simu.png>]
-<Images/real_robot/minhs_traj_2_better.png, id=803, 1387.584pt x 649.7073pt>
+<Images/real_robot/minhs_traj_2_better.png, id=815, 1387.584pt x 649.7073pt>
 File: Images/real_robot/minhs_traj_2_better.png Graphic file (type png)
 <use Images/real_robot/minhs_traj_2_better.png>
 Package pdftex.def Info: Images/real_robot/minhs_traj_2_better.png  used on input line 200.
@@ -1742,61 +1777,81 @@ Package pdftex.def Info: Images/real_robot/minhs_traj_2_better.png  used on inpu
 \openout2 = `Elements/Simulation_test_and_analysis/Comparison/Comparison.aux'.
 
  (./Elements/Simulation_test_and_analysis/Comparison/Comparison.tex
-<experimental_data/new_table_image.png, id=815, 1776.6375pt x 862.22125pt>
+<experimental_data/new_table_image.png, id=827, 1776.6375pt x 862.22125pt>
 File: experimental_data/new_table_image.png Graphic file (type png)
 <use experimental_data/new_table_image.png>
-Package pdftex.def Info: experimental_data/new_table_image.png  used on input line 39.
+Package pdftex.def Info: experimental_data/new_table_image.png  used on input line 30.
 (pdftex.def)             Requested size: 452.9679pt x 219.83061pt.
  [93
 
 
 
 ]
-<Images/plots/all/Computation_time.png, id=824, 1412.27625pt x 575.14874pt>
+<Images/plots/all/Computation_time.png, id=836, 1412.27625pt x 575.14874pt>
 File: Images/plots/all/Computation_time.png Graphic file (type png)
 <use Images/plots/all/Computation_time.png>
-Package pdftex.def Info: Images/plots/all/Computation_time.png  used on input line 63.
+Package pdftex.def Info: Images/plots/all/Computation_time.png  used on input line 54.
 (pdftex.def)             Requested size: 452.9679pt x 184.47261pt.
  [94 <./experimental_data/new_table_image.png>]
-<Images/plots/all/Energy.png, id=830, 1462.46375pt x 524.96124pt>
+<Images/plots/all/Energy.png, id=843, 1462.46375pt x 524.96124pt>
 File: Images/plots/all/Energy.png Graphic file (type png)
 <use Images/plots/all/Energy.png>
-Package pdftex.def Info: Images/plots/all/Energy.png  used on input line 70.
+Package pdftex.def Info: Images/plots/all/Energy.png  used on input line 61.
 (pdftex.def)             Requested size: 452.9679pt x 162.59212pt.
-<Images/plots/all/route_length.png, id=831, 1424.32124pt x 584.1825pt>
+<Images/plots/all/route_length.png, id=844, 1424.32124pt x 584.1825pt>
 File: Images/plots/all/route_length.png Graphic file (type png)
 <use Images/plots/all/route_length.png>
-Package pdftex.def Info: Images/plots/all/route_length.png  used on input line 77.
+Package pdftex.def Info: Images/plots/all/route_length.png  used on input line 68.
 (pdftex.def)             Requested size: 452.9679pt x 185.7834pt.
  [95 <./Images/plots/all/Computation_time.png> <./Images/plots/all/Energy.png>]
-<Images/plots/all/Field_time.png, id=839, 1413.28pt x 578.16pt>
+<Images/plots/all/Field_time.png, id=851, 1413.28pt x 578.16pt>
 File: Images/plots/all/Field_time.png Graphic file (type png)
 <use Images/plots/all/Field_time.png>
-Package pdftex.def Info: Images/plots/all/Field_time.png  used on input line 84.
+Package pdftex.def Info: Images/plots/all/Field_time.png  used on input line 75.
 (pdftex.def)             Requested size: 452.9679pt x 185.3061pt.
-) [96 <./Images/plots/all/route_length.png> <./Images/plots/all/Field_time.png>] (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodology/Brief_description/Brief_description.aux) (./Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux) (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux) (./Elements/Simulation_test_and_analysis/Comparison/Comparison.aux))
+ [96 <./Images/plots/all/route_length.png> <./Images/plots/all/Field_time.png>]
+<Images/general/new_tick_table.png, id=858, 1913.1475pt x 816.04875pt>
+File: Images/general/new_tick_table.png Graphic file (type png)
+<use Images/general/new_tick_table.png>
+Package pdftex.def Info: Images/general/new_tick_table.png  used on input line 110.
+(pdftex.def)             Requested size: 452.9679pt x 193.20345pt.
+) [97 <./Images/general/new_tick_table.png>]
+\openout2 = `Elements/Discussion/discussion.aux'.
+
+ (./Elements/Discussion/discussion.tex [98
+
+
+
+]) [99]
+\openout2 = `Elements/Future_directions/future_directions.aux'.
+
+ (./Elements/Future_directions/future_directions.tex) [100
+
+
+
+] [101] (./main.aux (./Title/titlepage.aux) (./Elements/Abstract/Abstract.aux) (./Elements/Acknowledgments/Acknowledgement.aux) (./Elements/Introduction/Introduction.aux) (./Elements/Literature_Review/literature_review.aux) (./Elements/Problem_statement/Problem_statement.aux) (./Elements/Experimental_setup/Experimental_setup.aux) (./Elements/Methodology/Brief_description/Brief_description.aux) (./Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis.aux) (./Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs.aux) (./Elements/Simulation_test_and_analysis/Real_robot/Real_robot.aux) (./Elements/Simulation_test_and_analysis/Comparison/Comparison.aux) (./Elements/Discussion/discussion.aux) (./Elements/Future_directions/future_directions.aux))
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B2A96269B8F7A9BFF7890909924D5E1F;16487.
+(rerunfilecheck)             Checksum: BF9EC6C1ED516E882BD3D2343BE265AB;16749.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44698 strings out of 478287
- 909339 string characters out of 5849290
- 1821910 words of memory out of 5000000
- 61658 multiletter control sequences out of 15000+600000
- 506490 words of font info for 234 fonts, out of 8000000 for 9000
+ 45684 strings out of 478287
+ 930067 string characters out of 5849290
+ 1842577 words of memory out of 5000000
+ 62585 multiletter control sequences out of 15000+600000
+ 506722 words of font info for 238 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  110i,15n,106p,1829b,5160s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-orns.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (96 pages, 3961456 bytes).
+Output written on main.pdf (101 pages, 4094006 bytes).
 PDF statistics:
- 914 PDF objects out of 1000 (max. 8388607)
- 751 compressed objects within 8 object streams
- 185 named destinations out of 1000 (max. 500000)
- 52845 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 954 PDF objects out of 1000 (max. 8388607)
+ 784 compressed objects within 8 object streams
+ 196 named destinations out of 1000 (max. 500000)
+ 52866 words of extra memory for PDF output out of 61914 (max. 10000000)
 

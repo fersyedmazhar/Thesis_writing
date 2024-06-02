@@ -5,58 +5,49 @@ In this section, we will conduct a comparative analysis of the proposed complete
 
 \vspace*{6mm}   
 
-Simulation Setup
-
-As with the initial simulations, the setup is designed to emulate the operational environment of an agricultural field. The same datasets used in the evaluation of the proposed CCP algorithm will be employed here to facilitate a direct comparison. These datasets are characterized by different point distributions and densities, ensuring a comprehensive assessment of each approach’s performance.
+\textbf{Simulation Setup: } As with the initial simulations, the setup is designed to emulate the operational environment of an agricultural field. The same datasets used in the evaluation of the proposed CCP algorithm will be employed here to facilitate a direct comparison. These datasets are characterized by different point distributions and densities, ensuring a comprehensive assessment of each approach’s performance.
 
 \vspace*{6mm}   
 
 The key performance metrics for comparison include computational time, field operation time, route length, and energy consumption. These metrics will provide a detailed view of each algorithm's efficiency, effectiveness, and overall robustness.
 
-\vspace*{6mm}   
+\vspace*{6mm}    
 
-Lawnmower Approach:
-
-
-The lawnmower approach, often referred to as the boustrophedon path, is a widely used baseline method in coverage path planning. It involves the robot traversing the field in parallel lines, akin to a lawnmower, ensuring that the entire area is covered systematically. This method is straightforward but may not be optimal in terms of path length and energy consumption, particularly in fields with irregular plant distributions or obstacles.
+\textbf{Lawnmower Approach: }The lawnmower approach, often referred to as the boustrophedon path, is a widely used baseline method in coverage path planning. It involves the robot traversing the field in parallel lines, akin to a lawnmower, ensuring that the entire area is covered systematically. This method is straightforward but may not be optimal in terms of path length and energy consumption, particularly in fields with irregular plant distributions or obstacles.
 
 \vspace*{6mm}   
 
-Graph Search Approach
-The graph search approach utilizes a graph-based representation of the field, where points of interest (weeds and cluster of weeds, in this context) are treated as nodes, and paths between them are edges. Algorithms such as A* or Dijkstra's can be employed to find an optimal path that covers all nodes following the non-holonomic constraints. However, this apprach does not guarantee prioritization of approximate straight paths but respects the non-holonomic constraints.  
+\textbf{Graph Search Approach:} The graph search approach utilizes a graph-based representation of the field, where points of interest (weeds and clusters of weeds, in this context) are treated as nodes, and paths between them are edges. After graph generation, a graph search algorithm is applied to find an optimal path that covers all nodes while adhering to non-holonomic constraints. However, this approach does not prioritize approximately straight paths but ensures compliance with the non-holonomic constraints.  
 
 
 \vspace*{6mm}   
 
-Performance Metrics
-
-
-The performance metrics for all datasets and approaches will be summarized in the (\autoref{tab:comparison_table}). These metrics will provide a comprehensive view of each algorithm's performance under different scenarios, enabling a detailed comparison of their efficiency and effectiveness. The results will be analyzed to identify the strengths and weaknesses of each approach, facilitating an informed decision on the most suitable method for complete coverage path planning in agricultural fields.
+\textbf{Performance Metrics: } The performance metrics for all datasets and three approaches has been summarized in the (\autoref{tab:comparison_table_all}). These metrics will provide a comprehensive view of each algorithm's performance under different scenarios, enabling a detailed comparison of their efficiency and effectiveness. The results will be analyzed to identify the strengths and weaknesses of each approach, facilitating an informed decision on the most suitable method for complete coverage path planning in agricultural fields.
 
 
 \begin{table}[htbp]
     \centering
     \includegraphics[width=\textwidth]{experimental_data/new_table_image.png}
     \caption{Performance metrics for comparison of all approaches.}
-    \label{tab:comparison_table}
+    \label{tab:comparison_table_all}
 \end{table}
 
 
 \vspace*{6mm}
 
 The lawnmover approach and behavioral approach was performed on the same device. However, the graph search approach was performed on a different device with the following specifications:
-11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz
 
-8 Cores
 
-32GB RAM
+Processor: 11th Gen Intel(R) Core(TM) i7-1165G7
+
+
+Processing Speed: 2.80 GHz, Number of Cores: 8 and RAM: 32GB
+
 
 \vspace*{6mm}
 
-% write that, we will display the resutls of each approach as plots for each metric separately.
 
-
-The results of the comparison among the proposed behavioral algorithm, the lawnmower approach, and the graph search approach are presented in the following plots ((\autoref{fig:Computation_time_all}), (\autoref{fig:Energy_expenditure_all}), (\autoref{fig:Route_length_all}), and (\autoref{fig:Field_operation_time_all})). Each plot represents a specific performance metric, such as computational time, energy consumption, route length, and field operation time for all the datasets. 
+The plots showcasing the results of the comparison among the proposed behavioral algorithm, the lawnmower approach, and the graph search approach are presented in the following plots ((\autoref{fig:Computation_time_all}), (\autoref{fig:Energy_expenditure_all}), (\autoref{fig:Route_length_all}), and (\autoref{fig:Field_operation_time_all})). Each plot represents a specific performance metric, such as computational time, energy consumption, route length, and field operation time for all the datasets. 
 
 \begin{figure}[H]
     \centering
@@ -89,4 +80,35 @@ The results of the comparison among the proposed behavioral algorithm, the lawnm
 
 \textbf{Analysis of the comparison results}  
 
+
+\vspace*{6mm}
+
+
+From the first plot of computation time, it is evident that the lawnmower approach exhibits the least and most constant computation time across all datasets. This is attributed to its simplicity, merely forming parallel lines without extensive computations. In contrast, the behavioral approach maintains a similar computation time to the lawnmower approach for smaller datasets (up to 500 points) but gradually increases as the number of points grows. The graph search approach shows the highest computation time across all datasets, with a significant increase as the number of points rises, making it considerably higher than the other two approaches.
+
+
+\vspace*{6mm}
+
+
+In terms of energy efficiency, the lawnmower approach consistently demonstrates the highest energy consumption due to the extensive parallel line formation. Conversely, the graph search algorithm exhibits the least energy consumption across all datasets. The behavioral approach, while prioritizing straight paths, achieves energy consumption levels quite close to the graph search approach, indicating its efficiency.
+
+
+\vspace*{6mm}
+
+
+The route length plot reveals that the lawnmower approach has the highest route length for all datasets, while the graph search approach maintains the shortest route length. The behavioral approach falls between the other two approaches.
+
+
+\vspace*{6mm}
+
+
+The field operation time plot indicates that the graph search approach has the shortest field operation time across all datasets. Initially, the lawnmower approach shows the highest field operation time for smaller datasets, with the behavioral approach positioned between the two. However, as the number of points increases, the field operation time for the behavioral approach escalates and nearly matches that of the lawnmower approach. 
+
+
+\begin{table}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/general/new_tick_table.png}
+    \caption{Comparison of various path planning algorithms: Performance and analysis.}
+    \label{tab:tick_table}
+\end{table}
 
