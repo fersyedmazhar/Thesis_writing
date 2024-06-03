@@ -72,6 +72,167 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
 
 \subsubsection{First Behavior: Initial Coverage (change its name)}
 
+
+\begin{algorithm}
+    \caption{AutoShiftPecentage}
+    \begin{algorithmic}[1]
+    \Statex \textbf{Input: } \textit{2D points}, \textit{centroid}, \textit{min\_radius}, \textit{max\_radius}, number of concurrent circles (\textit{N}).
+    \Statex \textbf{Output: }\textit{behavior\_change\_percent}
+    \newline
+    \State $total\_perc \gets 0$
+    \State $threshold\_perc \gets 50$
+    \State $percent\_list \gets \text{GeneratePercentageList}(30, 80, N)$ \Comment{List from 30 to 80\% with N steps.}
+    \State $concentric\_circles \gets \text{ConcentricCircles}(points, min\_radius, max\_radius, N)$
+    \For{$i, curr\_radius \in concentric\_circles$}
+        \State $curr\_perc\_points \gets \text{PointsPercentageInSubregion}(curr\_radius)$
+        \State $total\_perc \gets total\_perc + curr\_perc\_points$
+        \If{$total\_perc > threshold\_perc$}
+            \State $behavior\_change\_percent \gets percent\_list[i]$
+            \State \textbf{break}
+        \EndIf
+    \EndFor
+    \State \Return $behavior\_change\_percent$
+    \end{algorithmic}
+\end{algorithm}
+
+
+
+
+\begin{algorithm}
+    \caption{DOTSPPath}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} Set of 2D points, initial robot position, turning radius
+        \Statex \textbf{Output:} Dubins path
+        \newline
+        \State $start\_node \gets initial\_robot\_position$
+        \State $Graph \gets GenerateGraph(2D\_points)$
+        \State $Closed\_path \gets SolveClosedTSP(Graph, start\_node)$
+        \State $open\_path \gets RemoveEdgeWithMaxWeightFromStartNode(Graph, start\_node)$
+        
+        \State $dubins\_path \gets DubinsPath(open\_path, turning\_radius)$
+        
+        \State \Return $dubins\_path$
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{CompleteBehavioralAlgorithm}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} 2D points, initial robot pose, turning radius
+        \Statex \textbf{Output:} Dubins path
+        \newline
+        \State $clustered\_points, behavior\_change\_perc \gets CentroidsAndBehaviorChangePerc(2D points)$
+        \State $remaining\_points \gets clustered\_points$ 
+        \State $covered\_perc \gets 0$
+        \State $completed\_path \gets []$
+        \While{True}
+            \If{$covered\_perc < behavior\_change\_perc$}
+                \State $straight\_path, remaining\_points \gets Behavior\_1(remaining\_points, robot\_pose)$
+                \State $completed\_path \mathrel{+}= straight\_path$
+                \State $robot\_pose \gets completed\_path[-1]$
+                \State $covered\_perc \gets UpdateCoveragePerc(clustered\_points, remaining\_points)$
+            \Else
+                \State $straight\_path, remaining\_points \gets Behavior\_2(remaining\_points, robot\_pose)$
+                \State $completed\_path \mathrel{+}= straight\_path$
+                \State $robot\_pose \gets completed\_path[-1]$
+                \State $covered\_perc \gets UpdateCoveragePerc(completed\_path, remaining\_points)$
+            \EndIf
+            \If{$len(straight\_path) == 0$}
+                \State \textbf{break}
+            \EndIf
+        \EndWhile
+        \State $dubins\_path \gets DubinsPath(completed\_path, turning\_radius)$
+        \State $dotsp\_path \gets DOTSPPath(remaining\_points, turning\_radius)$
+        \State $complete\_dubins\_path \gets dubins\_path + dotsp\_path$
+        \State \Return $complete\_dubins\_path$
+    \end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}
+    \caption{Behavioral1}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} 2D points, number of sample orientations $Ns$, robot pose, vision cone, centroid, concurrent region radii, step.
+        \Statex \textbf{Output:} Complete path, remaining points.
+        \newline
+        \State $complete\_path \gets []$
+        \State $temporary\_path \gets [[], [], [], ..., Ns]$
+        \State $points\_covered \gets [[], [], [], ..., Ns]$
+        \State $sample\_orientations \gets SampleTheOrientations(robot\_pose[2], Ns, step)$
+        
+        \For{$i, orientation$ in $sample\_orientations$}
+            \State $robot\_pose[2] \gets orientation$
+            \While{no point is visible}
+                \State $visible\_points \gets ComputeVisionConePoints(robot\_pose, vision\_cone)$
+                \State $potential\_point \gets FindPotentialPoint(robot\_pose, visible\_points)$
+                \If{potential\_point is None}
+                \State \textbf{break}
+                \EndIf
+                \State $new\_orientation \gets FromCurrentPoseToPotentialPoint(robot\_pose, potential\_point)$
+                \State $temporary\_path[i].append([potential\_point, new\_orientation])$
+
+                \State $Intermediate\_points \gets CheckIntermediatePoints()$
+                \State $temporary\_path[i].append(Intermediate\_points)$
+                \State $points\_covered[i].append(len(temporary\_path))$
+                \State $remaining\_points \gets all\_points - temporary\_path$
+                \State $robot\_pose \gets [potential\_point, new\_orientation]$
+            \EndWhile
+        \EndFor
+        
+        \State $best\_orientation\_index \gets \text{argmax}(points\_covered[:])$
+        \State $complete\_path \gets temporary\_path[best\_orientation\_index]$
+        
+        \State $turn\_point \gets PotentialPointToTurn(remaining\_points, concurrent\_region\_radii, robot\_pose)$
+        \State $best\_orientation \gets TowardsCentroid(turn\_point, centroid)$
+        \State $complete\_path.append([turn\_point, best\_orientation])$
+        
+        \State \Return $complete\_path, remaining\_points$
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{BehavioralAlgorithm2}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} Set of 2D points, number of sample orientations $Ns$, robot pose, vision cone, centroid, concurrent region radii, step
+        \Statex \textbf{Output:} Complete path, remaining points
+        \newline
+        \State $complete\_path \gets []$
+        \State $temporary\_path \gets [[], [], [], ..., Ns]$
+        \State $points\_covered \gets [[], [], [], ..., Ns]$
+        \State $sample\_orientations \gets SampleTheOrientations(robot\_pose[2], Ns, step)$
+        
+        \For{$i, orientation$ in $sample\_orientations$}
+            \State $robot\_pose[2] \gets orientation$
+            \While{no point is visible}
+                \State $visible\_points \gets ComputeVisionConePoints(robot\_pose, vision\_cone)$
+                \State $potential\_point \gets FindPotentialPoint(robot\_pose, visible\_points)$
+                \If{potential\_point is None}
+                    \State \textbf{break}
+                \EndIf
+                \State $new\_orientation \gets FromCurrentPoseToPotentialPoint(robot\_pose, potential\_point)$
+                \State $temporary\_path[i].append([potential\_point, new\_orientation])$
+                \State $Intermediate\_points \gets CheckIntermediatePoints()$
+                \State $temporary\_path[i].append(Intermediate\_points)$
+                \State $points\_covered[i].append(len(temporary\_path))$
+                \State $remaining\_points \gets all\_points - temporary\_path$
+                \State $robot\_pose \gets [potential\_point, new\_orientation]$
+            \EndWhile
+        \EndFor
+        
+        \State $best\_orientation\_index \gets \text{argmax}(points\_covered[:])$
+        \State $complete\_path \gets temporary\_path[best\_orientation\_index]$
+        
+        \State $turn\_point \gets PotentialPointToTurnCCW(remaining\_points, concurrent\_region\_radii, robot\_pose)$
+        \State $best\_orientation \gets VectorsTowardsNextCCWPoint(turn\_point, remaining\_points)$
+        \State $complete\_path.append([turn\_point, best\_orientation])$
+        
+        \State \Return $complete\_path, remaining\_points$
+    \end{algorithmic}
+\end{algorithm}
+
+        
+\vspace*{6mm}  
+ 
 The algorithm begins by receiving the centroids of the overlaps between the regions of the raw points as input. It takes the initial position and orientation of the robot, where the position remains fixed while the orientation is treated as a temporary orientation. From this temporary orientation, the algorithm considers an angular range of twenty-four degrees on either side. Within this range, it samples six orientations on each side, resulting in a total of thirteen orientations, including the initial orientation.
 
 \vspace*{6mm}  

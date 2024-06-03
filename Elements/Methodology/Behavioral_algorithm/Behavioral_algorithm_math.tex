@@ -1,0 +1,333 @@
+
+\subsection{Algorithm Description}
+
+
+
+
+\section*{Data Preprocessing}
+
+
+\subsection*{Region Definition and Overlap Management}
+
+Given the robot’s extraction width of 60 cm, the field is divided into fixed regions. When data points from the drone indicate weed positions, these points often come with overlapping regions due to the growth patterns of weeds like Rumex, which tend to cluster.
+
+Let:
+
+\begin{itemize}
+    \item $\mathbf{R}_i$ represent the region associated with data point $\mathbf{p}_i$.
+    \item $\mathbf{C}$ be the set of centroids representing consolidated weed clusters.
+\end{itemize}
+
+\textbf{Overlap Reduction}
+
+To address overlaps, the preprocessing algorithm calculates the centroids of overlapping regions. Points within overlapping regions are consolidated to avoid duplication, ensuring that each weed cluster is represented by a single centroid.
+
+Let:
+
+\begin{itemize}
+    \item $\mathbf{O}_{ij}$ denote the overlap region between regions $\mathbf{R}_i$ and $\mathbf{R}_j$.
+    \item $\mathbf{C}_k$ be the centroid representing the consolidated cluster of overlapping regions.
+\end{itemize}
+
+The centroid $\mathbf{C}_k$ can be calculated as the intersection of the overlapping regions:
+\[
+\mathbf{C}_k = \bigcap \mathbf{O}_{ij}
+\]
+
+
+\newpage
+
+\section*{Vision Cone Strategy}
+
+To effectively prioritize straight paths while minimizing computational complexity and time, we employ a vision cone mechanism for the robot. This vision cone is mathematically defined by two lines extending from the robot at a fixed angle and distance range.
+
+Let:
+
+\begin{itemize}
+    \item $\theta$ be the angle of the vision cone.
+    \item $d_{\text{min}}$ be the minimum distance of the vision cone.
+    \item $d_{\text{max}}$ be the maximum distance of the vision cone.
+    \item $\mathbf{p}_r$ be the current position of the robot.
+    \item $\mathbf{h}_r$ be the heading direction of the robot.
+\end{itemize}
+
+The vision cone angle $\theta$ is determined by the robot’s minimum turning radius $R$. For instance, for a robot with a minimum turning radius of 2 meters, the angle of the cone on either side is set at 11 degrees:
+\[
+\theta = \pm11^\circ
+\]
+
+The distance range of the vision cone is defined by $d_{\text{min}}$ and $d_{\text{max}}$, where $d_{\text{min}}$ ensures that points too close to the robot are ignored, and $d_{\text{max}}$ sets the farthest point considered. For this scenario, the values are:
+\[
+d_{\text{min}} = 2 \text{ meters}
+\]
+\[
+d_{\text{max}} = 100 \text{ meters}
+\]
+
+The vision cone allows the robot to consider only those points $\mathbf{p}_i$ within this cone from its current position $\mathbf{p}_r$ as potential next travel points. To determine if a point $\mathbf{p}_i$ is within the vision cone, we use the following criteria:
+
+The Euclidean distance between $\mathbf{p}_r$ and $\mathbf{p}_i$ should be within the range $[d_{\text{min}}, d_{\text{max}}]$:
+\[
+d_{\text{min}} \leq \| \mathbf{p}_i - \mathbf{p}_r \| \leq d_{\text{max}}
+\]
+
+The angle $\varphi$ between the line connecting $\mathbf{p}_r$ to $\mathbf{p}_i$ and the robot's current heading $\mathbf{h}_r$ should be less than or equal to $\theta$:
+\[
+\varphi \leq \theta
+\]
+
+Where the angle $\varphi$ can be computed using the dot product:
+\[
+\varphi = \cos^{-1} \left( \frac{(\mathbf{p}_i - \mathbf{p}_r) \cdot \mathbf{h}_r}{\| \mathbf{p}_i - \mathbf{p}_r \| \| \mathbf{h}_r \|} \right)
+\]
+
+By narrowing the focus to relevant points within the vision cone, computational efficiency is enhanced. This selective consideration significantly reduces the computational effort required to determine the path, as it disregards points outside the cone. The time complexity of the vision cone strategy for considering all points within the cone from the robot's current position is $O(n)$. Thus, the vision cone mechanism proves to be an intelligent and effective strategy for the robot's navigation.
+
+
+\vspace*{6mm}  
+
+
+\subsection{Problem formlation and proof}
+
+% In this section, we will convert a coverage path planning problem into three behavioral approach problems. To approach the problem of coverage path planning we will subdivide the problem into three problems and each behavioal approach will solve one of the subproblems. 
+
+% The three subproblems are:
+
+% Problem1: Given a set of points, find the path that covers maximum number of points and select the next best point to turn back towrds the centroid and continue the loop.
+
+
+% Consider a set of points P = {p1, p2, ..., pn} in a 2D plane. The initial robot position Pr and orientation Or. Initially from the current orientation Or, we will sample m temporary orientations O1, O2, ..., Om. for each orientation Oi, we will compute the trajectory T1, T2,..., Tm and select the best trajectory that covers the maximum number of points T*. The selected trajectory T* will be the next best trajectory to cover the maximum number of points. After navigating the trajectory T*, the robot will compute the best point to turn back towards the centroid and continue the loop.
+
+% Lemma V.1: Given the distance of the points in the vision cone and the distribution of points on either side of the robot's orientation, the robot can select the best point from this combination that ensure maximum coverage of points in the whole trajectory.
+
+% Proof: When one sample of the orientation is selected in the first sample iteration, given robot current position and orientation. The robot will first compute all the visible points which are in the vision cone. Then it will select the some best points based on euclidean distance which ensures to select the points which are close to the robot to select more points in the trajectory. Thereafter, the robot will compute the distribution of points on either side of the robot's orientation. This will contribute to select the point that ensures maximum coverage of points in the whole trajectory. To combine both the distance of the points in the vision cone and the distribution of points on either side of the robot's orientation, both the values are normalized to the same scale and combined to select the best point. This will ensure the maximum coverage of points in the whole trajectory. This proofs that the robot selects the best point that ensures maximum coverage of points in the whole trajectory.
+
+
+
+\theoremstyle{plain}
+
+
+In this section, we aim to address a coverage path planning problem by decomposing it into three behavioral approach subproblems. Each subproblem will be tackled by a dedicated behavioral approach, collectively providing a comprehensive solution to the coverage path planning challenge.
+
+\subsection*{Subproblems Overview}
+
+\textbf{Problem 1:} Given a set of points, the objective is to determine the path that covers the maximum number of points and selects the optimal point for turning back towards the centroid to continue the traversal loop.
+
+\vspace*{6mm}  
+
+Consider a set of points $\mathbf{P} = \{ \mathbf{p}_1, \mathbf{p}_2, \ldots, \mathbf{p}_n \}$ in a 2D plane, along with the initial robot position $\mathbf{P}_r$ and orientation $\mathbf{O}_r$. Initially, the algorithm will sample $\mathbf{m}$ temporary orientations $\mathbf{O}_1, \mathbf{O}_2, \ldots, \mathbf{O}_m$. For each orientation $\mathbf{O}_i$, the trajectory $\mathbf{T}_1, \mathbf{T}_2, \ldots, \mathbf{T}_m$ will be computed, and the trajectory $\mathbf{T}^*$ with maximum point coverage will be selected. Following traversal along trajectory $\mathbf{T}^*$, the robot will determine the optimal point to turn back towards the centroid to continue the traversal loop.
+
+\vspace*{6mm}  
+
+\newtheorem{theorem}{theorem}[section]
+\begin{theorem}
+Selection of Optimal Point for Maximum Point Coverage
+
+Given the distance of the points within the vision cone and the distribution of points on either side of the robot's orientation, it is guaranteed that the best combined score will ensure the maximum coverage of points in the entire trajectory.
+
+\end{theorem}
+
+\vspace*{6mm}  
+
+\textbf{Proof:} Point Visibility Calculation:
+
+Upon selecting a sample orientation $\mathbf{O}_i$ in the initial sampling iteration, the robot, positioned at its current location and orientation, will calculate all visible points within the vision cone. Let $\mathbf{V} = \{ \mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k \}$ denote the set of visible points.
+
+\vspace*{6mm}  
+
+Point Selection Process:
+
+The robot will then evaluate the visibility of points based on their Euclidean distance from the robot's position, aiming to select points in close proximity to the robot to maximize point coverage in the trajectory. Let $\mathbf{D} = \{ d_1, d_2, \ldots, d_k \}$ represent the distances of visible points from the robot's position. Let $\mathbf{D'} = \left\{ \frac{\max(\mathbf{D})}{d_1}, \frac{\max(\mathbf{D})}{d_2}, \ldots, \frac{\max(\mathbf{D})}{d_k} \right\}$ denote the normalized distance values.
+
+\vspace*{6mm}  
+
+Distribution of Points:
+
+Concurrently, the robot will analyze the distribution of points on either side of its orientation, contributing to the selection of points that ensure comprehensive coverage across the trajectory. Let $\mathbf{Di} = \{ \mathbf{Di_L}, \mathbf{Di_R}\}$
+denote the distribution of points on either side, both the values are normalized to the same scale for a fair comparison. All the points on the left side of the robot's orientation get the value $\mathbf{Di_L}$ and all the points on the right side of the robot's orientation get the value $\mathbf{Di_R}$.
+
+\vspace*{6mm}  
+
+Combination:
+
+To integrate both the distance of points within the vision cone and the distribution of points relative to the robot's orientation, normalized distance and distribution are summed up for all the visible points. 
+
+
+The combined metric $\mathbf{C'} = \mathbf{D'} + \mathbf{Di}'$ is computed.
+
+\vspace*{6mm}  
+
+Optimal Point Selection:
+
+The optimal point $\mathbf{p}^*$ is selected based on the combined metric $\mathbf{C'}$, ensuring maximum coverage of points in the trajectory.
+
+\vspace*{6mm}  
+
+Therefore, this theorem guarantees that the best point selected by the robot ensures maximum coverage of points in the entire trajectory. 
+
+
+
+% Next theorem is for intermediate points.
+
+
+% \newtheorem{lemma}{lemma}[section]
+% \begin{lemma}
+% Given the current robot position and the next best point and a line between them. The intermediate points selected respects the non-holonomic constraints and straight path prioritization of the robot, if the distance of the intermediate points from the line is less than half of the minimum turning radius of the robot, and has a distance greater than the minimum turning radius from other intermediate points and end points of the connected line.
+
+% Give the expression for the above claim.
+
+% \end{lemma}
+
+% Proof: 
+
+% first of all the if the intermediate points to be selected has a distance greater than half times the minimum turning radius then those points will surely violate approximate straight line path and should be rejected.
+
+% Seecondly, if the intermediate points have a distance less than the minimum turning radius from other intermediate points or end points of the connected line then those points will violate the non-holonomic constraints of the robot and will produce circles. 
+
+% Therefore, to ensure the non-holonomic constraints and straight path prioritization to be modelled while also selecting the intermediate points, the above expression should be satisfied.
+
+% Hence, this lemma proofs that if the intermediate points are selected with the above expression then the non-holonomic constraints and straight path prioritization of the robot will be respected.
+
+
+% \theoremstyle{plain}
+\newtheorem{lemma}{Lemma}[section]
+
+\vspace*{6mm}  
+
+\begin{lemma}
+Given the current robot position $\mathbf{p}_r$ and the next best point $\mathbf{p}_{\text{next}}$ with a line segment $\mathbf{L}$ connecting them, the intermediate points $\{\mathbf{p}_{\text{int}1}, \mathbf{p}_{\text{int}2}, \ldots, \mathbf{p}_{\text{int}k}\}$ respect the non-holonomic constraints and straight path prioritization of the robot if they satisfy the following conditions:
+
+\vspace*{6mm}  
+
+1. The perpendicular distance $d_{i,L}$ from each intermediate point $\mathbf{p}_{\text{int}i}$ to the line $\mathbf{L}$ is less than half of the minimum turning radius $R_{\min}$ of the robot:
+\[
+d_{i,L} < \frac{R_{\min}}{2} \quad \forall i \in \{1, 2, \ldots, k\}
+\]
+
+\vspace*{6mm}  
+
+2. The Euclidean distance $d_{i,j}$ between any two intermediate points $\mathbf{p}_{\text{int}i}$ and $\mathbf{p}_{\text{int}j}$ and between intermediate points and endpoints of the line segment $\mathbf{p}_r$ and $\mathbf{p}_{\text{next}}$ is greater than the minimum turning radius $R_{\min}$:
+\[
+d_{i,j} > R_{\min} \quad \forall i \neq j \quad \text{and} \quad d_{i,\mathbf{p}_r}, d_{i,\mathbf{p}_{\text{next}}} > R_{\min} \quad \forall i \in \{1, 2, \ldots, k\}
+\]
+\end{lemma}
+
+
+\textbf{Proof:} 
+To ensure the intermediate points respect the non-holonomic constraints and the straight path prioritization of the robot, we must validate the following conditions:
+
+\vspace*{6mm}  
+
+1. \textbf{Straight Path Prioritization:}
+The intermediate points should lie close to the line segment $\mathbf{L}$ connecting $\mathbf{p}_r$ and $\mathbf{p}_{\text{next}}$. This is ensured if the perpendicular distance $d_{i,L}$ from each intermediate point $\mathbf{p}_{\text{int}i}$ to the line $\mathbf{L}$ is less than half of the minimum turning radius $R_{\min}$:
+\[
+d_{i,L} < \frac{R_{\min}}{2} \quad \forall i \in \{1, 2, \ldots, k\}
+\]
+If the perpendicular distance $d_{i,L}$ exceeds $\frac{R_{\min}}{2}$, the intermediate point $\mathbf{p}_{\text{int}i}$ deviates significantly from a straight line, thus violating the straight path prioritization.
+
+\vspace*{6mm}  
+
+2. \textbf{Non-Holonomic Constraints:}
+The robot's non-holonomic constraints dictate that the turning radius $R_{\min}$ must be respected to prevent sharp turns or loops. This requires the Euclidean distance $d_{i,j}$ between any two intermediate points $\mathbf{p}_{\text{int}i}$ and $\mathbf{p}_{\text{int}j}$ and the distance between intermediate points and the endpoints of the line segment $\mathbf{p}_r$ and $\mathbf{p}_{\text{next}}$ to be greater than the minimum turning radius $R_{\min}$:
+\[
+d_{i,j} > R_{\min} \quad \forall i \neq j \quad \text{and} \quad d_{i,\mathbf{p}_r}, d_{i,\mathbf{p}_{\text{next}}} > R_{\min} \quad \forall i \in \{1, 2, \ldots, k\}
+\]
+If the distance $d_{i,j}$ is less than $R_{\min}$, the intermediate points would necessitate a turning radius smaller than $R_{\min}$, thereby violating the non-holonomic constraints of the robot.
+
+\vspace*{6mm}  
+
+Therefore, the intermediate points that satisfy these conditions will ensure that both the straight path prioritization and the non-holonomic constraints of the robot are respected.
+
+\vspace*{6mm}  
+
+Hence, this lemma proves that if the intermediate points are selected according to the expressions above, the non-holonomic constraints and straight path prioritization of the robot will be maintained.
+
+
+% lemma:
+
+% Given the best trajectory and its end point, to make a turn back towards the points that are not covered, the best point would be the one that is within the concurrent region constraint with maximum and minimum radius and whose angle difference with the current orientation is minimum. The best orientation of that point will be towards the centroid of the points which will ensure the maximum coverage of points in the next trajectory.
+
+% proof:
+
+% Given the end point of the trajectory with the objective to compute the next best point to make a turn which will encourage to cover more points in the next trajectory. 
+
+% Since the robot has a minimum turning radius, the robot can only turn outside of a circular region of radius same as minimum turning radius. Hence to select the next best point to turn the point should be between minimum concurrent radius and maximum concurrent radius. 
+
+% Maximum conconcurrent radius should be considered to obtain short path to make a turn and minimum concurrent radius should be considered to ensure the robot can turn within the region.
+
+% The angle difference between the robot orientation and the vector from the robot to the point should be considered so that the next selected point should be on the edges of the points to cover more points in the next trajectory.
+
+% In the initial alteast 40 percent of the coverage in every scenario, the more points will be towards the centroid, hence for the first ebhavior orientation should be set towards the centroid to ensure the maximum coverage of points in the next trajectory.
+
+
+\vspace*{6mm}  
+
+
+
+\begin{lemma}
+Given the best trajectory $\mathbf{T}^*$ and its endpoint $\mathbf{p}_{\text{end}}$, the optimal next point $\mathbf{p}_{\text{opt}}$ for turning back towards the uncovered points lies within the concurrent region defined by radii $R_{\min}$ and $R_{\max}$, and has the minimum angle difference with the current orientation $\theta_{\text{cur}}$. The optimal orientation at $\mathbf{p}_{\text{opt}}$ is directed towards the centroid of all the points, ensuring maximum coverage in the next trajectory.
+\end{lemma}
+
+\textbf{Proof:} 
+
+\vspace*{2mm}  
+
+
+
+Given the endpoint $\mathbf{p}_{\text{end}}$ of the best trajectory $\mathbf{T}^*$, the objective is to compute the next best point $\mathbf{p}_{\text{opt}}$ to initiate a turn that maximizes the coverage of points in the subsequent trajectory.
+
+\vspace{6mm}  
+
+
+\textbf{Concurrent Region Constraint:}
+The robot has a minimum turning radius $R_{\min}$, implying that it can only turn outside of a circular region of radius $R_{\min}$ centered at $\mathbf{p}_{\text{end}}$. To select the next best point to turn, the point should be between $R_{\min}$ and $R_{\max}$. Here, $R_{\max}$ is chosen to limit the search area, ensuring that the robot doesn't make unnecessarily large turns, which would result in longer paths and potential inefficiency. Therefore, the next point $\mathbf{p}_{\text{opt}}$ must lie within a concurrent region defined by the minimum radius $R_{\min}$ and a maximum radius $R_{\max}$:
+\[
+R_{\min} \leq \|\mathbf{p}_{\text{opt}} - \mathbf{p}_{\text{end}}\| \leq R_{\max}
+\]
+where $\|\cdot\|$ denotes the Euclidean distance.
+
+\vspace*{6mm}  
+
+
+\textbf{Angle Difference Minimization:}
+To ensure a smooth turn, the angle difference between the robot's current orientation $\theta_{\text{cur}}$ and the vector $\overrightarrow{\mathbf{p}_{\text{end}}\mathbf{p}_{\text{opt}}}$ should be considered. This angle difference is computed for all points within the concurrent region. The point with the smallest angle difference is chosen as $\mathbf{p}_{\text{opt}}$, as this point is likely to be near the edge or on the boundary of the set of points, ensuring more points are covered in the next trajectory. The angle difference can be expressed as:
+\[
+\theta_{\text{opt}} = \arg\min_{\mathbf{p} \in \mathbf{P}_{\text{concurrent}}} |\theta - \theta_{\text{cur}}|
+\]
+where $\theta$ is the angle between the line segment $\overrightarrow{\mathbf{p}_{\text{end}}\mathbf{p}_{\text{opt}}}$ and the positive x-axis, and $\mathbf{P}_{\text{concurrent}}$ is the set of points within the concurrent region. This selection helps ensure that the next point $\mathbf{p}_{\text{opt}}$ is positioned to maximize coverage in the following trajectory.
+
+
+\vspace*{6mm}  
+
+
+\textbf{Optimal Orientation Towards Centroid:}
+To maximize the coverage of points in the next trajectory, the optimal orientation at $\mathbf{p}_{\text{opt}}$ should be directed towards the centroid $\mathbf{C}$ of all the points $\mathbf{P}_{\text{rem}} = \{ \mathbf{p}_1, \mathbf{p}_2, \ldots, \mathbf{p}_n \}$. The centroid $\mathbf{C}$ is computed as:
+\[
+\mathbf{C} = \left( \frac{1}{n} \sum_{i=1}^{n} x_i, \frac{1}{n} \sum_{i=1}^{n} y_i \right)
+\]
+where $\mathbf{p}_i = (x_i, y_i)$ are the coordinates of the remaining points.
+
+Thus, the optimal point $\mathbf{p}_{\text{opt}}$ is chosen based on the following criteria:
+\[
+\mathbf{p}_{\text{opt}} = \arg\min_{\mathbf{p} \in \mathbf{P}_{\text{concurrent}}} \{ |\theta_{\text{opt}} - \theta_{\text{cur}}| \mid R_{\min} \leq \|\mathbf{p} - \mathbf{p}_{\text{end}}\| \leq R_{\max} \}
+\]
+and the optimal orientation at $\mathbf{p}_{\text{opt}}$ is towards the centroid $\mathbf{C}$.
+
+
+
+\vspace*{6mm}  
+
+
+Hence, this lemma proves that selecting $\mathbf{p}_{\text{opt}}$ with the conditions above ensures the robot's non-holonomic constraints are respected and maximum coverage of points in the subsequent trajectory is achieved.
+
+
+
+\vspace*{6mm}  
+
+
+Problem2: Given a set of points, find the path that covers maximum number of points and select the next best point to circumnavigate the centroid and continue the loop.
+
+
+
+Problem3: Given a set of points, find the dubins traveling salesman path that covers rest of the points with optimal path.
+

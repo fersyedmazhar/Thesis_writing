@@ -1,0 +1,11 @@
+PWD /home/s_m/Creative/Thesis/Thesis_writing/Elements/Methodology/Behavioral_algorithm
+INPUT /etc/texmf/web2c/texmf.cnf
+INPUT /usr/share/texmf/web2c/texmf.cnf
+INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
+INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
+INPUT /home/s_m/Creative/Thesis/Thesis_writing/Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm_math.tex
+OUTPUT Behavioral_algorithm_math.log
+INPUT /usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm

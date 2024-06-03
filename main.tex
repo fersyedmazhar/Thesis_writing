@@ -44,6 +44,11 @@
 \usepackage{subcaption}
 \usepackage{array}
 \usepackage{adjustbox}
+% \usepackage{algorithmic}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{algorithm}
+
 
 \addbibresource{References.bib}
 \DeclareSourcemap{
@@ -206,6 +211,7 @@
 
 \usepackage{tabularray}
 
+
 \begin{document}
 
 \renewcommand{\thesection}{\arabic{section}.} % Change section numbering style
@@ -213,33 +219,33 @@
 
 \include{Title/titlepage}
 
-\include{Elements/Abstract/Abstract}
-\newpage
+% \include{Elements/Abstract/Abstract}
+% \newpage
 
-\include{Elements/Acknowledgments/Acknowledgement}
-\newpage
+% \include{Elements/Acknowledgments/Acknowledgement}
+% \newpage
 
 
 %\include{Front/Nomenclature}
 %\newpage
 
-\renewcommand{\listfigurename}{Lists of Figures}
-% \rhead{Lists of Figures}
-\listoffigures 
-\addcontentsline{toc}{chapter}{Lists of Figures}
+% % % \renewcommand{\listfigurename}{Lists of Figures}
+% % % % \rhead{Lists of Figures}
+% % % \listoffigures 
+% % % \addcontentsline{toc}{chapter}{Lists of Figures}
 
-\newpage
+% % % \newpage
 
 
-\listoftables 
-\addcontentsline{toc}{chapter}{Lists of Tables}
-% \rhead{Lists of Tables}
-\newpage
+% % % \listoftables 
+% % % \addcontentsline{toc}{chapter}{Lists of Tables}
+% % % % \rhead{Lists of Tables}
+% % % \newpage
 
-\tableofcontents
-\addcontentsline{toc}{chapter}{Table of Contents}
-% \rhead{Table of Contents}
-\newpage
+% % % \tableofcontents
+% % % \addcontentsline{toc}{chapter}{Table of Contents}
+% % % % \rhead{Table of Contents}
+% % % \newpage
 
 
 % Set the page style to "fancy"...
@@ -278,19 +284,22 @@
 \include{Elements/Introduction/Introduction}
 \newpage 
 
-\include{Elements/Literature_Review/literature_review}
-\newpage
+% \include{Elements/Literature_Review/literature_review}
+% \newpage
 
 \include{Elements/Problem_statement/Problem_statement}
 \newpage
 
 
-\include{Elements/Experimental_setup/Experimental_setup}
-\newpage
+% \include{Elements/Experimental_setup/Experimental_setup}
+% \newpage
 
 \include{Elements/Methodology/Brief_description/Brief_description}
 \newpage
 
+
+\include{Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm_math}
+\newpage
 
 \include{Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm}
 \newpage
@@ -298,24 +307,24 @@
 \include{Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance}
 \newpage
 
-\include{Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis}
-\newpage 
+% \include{Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis}
+% \newpage 
 
-\include{Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs}  
-\newpage
+% \include{Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs}  
+% \newpage
 
-\include{Elements/Simulation_test_and_analysis/Real_robot/Real_robot}  
-\newpage
+% \include{Elements/Simulation_test_and_analysis/Real_robot/Real_robot}  
+% \newpage
 
 
-\include{Elements/Simulation_test_and_analysis/Comparison/Comparison}  
-\newpage
+% \include{Elements/Simulation_test_and_analysis/Comparison/Comparison}  
+% \newpage
 
-\include{Elements/Discussion/discussion}
-\newpage
+% \include{Elements/Discussion/discussion}
+% \newpage
 
-\include{Elements/Future_directions/future_directions}
-\newpage
+% \include{Elements/Future_directions/future_directions}
+% \newpage
 
 
 
