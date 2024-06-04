@@ -113,60 +113,77 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
     \end{algorithmic}
 \end{algorithm}
 
+Convention to be followed for the algorithms:
+\begin{multicols}{2}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $P$: path.
+    \item $p$: points.
+    \item $r$: robot.
+    \item $R$: Radius.
+    \item $VC$: Vision cone.
+    \item $C$: Centroid.
+    \item $N_s$: Number of sample orientations.
+    \item $ \delta$: Percentage.
+    \item $step$: Step size.
+    \item $O$: Orientation.
+\end{itemize}
+\end{multicols}
+
+\vspace*{6mm}  
+
+Description of the notations:
+
+\begin{multicols}{2}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $p_{cl}$: clustered points.
+    \item $p_r$: remaining points.
+    \item $\delta_{\text{bc}}$: behavior change percentage.
+    \item $\delta_c$: coverage percentage.
+    \item $P_c$: completed path.
+    \item $P_s$: straight path.
+    \item $R_{\text{conc}}$: concurrent region radii.
+    \item $P_d$: Dubins path.
+    \item $P_{dotsp}$: DOTSP path.
+    \item $P_cd$: Complete Dubins path.
+\end{itemize}
+\end{multicols}
 
 \begin{algorithm}[H]
     \caption{CompleteBehavioralAlgorithm}
     \label{alg:completebehavioralalgorithm}
     \begin{algorithmic}[1]
-    \Require Set of 2D points $P$, initial robot pose $R_{\text{init}}$, turning radius $R_{\text{turn}}$ \Comment{Set of 2D points, Initial robot pose, Turning radius}
-    \Ensure Dubins path $D$
-    \State $cp, bcp \leftarrow$ CentroidsAndAutoBehaviorShift($P$)
-    \State $rp \leftarrow cp$
-    \State $cp \leftarrow 0$
-    \State $cpd \leftarrow []$
+    \Require 2D points ($p_{2d}$), initial robot pose ($r_{\text{pos}}$), turning radius ($R_{\text{tu}}$) 
+    \Ensure Dubins path $P_{cd}$
+    \State $p_{cl}, \delta_{\text{bc}} \leftarrow$ CentroidsAndAutoBehaviorShift($p_{2d}$)
+    \State $p_r \leftarrow p_{cl}$
+    \State $\delta_c \leftarrow 0$
+    \State $P_c \leftarrow []$
     
     \While{True}
-        \If{$cp < bcp$}
-            \State $sp, rp \leftarrow$ Behavior\_1($rp$, $N_s$, $R_{\text{init}}$, $VC$, $centroid$, $R_{\text{conc}}$, $step$)
+        \If{$\delta_c <  \delta_{\text{bc}}$}
+            \State $P_s, p_r \leftarrow$ Behavior\_1($p_r$, $N_s$, $r_{\text{pos}}$, $VC$, $C$, $R_{\text{conc}}$, $step$)
         \Else
-            \State $sp, rp \leftarrow$ Behavior\_2($rp$, $N_s$, $R_{\text{init}}$, $VC$, $centroid$, $R_{\text{conc}}$, $step$)
+            \State $P_s, p_r \leftarrow$ Behavior\_2($p_r$, $N_s$, $r_{\text{pos}}$, $VC$, $C$, $R_{\text{conc}}$, $step$)
         \EndIf
         
-        \State $cpd \mathrel{+}= sp$
-        \State $R_{\text{init}} \leftarrow cpd[-1]$
-        \State $cp \leftarrow$ UpdateCoveragePerc($cpd$, $rp$)
+        \State $P_c \mathrel{+}= P_s$
+        \State $r_{\text{pos}} \leftarrow P_c[-1]$
+        \State $\delta_c \leftarrow$ UpdateCoveragePerc($P_c$, $p_r$)
         
-        \If{$\text{len}(sp) == 0$}
+        \If{$\text{len}(P_s) == 0$}
             \State \textbf{break}
         \EndIf
     \EndWhile
     
-    \State $dp \leftarrow$ DubinsPath($cpd$, $R_{\text{turn}}$)
-    \State $dotsp \leftarrow$ DOTSPPath($rp$, $R_{\text{turn}}$)
-    \State $D \leftarrow dp + dotsp$
+    \State $P_d \leftarrow$ DubinsPath($P_c$, $R_{\text{tu}}$)
+    \State $P_{dotsp} \leftarrow$ DOTSPPath($p_r$, $R_{\text{tu}}$)
+    \State $P_{cd} \leftarrow P_d + P_{dotsp}$
 
-    \State \Return $D$
+    \State \Return $P_{cd}$
     \end{algorithmic}
 \end{algorithm}
     
-    Description of the notations:
-    \begin{itemize}[noitemsep,topsep=0pt]
-        \item $P$: Set of 2D points
-        \item $R_{\text{init}}$: Initial robot pose
-        \item $R_{\text{turn}}$: Turning radius
-        \item $cp$: Covered percentage
-        \item $bcp$: Behavior change percentage
-        \item $N_s$: Number of sample orientations
-        \item $VC$: Vision cone
-        \item $centroid$: Centroid
-        \item $R_{\text{conc}}$: Concurrent region radii
-        \item $step$: Step size
-        \item $sp$: Straight path
-        \item $rp$: Remaining points
-        \item $cpd$: Completed path
-        \item $dp$: Dubins path
-        \item $dotsp$: DOTSP path
-    \end{itemize}
+
     
 
 \begin{algorithm}[H]
@@ -192,43 +209,42 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
 \end{algorithm}
 
 
+Description of the notations:
+\begin{multicols}{2}
+    \begin{itemize}[noitemsep,topsep=0pt]
+        \item $\delta_to$: Total percentage
+        \item $\delta_{thp}$: Threshold percentage
+        \item $\delta_{list}$: List of percentages
+        \item $cc$: Concentric circles
+        \item $R_{cu}$: Current radius
+        \item $p_{cu_\delta}$: Percentage of points in subregion
+    \end{itemize}
+\end{multicols}
 
 \begin{algorithm}[H]
     \caption{AutoBehaviorShift}
     \label{alg:autobehaviorshift}
     \begin{algorithmic}[1]
-    \Statex \textbf{Input: }  $P$, $r_{\text{min}}$, $r_{\text{max}}$, $N$ 
-    \Statex \textbf{Output: } $\delta_{\text{behavior}}$ 
+    \Statex \textbf{Input: }  $P_{2d}$, $R_{\text{min}}$, $R_{\text{max}}$, $N$ 
+    \Statex \textbf{Output: } $\delta_{\text{bc}}$ 
     \newline
-    \State $T_p \leftarrow 0$ 
-    \State $T_{hp} \leftarrow 50$ 
-    \State $pl \leftarrow \text{GeneratePercentageList}(30, 80, N)$
-    \State $cc \leftarrow \text{ConcentricCircles}(P, r_{\text{min}}, r_{\text{max}}, N)$
-    \For{$i, r$ \textbf{in} $cc$}
-        \State $cpp \leftarrow \text{PointsPercentageInSubregion}(r)$
-        \State $T_p \leftarrow T_p + cpp$
-        \If{$T_p > T_{hp}$}
-            \State $\delta_{\text{behavior}} \leftarrow pl[i]$
+    \State $\delta_{to} \leftarrow 0$ 
+    \State $\delta_{thp} \leftarrow 50$ 
+    \State $\delta_{list} \leftarrow \text{GeneratePercentageList}(30, 80, N)$ \Comment{List from 30 to 80\% with N steps.}
+    \State $cc \leftarrow \text{ConcentricCircles}(P_{2d}$, $R_{\text{min}}$, $R_{\text{max}}$, $N$)
+    \For{$i, R_{cu}$ \textbf{in} $cc$}
+        \State $p_{cu_\delta} \leftarrow \text{PointsPercentageInSubregion}(R_{cu})$
+        \State $\delta_{to} \leftarrow \delta_{to} + p_{cu_\delta}$
+        \If{$\delta_to > \delta_{thp}$}
+            \State $\delta_{\text{bc}} \leftarrow \delta_{list}[i]$
             \State \textbf{break}
         \EndIf
     \EndFor
-    \State \Return $\delta_{\text{behavior}}$
+    \State \Return $\delta_{\text{bc}}$
     \end{algorithmic}
     \end{algorithm}
     
-    Description of the notations:
-    \begin{itemize}[noitemsep,topsep=0pt]
-        \item $P$: Set of points
-        \item $r_{\text{min}}$: Minimum radius
-        \item $r_{\text{max}}$: Maximum radius
-        \item $N$: Number of concurrent circles
-        \item $\delta_{\text{behavior}}$: Behavior change percentage
-        \item $T_p$: Total percentage of points in subregions
-        \item $T_{hp}$: Threshold percentage for behavior change
-        \item $pl$: GeneratePercentageList
-        \item $cc$: ConcentricCircles
-        \item $cpp$: PointsPercentageInSubregion
-    \end{itemize}
+
     
     
     
@@ -269,78 +285,79 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
         \State $best\_orientation\_index \gets \text{argmax}(points\_covered[:])$
         \State $complete\_path \gets temporary\_path[best\_orientation\_index]$
         
+        \State $robot\_pose \gets complete\_path[-1]$
         \State $turn\_point \gets PotentialPointToTurn(remaining\_points, concurrent\_region\_radii, robot\_pose)$
         \State $best\_orientation \gets TowardsCentroid(turn\_point, centroid)$
         \State $complete\_path.append([turn\_point, best\_orientation])$
-        
+        \State $remaining\_points.remove([turn\_point])$
+
         \State \Return $complete\_path, remaining\_points$
     \end{algorithmic}
 \end{algorithm}
 
+Description of the notations:
+\begin{multicols}{2}
+    \begin{itemize}[noitemsep,topsep=0pt]
+        \item $P_{cs}: Complete straight path$
+        \item $P_{t}: Temporary path$
+        \item $p_{co}: Points covered$
+        \item $O_{sa}: Sampled orientations$
+        \item $p_v: Visible points$
+        \item $p_{po}: Potential point$
+        \item $O_n: New orientation$
+        \item $p_{int}: Intermediate points$
+        \item $O_{bi}: Best orientation index$
+        \item $P_{tu}: Turn point$
+        \item $O_b: Best orientation$
+    \end{itemize}
+\end{multicols}
 
 \begin{algorithm}[H]
     \caption{Behavioral1}
     \label{alg:behavioral1}
     \begin{algorithmic}[1]
-    \Require Set of 2D points $P$, number of sample orientations $N_s$, robot pose $R$, vision cone $VC$, centroid $C$, concurrent region radii $R_{\text{conc}}$, step size $S$
-    \Ensure Complete path $CP$, remaining points $RP$
-    \State $cp \leftarrow []$
-    \State $tp \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
-    \State $pc \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
-    \State $so \leftarrow$ SampleTheOrientations($R[2]$, $N_s$, $S$)
+
+    \Require Set of 2D points ($P_{2d}$), clustered points ($p_{cl}$), number of sample orientations ($N_s$), robot pose ($r_{pos}$), vision cone ($VC$), centroid ($C$), concurrent region radii ($R_{\text{conc}}$), step size ($S$)
+
+    \Ensure Complete straight path $P_{cs}$, remaining points $p_r$
+    \State $P_{cs} \leftarrow []$
+    \State $P_t \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $p_{co} \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $O_{sa} \leftarrow$ SampleTheOrientations($R_{pos}[2]$, $N_s$, $S$)
     
-    \For{$i, o$ \textbf{in} $so$}
-        \State $R[2] \leftarrow o$
+    \For{$i, O$ \textbf{in} $O_{sa}$}
+        \State $R_{pos}[2] \leftarrow O$
         \While{no point is visible}
-            \State $vp \leftarrow$ ComputeVisionConePoints($R$, $VC$)
-            \State $pp \leftarrow$ FindPotentialPoint($R$, $vp$)
-            \If{$pp$ is None}
+            \State $p_v \leftarrow$ ComputeVisionConePoints($r_{pos}$, $VC$)
+            \State $p_{po} \leftarrow$ FindPotentialPoint($r_{pos}$, $p_v$)
+            \If{$p_{po}$ is None}
                 \State \textbf{break}
             \EndIf
-            \State $no \leftarrow$ FromCurrentPoseToPotentialPoint($R$, $pp$)
-            \State $tp[i].\text{append}([pp, no])$
+            \State $O_n \leftarrow$ FromCurrentPoseToPotentialPoint($r_{pos}$, $p_{po}$)
+            \State $P_t[i].\text{append}([p_{po}, O_n])$
             
-            \State $ip \leftarrow$ CheckIntermediatePoints()
-            \State $tp[i].\text{append}(ip)$
-            \State $pc[i].\text{append}(\text{len}(tp))$
-            \State $RP \leftarrow P - tp$
-            \State $R \leftarrow [pp, no]$
+            \State $p_{int} \leftarrow$ CheckIntermediatePoints($p_r$)
+            \State $P_t[i].\text{append}(p_{int})$
+            \State $p_c[i].\text{append}(\text{len}(P_t))$
+            \State $p_r \leftarrow p_{cl} - P_t$
+            \State $r_{pos} \leftarrow [p_{po}, O_n]$
         \EndWhile
     \EndFor
     
-    \State $boi \leftarrow \text{argmax}(pc[:])$
-    \State $cp \leftarrow tp[boi]$
+    \State $O_{bi} \leftarrow \text{argmax}(p_c[:])$
+    \State $P_{cs} \leftarrow P_t[O_{bi}]$
     
-    \State $tp \leftarrow$ PotentialPointToTurn($RP$, $R_{\text{conc}}$, $R$)
-    \State $bo \leftarrow$ TowardsCentroid($tp$, $C$)
-    \State $cp.\text{append}([tp, bo])$
+    \State $r_{pos} \leftarrow P_{cs}[-1]$
+    \State $p_{tu} \leftarrow$ PotentialPointToTurn($p_r$, $R_{\text{conc}}$, $r_{pos}$)
+    \State $O_b \leftarrow$ TowardsCentroid($p_{tu}$, $C$)
+    \State $P_{cs}.\text{append}([p_{tu}, O_b])$
+    \State $p_r.\text{remove}([p_{tu}])$
     
-    \State \Return $cp$, $RP$
+    \State \Return $P_{cs}$, $p_r$
     \end{algorithmic}
     \end{algorithm}
     
-    Description of the notations:
-    \begin{itemize}[noitemsep,topsep=0pt]
-        \item $P$: Set of 2D points
-        \item $N_s$: Number of sample orientations
-        \item $R$: Robot pose
-        \item $VC$: Vision cone
-        \item $C$: Centroid
-        \item $R_{\text{conc}}$: Concurrent region radii
-        \item $S$: Step size
-        \item $cp$: Complete path
-        \item $tp$: Temporary path
-        \item $pc$: Points covered
-        \item $so$: Sampled orientations
-        \item $vp$: Visible points
-        \item $pp$: Potential point
-        \item $no$: New orientation
-        \item $ip$: Intermediate points
-        \item $RP$: Remaining points
-        \item $boi$: Best orientation index
-        \item $tp$: Turn point
-        \item $bo$: Best orientation
-    \end{itemize}
+
     
 
 
@@ -389,64 +406,48 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
     \caption{Behavioral2}
     \label{alg:behavioral2}
     \begin{algorithmic}[1]
-    \Require Set of 2D points $P$, number of sample orientations $N_s$, robot pose $R$, vision cone $VC$, centroid $C$, concurrent region radii $R_{\text{conc}}$, step size $S$
-    \Ensure Complete path $CP$, remaining points $RP$
-    \State $cp \leftarrow []$
-    \State $tp \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
-    \State $pc \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
-    \State $so \leftarrow$ SampleTheOrientations($R[2]$, $N_s$, $S$)
+
+    \Require Set of 2D points ($P_{2d}$), clustered points ($p_{cl}$), number of sample orientations ($N_s$), robot pose ($r_{pos}$), vision cone ($VC$), centroid ($C$), concurrent region radii ($R_{\text{conc}}$), step size ($S$)
+
+    \Ensure Complete straight path $P_{cs}$, remaining points $p_r$
+    \State $P_{cs} \leftarrow []$
+    \State $P_t \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $p_{co} \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $O_{sa} \leftarrow$ SampleTheOrientations($R_{pos}[2]$, $N_s$, $S$)
     
-    \For{$i, o$ \textbf{in} $so$}
-        \State $R[2] \leftarrow o$
+    \For{$i, O$ \textbf{in} $O_{sa}$}
+        \State $R_{pos}[2] \leftarrow O$
         \While{no point is visible}
-            \State $vp \leftarrow$ ComputeVisionConePoints($R$, $VC$)
-            \State $pp \leftarrow$ FindPotentialPoint($R$, $vp$)
-            \If{$pp$ is None}
+            \State $p_v \leftarrow$ ComputeVisionConePoints($r_{pos}$, $VC$)
+            \State $p_{po} \leftarrow$ FindPotentialPoint($r_{pos}$, $p_v$)
+            \If{$p_{po}$ is None}
                 \State \textbf{break}
             \EndIf
-            \State $no \leftarrow$ FromCurrentPoseToPotentialPoint($R$, $pp$)
-            \State $tp[i].\text{append}([pp, no])$
-            \State $ip \leftarrow$ CheckIntermediatePoints()
-            \State $tp[i].\text{append}(ip)$
-            \State $pc[i].\text{append}(\text{len}(tp))$
-            \State $RP \leftarrow P - tp$
-            \State $R \leftarrow [pp, no]$
+            \State $O_n \leftarrow$ FromCurrentPoseToPotentialPoint($r_{pos}$, $p_{po}$)
+            \State $P_t[i].\text{append}([p_{po}, O_n])$
+            
+            \State $p_{int} \leftarrow$ CheckIntermediatePoints($p_r$)
+            \State $P_t[i].\text{append}(p_{int})$
+            \State $p_c[i].\text{append}(\text{len}(P_t))$
+            \State $p_r \leftarrow p_{cl} - P_t$
+            \State $r_{pos} \leftarrow [p_{po}, O_n]$
         \EndWhile
     \EndFor
     
-    \State $boi \leftarrow \text{argmax}(pc[:])$
-    \State $cp \leftarrow tp[boi]$
+    \State $O_{bi} \leftarrow \text{argmax}(p_c[:])$
+    \State $P_{cs} \leftarrow P_t[O_{bi}]$
     
-    \State $tp \leftarrow$ PotentialPointToTurnCCW($RP$, $R_{\text{conc}}$, $R$)
-    \State $bo \leftarrow$ VectorsTowardsNextCCWPoint($tp$, $RP$)
-    \State $cp.\text{append}([tp, bo])$
-    
-    \State \Return $cp$, $RP$
+    \State $r_{pos} \leftarrow P_{cs}[-1]$
+    \State $p_{tu} \leftarrow$ PotentialPointToTurnCCW($p_r$, $R_{\text{conc}}$, $r_{pos}$)
+    \State $O_b \leftarrow$ VectorsTowardsNextCCWPoint($p_{tu}$, $p_r$)
+    \State $P_{cs}.\text{append}([p_{tu}, O_b])$
+    \State $p_r.\text{remove}([p_{tu}])$
+
+    \State \Return $P_{cs}$, $p_r$
     \end{algorithmic}
     \end{algorithm}
     
-    Description of the notations:
-    \begin{itemize}[noitemsep,topsep=0pt]
-        \item $P$: Set of 2D points
-        \item $N_s$: Number of sample orientations
-        \item $R$: Robot pose
-        \item $VC$: Vision cone
-        \item $C$: Centroid
-        \item $R_{\text{conc}}$: Concurrent region radii
-        \item $S$: Step size
-        \item $cp$: Complete path
-        \item $tp$: Temporary path
-        \item $pc$: Points covered
-        \item $so$: Sampled orientations
-        \item $vp$: Visible points
-        \item $pp$: Potential point
-        \item $no$: New orientation
-        \item $ip$: Intermediate points
-        \item $RP$: Remaining points
-        \item $boi$: Best orientation index
-        \item $tp$: Turn point
-        \item $bo$: Best orientation
-    \end{itemize}
+
     
 
 
@@ -468,33 +469,33 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
     \end{algorithmic}
 \end{algorithm}
 
+Description of the notations:
+\begin{multicols}{2}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $sn$: Start node
+    \item $G$: Graph
+    \item $P_{clo}$: Closed path
+    \item $P_{op}$: Open path
+    \item $P_d$: Dubins path
+\end{itemize}
+\end{multicols}
 
 \begin{algorithm}[H]
     \caption{DOTSPPath}
     \label{alg:dotsp_path}
     \begin{algorithmic}[1]
-    \Require Set of 2D points $P$, initial robot position $R_{\text{init}}$, turning radius $R_{\text{turn}}$
-    \Ensure Dubins path $D$
-    \State $sn \leftarrow R_{\text{init}}$
-    \State $G \leftarrow$ GenerateGraph($P$)
-    \State $CP \leftarrow$ SolveClosedTSP($G$, $sn$)
-    \State $OP \leftarrow$ RemoveEdgeWithMaxWeightFromStartNode($G$, $sn$)
-    \State $DP \leftarrow$ DubinsPath($OP$, $R_{\text{turn}}$)
-    \State \Return $DP$
+    \Require Set of 2D points $P_{2d}$, initial robot position $r_{\text{pos}}$, turning radius $R_{\text{tu}}$
+    \Ensure Dubins path $P_d$
+    \State $sn \leftarrow r_{\text{pos}}$
+    \State $G \leftarrow$ GenerateGraph($P_{2d}$)
+    \State $P_{clo} \leftarrow$ SolveClosedTSP($G$, $sn$)
+    \State $P_{op} \leftarrow$ RemoveEdgeWithMaxWeightFromStartNode($G$, $sn$)
+    \State $P_d \leftarrow$ DubinsPath($P_{op}$, $R_{\text{tu}}$)
+    \State \Return $P_d$
     \end{algorithmic}
     \end{algorithm}
     
-    Description of the notations:
-    \begin{itemize}[noitemsep,topsep=0pt]
-        \item $P$: Set of 2D points
-        \item $R_{\text{init}}$: Initial robot position
-        \item $R_{\text{turn}}$: Turning radius
-        \item $sn$: Start node
-        \item $G$: Graph
-        \item $CP$: Closed path
-        \item $OP$: Open path
-        \item $DP$: Dubins path
-    \end{itemize}
+
     
 
 
@@ -530,11 +531,26 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
 
 
 
+Convention to be followed for the algorithms:
+\begin{multicols}{2}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $OB$: Obstacle.
+    \item $OB_p$: Polygonal obstacles.
+    \item $OB_e$: Extended obstacles.
+    \item $g$: grid.
+    \item $g_s$: grids.
+    \item $p_{bu}$: Buffer points.
+    \item $G$: Graph.
+    \item $S$: Step.
+    \item $SP$: Salient Point.
+    \item $P_{re}$: Remaining path.
+\end{itemize}
+\end{multicols}
+    
 
 
 
-
-\begin{algorithm}[H]
+\begin{algorithm}[H] 
     \caption{CompleteBehavioralObstacleAvoidance}
     \begin{algorithmic}[1]
         \Statex \textbf{Input:} 2D points, initial robot pose, turning radius, polygonal obstacles, grid diameter, vision cone
@@ -577,63 +593,79 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
 
 
 \begin{algorithm}[H]
-    \caption{CompleteBehavioralObstacleAvoidance}
+    \caption{CompleteBehavioralAlgorithm}
     \label{alg:complete_behavioral_obstacle_avoidance}
     \begin{algorithmic}[1]
-    \Require Set of 2D points $P$, initial robot pose $R_{\text{init}}$, turning radius $R_{\text{turn}}$, polygonal obstacles $O$, grid diameter $D_{\text{grid}}$, vision cone $VC$
-    \Ensure Dubins path $D$
-    \State $eo, g, bp \leftarrow$ SetupObstacles($O$, $D_{\text{grid}}$, $VC$)
-    \State $cp, bcp \leftarrow$ CentroidsAndAutoBehaviorShift($P$)
-    \State $rp \leftarrow cp$
-    \State $cp \leftarrow 0$
-    \State $cpd \leftarrow []$
+    \Require 2D points ($p_{2d}$), initial robot pose ($r_{\text{pos}}$), turning radius ($R_{\text{tu}}$), polygonal obstacles ($OB_p$), grid diameter ($g_d$), vision cone ($VC$) 
+    \Ensure Dubins path $P_{cd}$
+
+    \State $OB_e, g_s, p_{bu} \leftarrow$ SetupObstacles($OB_p$, $g_d$, $VC$)
+    \State $p_{cl}, \delta_{\text{bc}} \leftarrow$ CentroidsAndAutoBehaviorShift($p_{2d}$)
+    \State $p_r \leftarrow p_{cl}$
+    \State $\delta_c \leftarrow 0$
+    \State $P_c \leftarrow []$
     
     \While{True}
-        \If{$cp < bcp$}
-            \State $sp, rp \leftarrow$ Behavioral1($eo$,$g$, $bp$, $rp$, $Ns$, $R_{\text{init}}$, $VC$, $centroid$, $concurrent\_region\_radii$, $step$)
+        \If{$\delta_c <  \delta_{\text{bc}}$}
+            \State $P_s, p_r \leftarrow$ Behavior\_1($OB_p$, $g_d$, $p_{bu}$, $p_r$, $N_s$, $r_{\text{pos}}$, $VC$, $C$, $R_{\text{conc}}$, $step$)
         \Else
-            \State $sp, rp \leftarrow$ Behavioral2($eo$,$g$, $bp$, $rp$, $Ns$, $R_{\text{init}}$, $VC$, $centroid$, $concurrent\_region\_radii$, $step$)
+            \State $P_s, p_r \leftarrow$ Behavior\_2($OB_p$, $g_d$, $p_{bu}$, $p_r$, $N_s$, $r_{\text{pos}}$, $VC$, $C$, $R_{\text{conc}}$, $step$)
         \EndIf
         
-        \State $cpd \mathrel{+}= sp$
-        \State $R_{\text{init}} \leftarrow cpd[-1]$
-        \State $cp \leftarrow$ UpdateCoveragePercentage($cp$, $rp$)
+        \State $P_c \mathrel{+}= P_s$
+        \State $r_{\text{pos}} \leftarrow P_c[-1]$
+        \State $\delta_c \leftarrow$ UpdateCoveragePerc($P_c$, $p_r$)
         
-        \If{$\text{len}(sp) == 0$}
+        \If{$\text{len}(P_s) == 0$}
             \State \textbf{break}
         \EndIf
     \EndWhile
     
-    \State $dp \leftarrow$ DubinsPath($cpd$, $R_{\text{turn}}$)
-    \State $rp \leftarrow$ PathAroundObstaclesAlgorithm($rp$, $R_{\text{turn}}$)
-    \State $D \leftarrow dp + rp$
-    \State \Return $D$
+    \State $P_d \leftarrow$ DubinsPath($P_c$, $R_{\text{tu}}$)
+    \State $P_{re} \leftarrow$ PathAroundObstaclesAlgorithm($p_r$, $R_{\text{tu}}$)
+    \State $P_{cd} \leftarrow P_d + P_{re}$
+
+    \State \Return $P_{cd}$
     \end{algorithmic}
-    \end{algorithm}
+\end{algorithm}
+
+
+% \begin{algorithm}[H]
+%     \caption{CompleteBehavioralObstacleAvoidance}
+%     \label{alg:complete_behavioral_obstacle_avoidance}
+%     \begin{algorithmic}[1]
+%     \Require Set of 2D points $P$, initial robot pose $R_{\text{init}}$, turning radius $R_{\text{turn}}$, polygonal obstacles $O$, grid diameter $D_{\text{grid}}$, vision cone $VC$
+%     \Ensure Dubins path $D$
+%     \State $eo, g, bp \leftarrow$ SetupObstacles($O$, $D_{\text{grid}}$, $VC$)
+%     \State $cp, bcp \leftarrow$ CentroidsAndAutoBehaviorShift($P$)
+%     \State $rp \leftarrow cp$
+%     \State $cp \leftarrow 0$
+%     \State $cpd \leftarrow []$
     
-    Description of the notations:
-    \begin{itemize}[noitemsep,topsep=0pt]
-        \item $P$: Set of 2D points
-        \item $R_{\text{init}}$: Initial robot pose
-        \item $R_{\text{turn}}$: Turning radius
-        \item $O$: Polygonal obstacles
-        \item $D_{\text{grid}}$: Grid diameter
-        \item $VC$: Vision cone
-        \item $eo$: Extended obstacles
-        \item $g$: Grids
-        \item $bp$: Buffer points
-        \item $cp$: Covered percentage
-        \item $bcp$: Behavior change percentage
-        \item $rp$: Remaining points
-        \item $cpd$: Completed path
-        \item $sp$: Straight path
-        \item $Ns$: Number of sample orientations
-        \item $centroid$: Centroid
-        \item $concurrent\_region\_radii$: Concurrent region radii
-        \item $step$: Step size
-        \item $dp$: Dubins path
-        \item $rp$: Remaining path
-    \end{itemize}
+%     \While{True}
+%         \If{$cp < bcp$}
+%             \State $sp, rp \leftarrow$ Behavioral1($eo$,$g$, $bp$, $rp$, $Ns$, $R_{\text{init}}$, $VC$, $centroid$, $concurrent\_region\_radii$, $step$)
+%         \Else
+%             \State $sp, rp \leftarrow$ Behavioral2($eo$,$g$, $bp$, $rp$, $Ns$, $R_{\text{init}}$, $VC$, $centroid$, $concurrent\_region\_radii$, $step$)
+%         \EndIf
+        
+%         \State $cpd \mathrel{+}= sp$
+%         \State $R_{\text{init}} \leftarrow cpd[-1]$
+%         \State $cp \leftarrow$ UpdateCoveragePercentage($cp$, $rp$)
+        
+%         \If{$\text{len}(sp) == 0$}
+%             \State \textbf{break}
+%         \EndIf
+%     \EndWhile
+    
+%     \State $dp \leftarrow$ DubinsPath($cpd$, $R_{\text{turn}}$)
+%     \State $rp \leftarrow$ PathAroundObstaclesAlgorithm($rp$, $R_{\text{turn}}$)
+%     \State $D \leftarrow dp + rp$
+%     \State \Return $D$
+%     \end{algorithmic}
+%     \end{algorithm}
+    
+
 
     
 
@@ -685,76 +717,113 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
 \end{algorithm}
 
 
+Description of the notations:
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $P_{cu}$: Current path
+    \item $P_{OB free}$: Obstacle free path
+\end{itemize}
+
 \begin{algorithm}[H]
     \caption{Behavioral1}
     \label{alg:behavioral1}
     \begin{algorithmic}[1]
-    \Require Extended polygonal obstacles $EO$, grids $G$, set of 2D points $P$, number of sample orientations $Ns$, robot pose $R$, vision cone $VC$, centroid $C$, concurrent region radii $R_{\text{conc}}$, step size $S$
-    \Ensure Complete path $CP$, remaining points $RP$
-    \State $cp \leftarrow []$
-    \State $tp \leftarrow [[] \text{ for } \_ \text{ in range}(Ns)]$
-    \State $pc \leftarrow [[] \text{ for } \_ \text{ in range}(Ns)]$
-    \State $so \leftarrow$ SampleTheOrientations($R[2]$, $Ns$, $S$)
+
+    \Require Extended polygonal obstacles ($OB_p$), grids ($g_d$), buffer points ($p_{bu}$), Set of 2D points ($P_{2d}$), clustered points ($p_{cl}$), number of sample orientations ($N_s$), robot pose ($r_{pos}$), vision cone ($VC$), centroid ($C$), concurrent region radii ($R_{\text{conc}}$), step size ($S$)
+
+    \Ensure Complete straight path $P_{cs}$, remaining points $p_r$
+    \State $P_{cs} \leftarrow []$
+    \State $P_t \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $p_{co} \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $O_{sa} \leftarrow$ SampleTheOrientations($R_{pos}[2]$, $N_s$, $S$)
     
-    \For{$i, o$ \textbf{in} $so$}
-        \State $R[2] \leftarrow o$
+    \For{$i, O$ \textbf{in} $O_{sa}$}
+        \State $R_{pos}[2] \leftarrow O$
         \While{no point is visible}
-            \State $vp \leftarrow$ ComputeVisionConePoints($R$, $VC$)
-            \State $pp \leftarrow$ FindPotentialPoint($R$, $vp$)
-            \If{$pp$ is None}
+            \State $p_v \leftarrow$ ComputeVisionConePoints($r_{pos}$, $VC$)
+            \State $p_{po} \leftarrow$ FindPotentialPoint($r_{pos}$, $p_v$)
+            \If{$p_{po}$ is None}
                 \State \textbf{break}
             \EndIf
-            \State $no \leftarrow$ FromCurrentPoseToPotentialPoint($R$, $pp$)
-            \State $cpn \leftarrow [[R, pp]]$
-            \State $ofp \leftarrow$ ComputeObstacleFreePath($cpn$, $no$)
-            \State $tp[i] \mathrel{+}= ofp$
-            \State $ip \leftarrow$ CheckIntermediatePoints()
-            \State $tp[i].\text{append}(ip)$
-            \State $pc[i].\text{append}(\text{len}(tp))$
-            \State $RP \leftarrow P - tp$
-            \State $R \leftarrow$ ofp[-1]
+            \State $O_n \leftarrow$ FromCurrentPoseToPotentialPoint($r_{pos}$, $p_{po}$)
+            \State $P_{cu} \leftarrow$ [[$r_{pos}$, $p_{po}$]]
+            \State $P_{OB free} \leftarrow$ ComputeObstacleFreePath($P_{cu}$, $O_n$)
+
+
+            \State $P_t[i] \mathrel{+}= P_{OB free}$
+            
+            \State $p_{int} \leftarrow$ CheckIntermediatePoints($p_r$)
+            \State $P_t[i].\text{append}(p_{int})$
+            \State $p_c[i].\text{append}(\text{len}(P_t))$
+            \State $p_r \leftarrow p_{cl} - P_t$
+            \State $r_{pos} \leftarrow P_{OB free}[-1]$
         \EndWhile
     \EndFor
     
-    \State $boi \leftarrow \text{argmax}(pc[:])$
-    \State $cp \leftarrow tp[boi]$
-    \State $R \leftarrow cp[-1]$
-    \State $tp \leftarrow$ PotentialPointToTurn($RP$, $R_{\text{conc}}$, $R$)
-    \State $bo \leftarrow$ TowardsCentroid($tp$, $C$)
-    \State $cpn \leftarrow [[R, tp]]$
-    \State $ofp \leftarrow$ ComputeObstacleFreePath($cpn$, $bo$)
-    \State $cp \mathrel{+}= ofp$
-    \State $RP.\text{remove}(ofp)$
-    \State \Return $cp$, $RP$
+    \State $O_{bi} \leftarrow \text{argmax}(p_c[:])$
+    \State $P_{cs} \leftarrow P_t[O_{bi}]$
+    
+    \State $r_{pos} \leftarrow P_{cs}[-1]$
+    \State $p_{tu} \leftarrow$ PotentialPointToTurn($p_r$, $R_{\text{conc}}$, $r_{pos}$)
+    \State $O_b \leftarrow$ TowardsCentroid($p_{tu}$, $C$)
+
+    \State $P_{cu} \leftarrow$ [[$r_{pos}$, $p_{tu}$]]
+    \State $P_{OB free} \leftarrow$ ComputeObstacleFreePath($P_{cu}$, $O_b$)
+
+    \State $P_{cs} \mathrel{+}= P_{OB free}$
+    \State $p_r.\text{remove}([P_{OB free}])$ 
+    
+    \State \Return $P_{cs}$, $p_r$
     \end{algorithmic}
     \end{algorithm}
+
+
+
+
+% \begin{algorithm}[H]
+%     \caption{Behavioral1}
+%     \label{alg:behavioral1}
+%     \begin{algorithmic}[1]
+%     \Require Extended polygonal obstacles $EO$, grids $G$, set of 2D points $P$, number of sample orientations $Ns$, robot pose $R$, vision cone $VC$, centroid $C$, concurrent region radii $R_{\text{conc}}$, step size $S$
+%     \Ensure Complete path $CP$, remaining points $RP$
+%     \State $cp \leftarrow []$
+%     \State $tp \leftarrow [[] \text{ for } \_ \text{ in range}(Ns)]$
+%     \State $pc \leftarrow [[] \text{ for } \_ \text{ in range}(Ns)]$
+%     \State $so \leftarrow$ SampleTheOrientations($R[2]$, $Ns$, $S$)
     
-    Description of the notations:
-    \begin{itemize}[noitemsep,topsep=0pt]
-        \item $EO$: Extended polygonal obstacles
-        \item $G$: Grids
-        \item $P$: Set of 2D points
-        \item $Ns$: Number of sample orientations
-        \item $R$: Robot pose
-        \item $VC$: Vision cone
-        \item $C$: Centroid
-        \item $R_{\text{conc}}$: Concurrent region radii
-        \item $S$: Step size
-        \item $CP$: Complete path
-        \item $RP$: Remaining points
-        \item $cp$: Complete path
-        \item $tp$: Temporary path
-        \item $pc$: Points covered
-        \item $so$: Sampled orientations
-        \item $vp$: Visible points
-        \item $pp$: Potential point
-        \item $no$: New orientation
-        \item $cpn$: Current path
-        \item $ofp$: Obstacle-free path
-        \item $boi$: Best orientation index
-        \item $tp$: Turn point
-        \item $bo$: Best orientation
-    \end{itemize}
+%     \For{$i, o$ \textbf{in} $so$}
+%         \State $R[2] \leftarrow o$
+%         \While{no point is visible}
+%             \State $vp \leftarrow$ ComputeVisionConePoints($R$, $VC$)
+%             \State $pp \leftarrow$ FindPotentialPoint($R$, $vp$)
+%             \If{$pp$ is None}
+%                 \State \textbf{break}
+%             \EndIf
+%             \State $no \leftarrow$ FromCurrentPoseToPotentialPoint($R$, $pp$)
+%             \State $cpn \leftarrow [[R, pp]]$
+%             \State $ofp \leftarrow$ ComputeObstacleFreePath($cpn$, $no$)
+%             \State $tp[i] \mathrel{+}= ofp$
+%             \State $ip \leftarrow$ CheckIntermediatePoints()
+%             \State $tp[i].\text{append}(ip)$
+%             \State $pc[i].\text{append}(\text{len}(tp))$
+%             \State $RP \leftarrow P - tp$
+%             \State $R \leftarrow$ ofp[-1]
+%         \EndWhile
+%     \EndFor
+    
+%     \State $boi \leftarrow \text{argmax}(pc[:])$
+%     \State $cp \leftarrow tp[boi]$
+%     \State $R \leftarrow cp[-1]$
+%     \State $tp \leftarrow$ PotentialPointToTurn($RP$, $R_{\text{conc}}$, $R$)
+%     \State $bo \leftarrow$ TowardsCentroid($tp$, $C$)
+%     \State $cpn \leftarrow [[R, tp]]$
+%     \State $ofp \leftarrow$ ComputeObstacleFreePath($cpn$, $bo$)
+%     \State $cp \mathrel{+}= ofp$
+%     \State $RP.\text{remove}(ofp)$
+%     \State \Return $cp$, $RP$
+%     \end{algorithmic}
+%     \end{algorithm}
+    
+
     
 
 
@@ -811,76 +880,103 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
     \caption{BehavioralAlgorithm2}
     \label{alg:behavioral_algorithm_2}
     \begin{algorithmic}[1]
-    \Require Extended polygonal obstacles $EO$, grids $G$, set of 2D points $P$, number of sample orientations $Ns$, robot pose $R$, vision cone $VC$, centroid $C$, concurrent region radii $R_{\text{conc}}$, step size $S$
-    \Ensure Complete path $CP$, remaining points $RP$
-    \State $cp \leftarrow []$
-    \State $tp \leftarrow [[] \text{ for } \_ \text{ in range}(Ns)]$
-    \State $pc \leftarrow [[] \text{ for } \_ \text{ in range}(Ns)]$
-    \State $so \leftarrow$ SampleTheOrientations($R[2]$, $Ns$, $S$)
+
+    \Require Extended polygonal obstacles ($OB_e$), grids ($g_d$), buffer points ($p_{bu}$), Set of 2D points ($P_{2d}$), clustered points ($p_{cl}$), number of sample orientations ($N_s$), robot pose ($r_{pos}$), vision cone ($VC$), centroid ($C$), concurrent region radii ($R_{\text{conc}}$), step size ($S$)
+
+    \Ensure Complete straight path $P_{cs}$, remaining points $p_r$
+    \State $P_{cs} \leftarrow []$
+    \State $P_t \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $p_{co} \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $O_{sa} \leftarrow$ SampleTheOrientations($R_{pos}[2]$, $N_s$, $S$)
     
-    \For{$i, o$ \textbf{in} $so$}
-        \State $R[2] \leftarrow o$
+    \For{$i, O$ \textbf{in} $O_{sa}$}
+        \State $R_{pos}[2] \leftarrow O$
         \While{no point is visible}
-            \State $vp \leftarrow$ ComputeVisionConePoints($R$, $VC$)
-            \State $pp \leftarrow$ FindPotentialPoint($R$, $vp$)
-            \If{$pp$ is None}
+            \State $p_v \leftarrow$ ComputeVisionConePoints($r_{pos}$, $VC$)
+            \State $p_{po} \leftarrow$ FindPotentialPoint($r_{pos}$, $p_v$)
+            \If{$p_{po}$ is None}
                 \State \textbf{break}
             \EndIf
-            \State $no \leftarrow$ FromCurrentPoseToPotentialPoint($R$, $pp$)
-            \State $cpn \leftarrow [[R, pp]]$
-            \State $ofp \leftarrow$ ComputeObstacleFreePath($cpn$, $no$)
-            \State $tp[i] \mathrel{+}= ofp$
-            \State $ip \leftarrow$ CheckIntermediatePoints()
-            \State $tp[i].\text{append}(ip)$
-            \State $pc[i].\text{append}(\text{len}(tp))$
-            \State $RP \leftarrow P - tp$
-            \State $R \leftarrow$ ofp[-1]
+            \State $O_n \leftarrow$ FromCurrentPoseToPotentialPoint($r_{pos}$, $p_{po}$)
+            \State $P_{cu} \leftarrow$ [[$r_{pos}$, $p_{po}$]]
+            \State $P_{OB free} \leftarrow$ ComputeObstacleFreePath($P_{cu}$, $O_n$)
+
+
+            \State $P_t[i] \mathrel{+}= P_{OB free}$
+            
+            \State $p_{int} \leftarrow$ CheckIntermediatePoints($p_r$)
+            \State $P_t[i].\text{append}(p_{int})$
+            \State $p_c[i].\text{append}(\text{len}(P_t))$
+            \State $p_r \leftarrow p_{cl} - P_t$
+            \State $r_{pos} \leftarrow P_{OB free}[-1]$
         \EndWhile
     \EndFor
     
-    \State $boi \leftarrow \text{argmax}(pc[:])$
-    \State $cp \leftarrow tp[boi]$
-    \State $R \leftarrow cp[-1]$
-    \State $tp \leftarrow$ PotentialPointToTurnCCW($RP$, $R_{\text{conc}}$, $R$)
-    \State $bo \leftarrow$ VectorsTowardsNextCCWPoint($tp$, $RP$)
-    \State $cpn \leftarrow [[R, tp]]$
-    \State $ofp \leftarrow$ ComputeObstacleFreePath($cpn$, $bo$)
-    \State $cp \mathrel{+}= ofp$
-    \State $RP.\text{remove}(ofp)$
-    \State \Return $cp$, $RP$
+    \State $O_{bi} \leftarrow \text{argmax}(p_c[:])$
+    \State $P_{cs} \leftarrow P_t[O_{bi}]$
+    
+    \State $r_{pos} \leftarrow P_{cs}[-1]$
+
+    \State $p_{tu} \leftarrow$ PotentialPointToTurnCCW($p_r$, $R_{\text{conc}}$, $r_{pos}$)
+    \State $O_b \leftarrow$ VectorsTowardsNextCCWPoint($p_{tu}$, $p_r$)
+
+
+    \State $P_{cu} \leftarrow$ [[$r_{pos}$, $p_{tu}$]]
+    \State $P_{OB free} \leftarrow$ ComputeObstacleFreePath($P_{cu}$, $O_b$)
+
+    \State $P_{cs} \mathrel{+}= P_{OB free}$
+    \State $p_r.\text{remove}([P_{OB free}])$ 
+    
+    \State \Return $P_{cs}$, $p_r$
     \end{algorithmic}
     \end{algorithm}
+
+
+
+% \begin{algorithm}[H]
+%     \caption{BehavioralAlgorithm2}
+%     \label{alg:behavioral_algorithm_2}
+%     \begin{algorithmic}[1]
+%     \Require Extended polygonal obstacles $EO$, grids $G$, set of 2D points $P$, number of sample orientations $Ns$, robot pose $R$, vision cone $VC$, centroid $C$, concurrent region radii $R_{\text{conc}}$, step size $S$
+%     \Ensure Complete path $CP$, remaining points $RP$
+%     \State $cp \leftarrow []$
+%     \State $tp \leftarrow [[] \text{ for } \_ \text{ in range}(Ns)]$
+%     \State $pc \leftarrow [[] \text{ for } \_ \text{ in range}(Ns)]$
+%     \State $so \leftarrow$ SampleTheOrientations($R[2]$, $Ns$, $S$)
     
-    Description of the notations:
-    \begin{itemize}[noitemsep,topsep=0pt]
-        \item $EO$: Extended polygonal obstacles
-        \item $G$: Grids
-        \item $P$: Set of 2D points
-        \item $Ns$: Number of sample orientations
-        \item $R$: Robot pose
-        \item $VC$: Vision cone
-        \item $C$: Centroid
-        \item $R_{\text{conc}}$: Concurrent region radii
-        \item $S$: Step size
-        \item $CP$: Complete path
-        \item $RP$: Remaining points
-        \item $cp$: Complete path
-        \item $tp$: Temporary path
-        \item $pc$: Points covered
-        \item $so$: Sampled orientations
-        \item $vp$: Visible points
-        \item $pp$: Potential point
-        \item $no$: New orientation
-        \item $cpn$: Current path
-        \item $ofp$: Obstacle-free path
-        \item $boi$: Best orientation index
-        \item $tp$: Turn point
-        \item $bo$: Best orientation
-    \end{itemize}
-
+%     \For{$i, o$ \textbf{in} $so$}
+%         \State $R[2] \leftarrow o$
+%         \While{no point is visible}
+%             \State $vp \leftarrow$ ComputeVisionConePoints($R$, $VC$)
+%             \State $pp \leftarrow$ FindPotentialPoint($R$, $vp$)
+%             \If{$pp$ is None}
+%                 \State \textbf{break}
+%             \EndIf
+%             \State $no \leftarrow$ FromCurrentPoseToPotentialPoint($R$, $pp$)
+%             \State $cpn \leftarrow [[R, pp]]$
+%             \State $ofp \leftarrow$ ComputeObstacleFreePath($cpn$, $no$)
+%             \State $tp[i] \mathrel{+}= ofp$
+%             \State $ip \leftarrow$ CheckIntermediatePoints()
+%             \State $tp[i].\text{append}(ip)$
+%             \State $pc[i].\text{append}(\text{len}(tp))$
+%             \State $RP \leftarrow P - tp$
+%             \State $R \leftarrow$ ofp[-1]
+%         \EndWhile
+%     \EndFor
     
-
-
+%     \State $boi \leftarrow \text{argmax}(pc[:])$
+%     \State $cp \leftarrow tp[boi]$
+%     \State $R \leftarrow cp[-1]$
+%     \State $tp \leftarrow$ PotentialPointToTurnCCW($RP$, $R_{\text{conc}}$, $R$)
+%     \State $bo \leftarrow$ VectorsTowardsNextCCWPoint($tp$, $RP$)
+%     \State $cpn \leftarrow [[R, tp]]$
+%     \State $ofp \leftarrow$ ComputeObstacleFreePath($cpn$, $bo$)
+%     \State $cp \mathrel{+}= ofp$
+%     \State $RP.\text{remove}(ofp)$
+%     \State \Return $cp$, $RP$
+%     \end{algorithmic}
+%     \end{algorithm}
+    
 
 \begin{algorithm}[H]
     \caption{SetupObstacleAlgorithm}
@@ -897,34 +993,46 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
     \end{algorithmic}
 \end{algorithm}
 
+Description of the notations:
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $dx$: Distance in the x direction at 90degree turn.
+    \item $dy$: Distance in the y direction at 90degree turn.
+    \item $fd$: Free grid space from obstacle edge.  
+\end{itemize}
+
 \begin{algorithm}[H]
     \caption{SetupObstacleAlgorithm}
     \label{alg:setup_obstacle_algorithm}
     \begin{algorithmic}[1]
-    \Require Polygonal obstacles $PO$, grid diameter $GD$, vision cone $VC$, safe margin $SM$
-    \Ensure Extended polygonal obstacles $EO$, occupancy grids $G$, buffer points $BP$
+    \Require polygonal obstacles ($OB_p$), grid diameter ($g_d$), vision cone ($VC$), safe margin ($sm$)
+    \Ensure Extended polygonal obstacles ($OB_e$), grids ($g_s$), buffer points ($p_{bu}$)
     \State $dx, dy \leftarrow$ ComputeDistancesFor90DegreeTurn($VC$)
     \State $fd \leftarrow 1.5 \times dy$
-    \State $eo \leftarrow$ ExtendPolygonForSafeMargin($PO$, $SM$)
-    \State $g \leftarrow$ ComputeGrid($eo$, $GD$, $fd$)
-    \State $bp \leftarrow$ PointsSurroundingObstacles($eo$)
-    \State \Return $eo$, $g$, $bp$
+    \State $OB_e \leftarrow$ ExtendPolygonForSafeMargin($OB_p$, $sm$)
+    \State $g_s \leftarrow$ ComputeGrid($OB_e$, $g_d$, $fd$)
+    \State $p_{bu} \leftarrow$ PointsSurroundingObstacles($OB_e$)
+    \State \Return $OB_e$, $g_s$, $p_{bu}$
     \end{algorithmic}
     \end{algorithm}
+
     
-    Description of the notations:
-    \begin{itemize}[noitemsep,topsep=0pt]
-        \item $PO$: Polygonal obstacles
-        \item $GD$: Grid diameter
-        \item $VC$: Vision cone
-        \item $SM$: Safe margin
-        \item $EO$: Extended polygonal obstacles
-        \item $G$: Occupancy grids
-        \item $BP$: Buffer points
-        \item $dx$: Distance in the x direction
-        \item $dy$: Distance in the y direction
-        \item $fd$: Free grid distance
-    \end{itemize}
+% \begin{algorithm}[H]
+%     \caption{SetupObstacleAlgorithm}
+%     \label{alg:setup_obstacle_algorithm}
+%     \begin{algorithmic}[1]
+%     \Require Polygonal obstacles $PO$, grid diameter $GD$, vision cone $VC$, safe margin $SM$
+%     \Ensure Extended polygonal obstacles $EO$, occupancy grids $G$, buffer points $BP$
+%     \State $dx, dy \leftarrow$ ComputeDistancesFor90DegreeTurn($VC$)
+%     \State $fd \leftarrow 1.5 \times dy$
+%     \State $eo \leftarrow$ ExtendPolygonForSafeMargin($PO$, $SM$)
+%     \State $g \leftarrow$ ComputeGrid($eo$, $GD$, $fd$)
+%     \State $bp \leftarrow$ PointsSurroundingObstacles($eo$)
+%     \State \Return $eo$, $g$, $bp$
+%     \end{algorithmic}
+%     \end{algorithm}
+
+
+    
 
     
 
@@ -961,47 +1069,82 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
 \end{algorithm}
 
 
+
+Description of the notations:
+\begin{multicols}{2}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $obs_idx$: obstacle index.
+    \item $S_l$: Graph step length.
+    \item $gen_{max}$: Maximum generation for graph.
+    \item $P_{sh}$: Shortest path.
+\end{itemize}
+\end{multicols}
+
 \begin{algorithm}[H]
     \caption{ComputeObstacleFreePath}
     \label{alg:compute_obstacle_free_path}
     \begin{algorithmic}[1]
-    \Require Extended obstacles $EO$, grids $G$, buffer points $BP$, complete path $CP$, current path $CPN$, current orientation $CO$
-    \Ensure Obstacle-free path $OFP$
-    \State $R \leftarrow CPN[-1]$
-    \State $is\_path\_in\_obstacle, obs\_idx \leftarrow$ CheckPath($CPN$, $EO$)
+    \Require Extended obstacles ($OB_e$), grids ($g_s$), buffer points ($p_{bu}$), complete path ($P_c$), current path ($P_{cu}$), current orientation ($O_{cu}$)
+    \Ensure Obstacle-free path ($P_{OB free}$)
+
+    \State $r_{pos} \leftarrow P_{cu}[-1]$
+    \State $is\_path\_in\_obstacle, obs\_idx \leftarrow$ CheckPath($P_{cu}$, $OB_e$)
     \If{$is\_path\_in\_obstacle$}
-        \State $obstacle \leftarrow EO[obs\_idx]$
-        \State $grid \leftarrow G[obs\_idx]$
-        \State $salient\_points \leftarrow$ ExtractSalientPoints($obstacle$, $grid$, $BP$, $R$)
+        \State $OB\leftarrow OB_e[obs\_idx]$
+        \State $g \leftarrow g_s[obs\_idx]$
+        \State $SP \leftarrow$ ExtractSalientPoints($OB$, $g$, $p_{bu}$, $r_{pos}$)
         \State $G.\text{initialize}()$
-        \State $sl \leftarrow$ AutoSelectStepLength($R$, $salient\_points$)
-        \State $G$, $goal\_salient\_point$, $is\_goal\_found \leftarrow$ GenerateGraph($G$,$R$,$salient\_points$,$sl$,$max\_generation$)
+        \State $S_l \leftarrow$ AutoSelectStepLength($r_{pos}$, $SP$)
+        \State $G$, $goal\_SP$, $is\_goal\_found \leftarrow$ GenerateGraph($G$,$r_{pos}$,$SP$,$S_l$,$gen_{max}$)
         \If{$is\_goal\_found$}
-            \State $shortest\_path \leftarrow$ AStarSearch($G$,$R$, $goal\_salient\_point$)
-            \State $OFP \leftarrow shortest\_path$
-            \State \Return $OFP$
+            \State $P_{sh} \leftarrow$ AStarSearch($G$,$r_{pos}$, $goal\_SP$)
+            \State $P_{OB free} \leftarrow P_{sh}$
+            \State \Return $P_{OB free}$
         \Else
-            \State $R \leftarrow CP[-1]$ \Comment{Move one step back in the path}
-            \State \textbf{goto} GenerateGraph
+            \State $r_{pos} \leftarrow P_c[-1]$ \Comment{Move one step back in the path}
+            \State \textbf{goto} GenerateGraph (step 9)
         \EndIf
     \Else
-        \State \Return $[[CPN[-1], CO]]$
+        \State \Return $[[P_{cu}[-1], O_{cu}]]$
     \EndIf
     \end{algorithmic}
     \end{algorithm}
+
+
+
+
+
+
+% \begin{algorithm}[H]
+%     \caption{ComputeObstacleFreePath}
+%     \label{alg:compute_obstacle_free_path}
+%     \begin{algorithmic}[1]
+%     \Require Extended obstacles $EO$, grids $G$, buffer points $BP$, complete path $CP$, current path $CPN$, current orientation $CO$
+%     \Ensure Obstacle-free path $OFP$
+%     \State $R \leftarrow CPN[-1]$
+%     \State $is\_path\_in\_obstacle, obs\_idx \leftarrow$ CheckPath($CPN$, $EO$)
+%     \If{$is\_path\_in\_obstacle$}
+%         \State $obstacle \leftarrow EO[obs\_idx]$
+%         \State $grid \leftarrow G[obs\_idx]$
+%         \State $salient\_points \leftarrow$ ExtractSalientPoints($obstacle$, $grid$, $BP$, $R$)
+%         \State $G.\text{initialize}()$
+%         \State $sl \leftarrow$ AutoSelectStepLength($R$, $salient\_points$)
+%         \State $G$, $goal\_salient\_point$, $is\_goal\_found \leftarrow$ GenerateGraph($G$,$R$,$salient\_points$,$sl$,$max\_generation$)
+%         \If{$is\_goal\_found$}
+%             \State $shortest\_path \leftarrow$ AStarSearch($G$,$R$, $goal\_salient\_point$)
+%             \State $OFP \leftarrow shortest\_path$
+%             \State \Return $OFP$
+%         \Else
+%             \State $R \leftarrow CP[-1]$ \Comment{Move one step back in the path}
+%             \State \textbf{goto} GenerateGraph
+%         \EndIf
+%     \Else
+%         \State \Return $[[CPN[-1], CO]]$
+%     \EndIf
+%     \end{algorithmic}
+%     \end{algorithm}
     
-    Description of the notations:
-    \begin{itemize}[noitemsep,topsep=0pt]
-        \item $EO$: Extended obstacles
-        \item $G$: Grids
-        \item $BP$: Buffer points
-        \item $CP$: Complete path
-        \item $CPN$: Current path
-        \item $CO$: Current orientation
-        \item $OFP$: Obstacle-free path
-        \item $R$: Robot pose
-        \item $sl$: Step length
-    \end{itemize}
+
     
 
 
@@ -1029,39 +1172,63 @@ This hierarchical strategy ensures that the algorithm remains effective even as 
     \end{algorithmic}
 \end{algorithm}
 
+Description of the notations:
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $P_{list}$: Points list
+    \item $P_{cu}$: Current points
+    \item $P_{cov}$: path through all points of one obstacle.  
+\end{itemize}
 
 \begin{algorithm}[H]     
     \caption{PathAroundObstaclesAlgorithm}  
     \label{alg:path_around_obstacles_algorithm}
     \begin{algorithmic}[1]
-    \Require Extended obstacles $EO$, 2D points $P$, robot pose $R$, turning radius $R\_turn$
-    \Ensure Path $PATH$
-    \State $points\_list, robot\_obs\_idx \leftarrow$ PointsCloseToObstacle($EO$, $P$)
-    \State $curr\_points \leftarrow points\_list[robot\_obs\_idx]$    \Comment{Robot close to an obstacle will be the first.}
-    \State $curr\_obs \leftarrow EO[robot\_obs\_idx]$
-    \State $PATH \leftarrow []$
-    \For{$i$ \textbf{in} range(len($EO$))}
+    \Require Extended obstacles ($OB_e$), 2D points ($P_{2d}$), robot pose ($r_{pos}$), turning radius ($R_{tu}) $
+    \Ensure Path ($P$)
+
+    \State $p_{list}, robot\_obs\_idx \leftarrow$ PointsCloseToObstacle($OB_e$, $P_{2d}$)
+    \State $p_{cu} \leftarrow p_{list}[robot\_obs\_idx]$    \Comment{Robot close to an obstacle will be the first.}
+    \State $OB_{cu} \leftarrow OB_e[robot\_obs\_idx]$
+    \State $P \leftarrow []$
+    \For{$i$ \textbf{in} range(len($OB_e$))}
         \State $G.\text{initialize}()$
-        \State $G \leftarrow$ GenerateVisibilityGraph($curr\_obs$, $curr\_points$, $R$)
-        \State $path\_through\_all\_points \leftarrow$ CoverageGraphSearch($G$, $R$)
-        \State $PATH += path\_through\_all\_points$
-        \State $R \leftarrow path\_through\_all\_points[-1]$
-        \State $curr\_obs, obs\_idx \leftarrow$ FindNearestObstacle($R$, $points\_list$)
-        \State $curr\_points \leftarrow points\_list[obs\_idx]$
+        \State $G \leftarrow$ GenerateVisibilityGraph($OB_{cu}$, $p_{cu}$, $r_{pos}$)
+        \State $P_{cov} \leftarrow$ CoverageGraphSearch($G$, $r_{pos}$)
+        \State $P \mathrel{+}= P_{cov}$
+        \State $r_{pos} \leftarrow P_{cov}[-1]$
+        \State $OB_{cu}, obs\_idx \leftarrow$ FindNearestObstacle($r_{pos}$, $p_{list}$)
+        \State $p_{cu} \leftarrow p_{list}[obs\_idx]$
     \EndFor
-    \State \Return $PATH$
+    \State \Return $P$
     \end{algorithmic}
     \end{algorithm}
+
+
+
+% \begin{algorithm}[H]     
+%     \caption{PathAroundObstaclesAlgorithm}  
+%     \label{alg:path_around_obstacles_algorithm}
+%     \begin{algorithmic}[1]
+%     \Require Extended obstacles $EO$, 2D points $P$, robot pose $R$, turning radius $R\_turn$
+%     \Ensure Path $PATH$
+%     \State $points\_list, robot\_obs\_idx \leftarrow$ PointsCloseToObstacle($EO$, $P$)
+%     \State $curr\_points \leftarrow points\_list[robot\_obs\_idx]$    \Comment{Robot close to an obstacle will be the first.}
+%     \State $curr\_obs \leftarrow EO[robot\_obs\_idx]$
+%     \State $PATH \leftarrow []$
+%     \For{$i$ \textbf{in} range(len($EO$))}
+%         \State $G.\text{initialize}()$
+%         \State $G \leftarrow$ GenerateVisibilityGraph($curr\_obs$, $curr\_points$, $R$)
+%         \State $path\_through\_all\_points \leftarrow$ CoverageGraphSearch($G$, $R$)
+%         \State $PATH += path\_through\_all\_points$
+%         \State $R \leftarrow path\_through\_all\_points[-1]$
+%         \State $curr\_obs, obs\_idx \leftarrow$ FindNearestObstacle($R$, $points\_list$)
+%         \State $curr\_points \leftarrow points\_list[obs\_idx]$
+%     \EndFor
+%     \State \Return $PATH$
+%     \end{algorithmic}
+%     \end{algorithm} 
     
-    Description of the notations:
-    \begin{itemize}[noitemsep,topsep=0pt]
-        \item $EO$: Extended obstacles
-        \item $P$: 2D points
-        \item $R$: Robot pose
-        \item $R\_turn$: Turning radius
-        \item $PATH$: Path
-        \item $G$: Graph
-    \end{itemize}
+
     
 
 
