@@ -1,15 +1,23 @@
 %=== Conclusion and Recommendations ===
 
-\chapter{4. Conclusion and Future Work}
+\chapter{4. Conclusion}
 
-\section{Project Summary}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+This thesis presents a detailed investigation into the development of a novel coverage path planning (CPP) algorithm for autonomous agricultural robots, specifically aimed at the efficient removal of Rumex weeds in grasslands. The central focus was to create a behavioral algorithm that adheres to non-holonomic constraints, prioritizes straight paths, is computationally efficient, and enhances coverage efficiency.
 
-\section{Areas of Improvement}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+\vspace*{6mm}   
 
-\section{Future Works}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+The proposed behavioral algorithm dynamically adapts its behaviors to ensure near-optimal coverage and efficient navigation in complex environments. Research findings demonstrate that this algorithm consistently outperforms other methods regarding computation time, path straightness, coverage rate, route length, energy consumption, and weed extraction efficiency. Its adaptability allows the strategy to evolve throughout the coverage process, ensuring optimal performance across various environments.
 
-%=== END OF CONCLUSION ===
+\vspace*{6mm}   
+
+This approach contributes to CPP by introducing several innovations: automatic behavior changes, the use of a hybrid space (continuous and discrete), dynamic grid generation based on obstacle sizes, and  generating approximate straight paths, even in complex environment.
+
+\vspace*{6mm}   
+
+Two algorithm variants were developed: one for environments without obstacles and another for those with obstacles. Comparative analyses with other methods such as graph search and the lawnmower approach showed that the proposed behavioral algorithm maintains a higher coverage rate and efficiently extracts planned weeds.
+
+\vspace*{6mm}   
+
+In addition to its technical merits, the algorithm advances the field of CPP by offering a flexible, efficient, and adaptive solution. This research establishes a strong foundation for future work, encouraging further exploration and refinement of these algorithms. Future research should focus on applicability to dynamic obstacles and multi-robot systems, further enhancing the capabilities of autonomous systems in both agricultural and non-agricultural domains.
+%=== END OF CONCLUSION === 
 \newpage

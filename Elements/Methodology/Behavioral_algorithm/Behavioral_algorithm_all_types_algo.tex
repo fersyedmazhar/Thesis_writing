@@ -1,0 +1,1426 @@
+
+\subsection{Algorithm Description}
+
+Behavioral Approach for Coverage Path Planning in Agricultural Fields
+
+\vspace*{6mm}  
+
+Following the preprocessing phase aimed at resolving the regions associated with designated points, the subsequent imperative lies in formulating an algorithm capable of comprehensively covering all identified points. With the completion of preprocessing, the focus narrows down to ensuring the precise coverage of all points to effectively identify and extract weed infestations. Although the agricultural robot in question operates under non-holonomic constraints, the overarching objective transcends mere efficiency and the identification of the shortest path. Instead, the primary emphasis lies in achieving exhaustive point coverage while strategically favoring approximately linear trajectories.
+
+\vspace*{6mm}   
+
+The rationale behind prioritizing linear trajectories over strictly adhering to non-holonomic paths is multifaceted. Firstly, the adoption of more curved paths significantly heightens the risk of grass damage, thereby undermining the fundamental objective of preserving grass quality. Given the paramount importance of maintaining optimal grass conditions within agricultural fields, any approach that compromises this aspect inherently fails to align with the core objectives. Secondly, the energy consumption associated with traversing curved paths is substantially higher compared to linear trajectories. For the specific agricultural robot under consideration, empirical estimates suggest that traversing an equivalent path length via curved trajectories incurs an energy expenditure four times greater than that of linear paths. Consequently, the central objective of the algorithm resides in identifying the shortest path capable of encompassing all designated points while mitigating curvature and prioritizing linear trajectories.
+
+\vspace*{6mm}  
+
+The development of this behavioral approach necessitates a nuanced understanding of agricultural terrain dynamics, robot kinematics, and energy efficiency considerations. By integrating these facets into the algorithmic design process, the resultant solution seeks to strike a delicate balance between point coverage efficacy, grass preservation, and energy optimization.
+
+\vspace*{6mm}  
+
+
+\textbf{Vision Cone Strategy: }
+
+\vspace*{6mm}  
+
+
+At this stage, having acquired comprehensive global information about the points in the field, the next step involves prioritizing straight paths while minimizing computational complexity and time. An innovative approach is employed wherein the robot is equipped with a vision cone mechanism. This vision cone is defined by two lines extending from the robot at a fixed angle and distance. The angle of these lines is determined based on the robot's minimum turning radius. For instance, for a robot with a minimum turning radius of 2 meters, the angle of the cone on either side is set at 11 degrees. The distance to the end of the cone depends on the operational area of the robot but is set to a fixed distance of 100 meters for this scenario.
+
+\vspace*{6mm}  
+
+
+The vision cone allows the robot to consider only those points within this cone from its current position as potential next travel points. This selective consideration significantly reduces the computational effort required to determine the path, as it disregards points outside the cone. By narrowing the focus to relevant points within the vision cone, computational efficiency is enhanced, thus making the vision cone an intelligent and effective strategy.
+
+\vspace*{6mm}  
+
+
+\textbf{Algorithmic Framework: }
+
+
+\vspace*{6mm}  
+
+The algorithmic framework is designed to facilitate comprehensive point coverage while minimizing curvature and prioritizing linear trajectories. The behavioral approach adopted for the algorithm is hierarchical, comprising three distinct behaviors that are sequentially activated. The transition from one behavior to the next is contingent upon the degree of point coverage achieved.
+
+\begin{enumerate}
+    \item \textbf{Initial Behavior: }The algorithm commences with the first behavior, designed to initiate coverage from the starting point. This stage focuses on covering a substantial portion of the field, leveraging the vision cone to select the next travel points and maintaining the priority on straight paths.
+    
+    \item \textbf{Intermediate Behavior:} Upon achieving a certain threshold of point coverage, the algorithm transitions to the second behavior. This intermediate stage aims to further optimize coverage by adjusting the strategy based on the points that remain. The robot continues to utilize the vision cone but adopt a slightly more flexible criteria for point selection to ensure efficient coverage progression.
+    
+    \item \textbf{Final Behavior:} Once the intermediate behavior reaches its saturation point—where additional coverage gains diminish—the algorithm shifts to the final behavior. This stage is designed to ensure complete, 100\% coverage of all remaining points. The final behavior will incorporate more refined strategies to target any residual areas, ensuring no point is left uncovered.
+\end{enumerate}
+
+\vspace*{6mm}   
+
+
+This hierarchical behavioral algorithm ensures a methodical and efficient approach to coverage path planning. By starting with broad coverage strategies and progressively refining the approach, the algorithm effectively balances the need for comprehensive point coverage with the constraints of the robot's kinematic capabilities and the operational goal of preserving grass quality. The vision cone mechanism plays a pivotal role in this process, enhancing computational efficiency and enabling intelligent path selection. 
+
+\vspace*{6mm}   
+
+
+\textbf{Rationale for Hierarchical Approach: } 
+
+\vspace*{6mm}   
+
+
+The hierarchical approach is adopted to improve convergence rate and coverage efficiency. If a single algorithm or behavior were followed throughout, the robot would cover many points initially but gradually cover fewer points over time, reducing the algorithm's accuracy and increasing the overall path length and operational time. By transitioning between different behaviors, the algorithm can adapt to the changing density and distribution of points, maintaining high efficiency throughout the coverage process.
+
+\vspace*{6mm}   
+
+
+This hierarchical strategy ensures that the algorithm remains effective even as the number of uncovered points decreases. By tailoring the approach to the specific conditions encountered at each stage, the robot can optimize its path, reduce unnecessary movements, and maintain high precision in point coverage. This not only conserves energy but also preserves the quality of the grass by minimizing excessive traversal. The adaptive nature of the hierarchical approach thus represents a robust and efficient solution for coverage path planning in agricultural fields.
+
+\vspace*{6mm}  
+
+\subsubsection{First Behavior: Initial Coverage (change its name)}
+
+
+
+
+
+
+\begin{algorithm}[H]
+    \caption{CompleteBehavioralAlgorithm}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} 2D points, initial robot pose, turning radius
+        \Statex \textbf{Output:} Dubins path
+        \newline
+        \State $clustered\_points, behavior\_change\_perc \gets CentroidsAndAutoBehaviorShift(2D points)$
+        \State $remaining\_points \gets clustered\_points$ 
+        \State $covered\_perc \gets 0$
+        \State $completed\_path \gets []$
+        \While{True}
+            \If{$covered\_perc < behavior\_change\_perc$}
+                \State $straight\_path, remaining\_points \gets Behavior\_1(remaining\_points, number\_of\_sample- $ \par
+                \hspace{\algorithmicindent} $ -orientations (Ns), robot\_pose, vision\_cone, centroid,concurrent\_region\_radii, step) $ \par
+
+                \State $completed\_path \mathrel{+}= straight\_path$
+                \State $robot\_pose \gets completed\_path[-1]$
+                \State $covered\_perc \gets UpdateCoveragePerc(clustered\_points, remaining\_points)$
+            \Else
+                \State $straight\_path, remaining\_points \gets Behavior\_2(remaining\_points, number\_of\_sample- $ \par
+                \hspace{\algorithmicindent} $ -orientations (Ns), robot\_pose, vision\_cone, centroid,concurrent\_region\_radii, step) $ \par
+                \State $completed\_path \mathrel{+}= straight\_path$
+                \State $robot\_pose \gets completed\_path[-1]$
+                \State $covered\_perc \gets UpdateCoveragePerc(completed\_path, remaining\_points)$
+            \EndIf
+            \If{$len(straight\_path) == 0$}
+                \State \textbf{break}
+            \EndIf
+        \EndWhile
+        \State $dubins\_path \gets DubinsPath(completed\_path, turning\_radius)$
+        \State $dotsp\_path \gets DOTSPPath(remaining\_points, turning\_radius)$
+        \State $complete\_dubins\_path \gets dubins\_path + dotsp\_path$
+        \State \Return $complete\_dubins\_path$
+    \end{algorithmic}
+\end{algorithm}
+
+Convention to be followed for the algorithms:
+\begin{multicols}{2}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $P$: path.
+    \item $p$: points.
+    \item $r$: robot.
+    \item $R$: Radius.
+    \item $VC$: Vision cone.
+    \item $C$: Centroid.
+    \item $N_s$: Number of sample orientations.
+    \item $ \delta$: Percentage.
+    \item $step$: Step size.
+    \item $O$: Orientation.
+\end{itemize}
+\end{multicols}
+
+\vspace*{6mm}  
+
+Description of the notations:
+
+\begin{multicols}{2}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $p_{cl}$: clustered points.
+    \item $p_r$: remaining points.
+    \item $\delta_{\text{bc}}$: behavior change percentage.
+    \item $\delta_c$: coverage percentage.
+    \item $P_c$: completed path.
+    \item $P_s$: straight path.
+    \item $R_{\text{conc}}$: concurrent region radii.
+    \item $P_d$: Dubins path.
+    \item $P_{dotsp}$: DOTSP path.
+    \item $P_cd$: Complete Dubins path.
+\end{itemize}
+\end{multicols}
+
+\begin{algorithm}[H]
+    \caption{CompleteBehavioralAlgorithm}
+    \label{alg:completebehavioralalgorithm}
+    \begin{algorithmic}[1]
+    \Require 2D points ($p_{2d}$), initial robot pose ($r_{\text{pos}}$), turning radius ($R_{\text{tu}}$) 
+    \Ensure Dubins path $P_{cd}$
+    \State $p_{cl}, \delta_{\text{bc}} \leftarrow$ CentroidsAndAutoBehaviorShift($p_{2d}$)
+    \State $p_r \leftarrow p_{cl}$
+    \State $\delta_c \leftarrow 0$
+    \State $P_c \leftarrow []$
+    
+    \While{True}
+        \If{$\delta_c <  \delta_{\text{bc}}$}
+            \State $P_s, p_r \leftarrow$ Behavior\_1($p_r$, $N_s$, $r_{\text{pos}}$, $VC$, $C$, $R_{\text{conc}}$, $step$)
+        \Else
+            \State $P_s, p_r \leftarrow$ Behavior\_2($p_r$, $N_s$, $r_{\text{pos}}$, $VC$, $C$, $R_{\text{conc}}$, $step$)
+        \EndIf
+        
+        \State $P_c \mathrel{+}= P_s$
+        \State $r_{\text{pos}} \leftarrow P_c[-1]$
+        \State $\delta_c \leftarrow$ UpdateCoveragePerc($P_c$, $p_r$)
+        
+        \If{$\text{len}(P_s) == 0$}
+            \State \textbf{break}
+        \EndIf
+    \EndWhile
+    
+    \State $P_d \leftarrow$ DubinsPath($P_c$, $R_{\text{tu}}$)
+    \State $P_{dotsp} \leftarrow$ DOTSPPath($p_r$, $R_{\text{tu}}$)
+    \State $P_{cd} \leftarrow P_d + P_{dotsp}$
+
+    \State \Return $P_{cd}$
+    \end{algorithmic}
+\end{algorithm}
+    
+
+    
+
+\begin{algorithm}[H]
+    \caption{AutoBehaviorShift}
+    \begin{algorithmic}[1]
+    \Statex \textbf{Input: } \textit{2D points}, \textit{centroid}, \textit{min\_radius}, \textit{max\_radius}, number of concurrent circles (\textit{N}).
+    \Statex \textbf{Output: }\textit{behavior\_change\_percent}
+    \newline
+    \State $total\_perc \gets 0$
+    \State $threshold\_perc \gets 50$
+    \State $percent\_list \gets \text{GeneratePercentageList}(30, 80, N)$ \Comment{List from 30 to 80\% with N steps.}
+    \State $concentric\_circles \gets \text{ConcentricCircles}(points, min\_radius, max\_radius, N)$
+    \For{$i, curr\_radius \in concentric\_circles$}
+        \State $curr\_perc\_points \gets \text{PointsPercentageInSubregion}(curr\_radius)$
+        \State $total\_perc \gets total\_perc + curr\_perc\_points$
+        \If{$total\_perc > threshold\_perc$}
+            \State $behavior\_change\_percent \gets percent\_list[i]$
+            \State \textbf{break}
+        \EndIf
+    \EndFor
+    \State \Return $behavior\_change\_percent$
+    \end{algorithmic}
+\end{algorithm}
+
+
+Description of the notations:
+\begin{multicols}{2}
+    \begin{itemize}[noitemsep,topsep=0pt]
+        \item $\delta_to$: Total percentage
+        \item $\delta_{thp}$: Threshold percentage
+        \item $\delta_{list}$: List of percentages
+        \item $cc$: Concentric circles
+        \item $R_{cu}$: Current radius
+        \item $p_{cu_\delta}$: Percentage of points in subregion
+    \end{itemize}
+\end{multicols}
+
+\begin{algorithm}[H]
+    \caption{AutoBehaviorShift}
+    \label{alg:autobehaviorshift}
+    \begin{algorithmic}[1]
+    \Statex \textbf{Input: }  $P_{2d}$, $R_{\text{min}}$, $R_{\text{max}}$, $N$ 
+    \Statex \textbf{Output: } $\delta_{\text{bc}}$ 
+    \newline
+    \State $\delta_{to} \leftarrow 0$ 
+    \State $\delta_{thp} \leftarrow 50$ 
+    \State $\delta_{list} \leftarrow \text{GeneratePercentageList}(30, 80, N)$ \Comment{List from 30 to 80\% with N steps.}
+    \State $cc \leftarrow \text{ConcentricCircles}(P_{2d}$, $R_{\text{min}}$, $R_{\text{max}}$, $N$)
+    \For{$i, R_{cu}$ \textbf{in} $cc$}
+        \State $p_{cu_\delta} \leftarrow \text{PointsPercentageInSubregion}(R_{cu})$
+        \State $\delta_{to} \leftarrow \delta_{to} + p_{cu_\delta}$
+        \If{$\delta_to > \delta_{thp}$}
+            \State $\delta_{\text{bc}} \leftarrow \delta_{list}[i]$
+            \State \textbf{break}
+        \EndIf
+    \EndFor
+    \State \Return $\delta_{\text{bc}}$
+    \end{algorithmic}
+    \end{algorithm}
+    
+
+    
+    
+    
+    
+
+
+
+\begin{algorithm}[H]
+    \caption{Behavioral1}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} 2D points, number of sample orientations $Ns$, robot pose, vision cone, centroid, concurrent region radii, step.
+        \Statex \textbf{Output:} Complete path, remaining points.
+        \newline
+        \State $complete\_path \gets []$
+        \State $temporary\_path \gets [[], [], [], ..., Ns]$
+        \State $points\_covered \gets [[], [], [], ..., Ns]$
+        \State $sample\_orientations \gets SampleTheOrientations(robot\_pose[2], Ns, step)$
+        
+        \For{$i, orientation$ in $sample\_orientations$}
+            \State $robot\_pose[2] \gets orientation$
+            \While{no point is visible}
+                \State $visible\_points \gets ComputeVisionConePoints(robot\_pose, vision\_cone)$
+                \State $potential\_point \gets FindPotentialPoint(robot\_pose, visible\_points)$
+                \If{potential\_point is None}
+                \State \textbf{break}
+                \EndIf
+                \State $new\_orientation \gets FromCurrentPoseToPotentialPoint(robot\_pose, potential\_point)$
+                \State $temporary\_path[i].append([potential\_point, new\_orientation])$
+
+                \State $Intermediate\_points \gets CheckIntermediatePoints()$
+                \State $temporary\_path[i].append(Intermediate\_points)$
+                \State $points\_covered[i].append(len(temporary\_path))$
+                \State $remaining\_points \gets all\_points - temporary\_path$
+                \State $robot\_pose \gets [potential\_point, new\_orientation]$
+            \EndWhile
+        \EndFor
+        
+        \State $best\_orientation\_index \gets \text{argmax}(points\_covered[:])$
+        \State $complete\_path \gets temporary\_path[best\_orientation\_index]$
+        
+        \State $robot\_pose \gets complete\_path[-1]$
+        \State $turn\_point \gets PotentialPointToTurn(remaining\_points, concurrent\_region\_radii, robot\_pose)$
+        \State $best\_orientation \gets TowardsCentroid(turn\_point, centroid)$
+        \State $complete\_path.append([turn\_point, best\_orientation])$
+        \State $remaining\_points.remove([turn\_point])$
+
+        \State \Return $complete\_path, remaining\_points$
+    \end{algorithmic}
+\end{algorithm}
+
+Description of the notations:
+\begin{multicols}{2}
+    \begin{itemize}[noitemsep,topsep=0pt]
+        \item $P_{cs}: Complete straight path$
+        \item $P_{t}: Temporary path$
+        \item $p_{co}: Points covered$
+        \item $O_{sa}: Sampled orientations$
+        \item $p_v: Visible points$
+        \item $p_{po}: Potential point$
+        \item $O_n: New orientation$
+        \item $p_{int}: Intermediate points$
+        \item $O_{bi}: Best orientation index$
+        \item $P_{tu}: Turn point$
+        \item $O_b: Best orientation$
+    \end{itemize}
+\end{multicols}
+
+\begin{algorithm}[H]
+    \caption{Behavioral1}
+    \label{alg:behavioral1}
+    \begin{algorithmic}[1]
+
+    \Require Set of 2D points ($P_{2d}$), clustered points ($p_{cl}$), number of sample orientations ($N_s$), robot pose ($r_{pos}$), vision cone ($VC$), centroid ($C$), concurrent region radii ($R_{\text{conc}}$), step size ($S$)
+
+    \Ensure Complete straight path $P_{cs}$, remaining points $p_r$
+    \State $P_{cs} \leftarrow []$
+    \State $P_t \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $p_{co} \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $O_{sa} \leftarrow$ SampleTheOrientations($R_{pos}[2]$, $N_s$, $S$)
+    
+    \For{$i, O$ \textbf{in} $O_{sa}$}
+        \State $R_{pos}[2] \leftarrow O$
+        \While{no point is visible}
+            \State $p_v \leftarrow$ ComputeVisionConePoints($r_{pos}$, $VC$)
+            \State $p_{po} \leftarrow$ FindPotentialPoint($r_{pos}$, $p_v$)
+            \If{$p_{po}$ is None}
+                \State \textbf{break}
+            \EndIf
+            \State $O_n \leftarrow$ FromCurrentPoseToPotentialPoint($r_{pos}$, $p_{po}$)
+            \State $P_t[i].\text{append}([p_{po}, O_n])$
+            
+            \State $p_{int} \leftarrow$ CheckIntermediatePoints($p_r$)
+            \State $P_t[i].\text{append}(p_{int})$
+            \State $p_c[i].\text{append}(\text{len}(P_t))$
+            \State $p_r \leftarrow p_{cl} - P_t$
+            \State $r_{pos} \leftarrow [p_{po}, O_n]$
+        \EndWhile
+    \EndFor
+    
+    \State $O_{bi} \leftarrow \text{argmax}(p_c[:])$
+    \State $P_{cs} \leftarrow P_t[O_{bi}]$
+    
+    \State $r_{pos} \leftarrow P_{cs}[-1]$
+    \State $p_{tu} \leftarrow$ PotentialPointToTurn($p_r$, $R_{\text{conc}}$, $r_{pos}$)
+    \State $O_b \leftarrow$ TowardsCentroid($p_{tu}$, $C$)
+    \State $P_{cs}.\text{append}([p_{tu}, O_b])$
+    \State $p_r.\text{remove}([p_{tu}])$
+    
+    \State \Return $P_{cs}$, $p_r$
+    \end{algorithmic}
+    \end{algorithm}
+    
+
+    
+
+
+\begin{algorithm}[H]
+    \caption{Behavioral2}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} Set of 2D points, number of sample orientations $Ns$, robot pose, vision cone, centroid, concurrent region radii, step
+        \Statex \textbf{Output:} Complete path, remaining points
+        \newline
+        \State $complete\_path \gets []$
+        \State $temporary\_path \gets [[], [], [], ..., Ns]$
+        \State $points\_covered \gets [[], [], [], ..., Ns]$
+        \State $sample\_orientations \gets SampleTheOrientations(robot\_pose[2], Ns, step)$
+        
+        \For{$i, orientation$ in $sample\_orientations$}
+            \State $robot\_pose[2] \gets orientation$
+            \While{no point is visible}
+                \State $visible\_points \gets ComputeVisionConePoints(robot\_pose, vision\_cone)$
+                \State $potential\_point \gets FindPotentialPoint(robot\_pose, visible\_points)$
+                \If{potential\_point is None}
+                    \State \textbf{break}
+                \EndIf
+                \State $new\_orientation \gets FromCurrentPoseToPotentialPoint(robot\_pose, potential\_point)$
+                \State $temporary\_path[i].append([potential\_point, new\_orientation])$
+                \State $Intermediate\_points \gets CheckIntermediatePoints()$
+                \State $temporary\_path[i].append(Intermediate\_points)$
+                \State $points\_covered[i].append(len(temporary\_path))$
+                \State $remaining\_points \gets all\_points - temporary\_path$
+                \State $robot\_pose \gets [potential\_point, new\_orientation]$
+            \EndWhile
+        \EndFor
+        
+        \State $best\_orientation\_index \gets \text{argmax}(points\_covered[:])$
+        \State $complete\_path \gets temporary\_path[best\_orientation\_index]$
+        
+        \State $turn\_point \gets PotentialPointToTurnCCW(remaining\_points, concurrent\_region\_radii, robot\_pose)$
+        \State $best\_orientation \gets VectorsTowardsNextCCWPoint(turn\_point, remaining\_points)$
+        \State $complete\_path.append([turn\_point, best\_orientation])$
+        
+        \State \Return $complete\_path, remaining\_points$
+    \end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+    \caption{Behavioral2}
+    \label{alg:behavioral2}
+    \begin{algorithmic}[1]
+
+    \Require Set of 2D points ($P_{2d}$), clustered points ($p_{cl}$), number of sample orientations ($N_s$), robot pose ($r_{pos}$), vision cone ($VC$), centroid ($C$), concurrent region radii ($R_{\text{conc}}$), step size ($S$)
+
+    \Ensure Complete straight path $P_{cs}$, remaining points $p_r$
+    \State $P_{cs} \leftarrow []$
+    \State $P_t \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $p_{co} \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $O_{sa} \leftarrow$ SampleTheOrientations($R_{pos}[2]$, $N_s$, $S$)
+    
+    \For{$i, O$ \textbf{in} $O_{sa}$}
+        \State $R_{pos}[2] \leftarrow O$
+        \While{no point is visible}
+            \State $p_v \leftarrow$ ComputeVisionConePoints($r_{pos}$, $VC$)
+            \State $p_{po} \leftarrow$ FindPotentialPoint($r_{pos}$, $p_v$)
+            \If{$p_{po}$ is None}
+                \State \textbf{break}
+            \EndIf
+            \State $O_n \leftarrow$ FromCurrentPoseToPotentialPoint($r_{pos}$, $p_{po}$)
+            \State $P_t[i].\text{append}([p_{po}, O_n])$
+            
+            \State $p_{int} \leftarrow$ CheckIntermediatePoints($p_r$)
+            \State $P_t[i].\text{append}(p_{int})$
+            \State $p_c[i].\text{append}(\text{len}(P_t))$
+            \State $p_r \leftarrow p_{cl} - P_t$
+            \State $r_{pos} \leftarrow [p_{po}, O_n]$
+        \EndWhile
+    \EndFor
+    
+    \State $O_{bi} \leftarrow \text{argmax}(p_c[:])$
+    \State $P_{cs} \leftarrow P_t[O_{bi}]$
+    
+    \State $r_{pos} \leftarrow P_{cs}[-1]$
+    \State $p_{tu} \leftarrow$ PotentialPointToTurnCCW($p_r$, $R_{\text{conc}}$, $r_{pos}$)
+    \State $O_b \leftarrow$ VectorsTowardsNextCCWPoint($p_{tu}$, $p_r$)
+    \State $P_{cs}.\text{append}([p_{tu}, O_b])$
+    \State $p_r.\text{remove}([p_{tu}])$
+
+    \State \Return $P_{cs}$, $p_r$
+    \end{algorithmic}
+    \end{algorithm}
+    
+
+    
+
+
+
+\begin{algorithm}[H]
+    \caption{DOTSPPath}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} Set of 2D points, initial robot position, turning radius
+        \Statex \textbf{Output:} Dubins path
+        \newline
+        \State $start\_node \gets initial\_robot\_position$
+        \State $Graph \gets GenerateGraph(2D\_points)$
+        \State $Closed\_path \gets SolveClosedTSP(Graph, start\_node)$
+        \State $open\_path \gets RemoveEdgeWithMaxWeightFromStartNode(Graph, start\_node)$
+        
+        \State $dubins\_path \gets DubinsPath(open\_path, turning\_radius)$
+        
+        \State \Return $dubins\_path$
+    \end{algorithmic}
+\end{algorithm}
+
+Description of the notations:
+\begin{multicols}{2}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $sn$: Start node
+    \item $G$: Graph
+    \item $P_{clo}$: Closed path
+    \item $P_{op}$: Open path
+    \item $P_d$: Dubins path
+\end{itemize}
+\end{multicols}
+
+\begin{algorithm}[H]
+    \caption{DOTSPPath}
+    \label{alg:dotsp_path}
+    \begin{algorithmic}[1]
+    \Require Set of 2D points $P_{2d}$, initial robot position $r_{\text{pos}}$, turning radius $R_{\text{tu}}$
+    \Ensure Dubins path $P_d$
+    \State $sn \leftarrow r_{\text{pos}}$
+    \State $G \leftarrow$ GenerateGraph($P_{2d}$)
+    \State $P_{clo} \leftarrow$ SolveClosedTSP($G$, $sn$)
+    \State $P_{op} \leftarrow$ RemoveEdgeWithMaxWeightFromStartNode($G$, $sn$)
+    \State $P_d \leftarrow$ DubinsPath($P_{op}$, $R_{\text{tu}}$)
+    \State \Return $P_d$
+    \end{algorithmic}
+    \end{algorithm}
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Convention to be followed for the algorithms:
+\begin{multicols}{2}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $OB$: Obstacle.
+    \item $OB_p$: Polygonal obstacles.
+    \item $OB_e$: Extended obstacles.
+    \item $g$: grid.
+    \item $g_s$: grids.
+    \item $p_{bu}$: Buffer points.
+    \item $G$: Graph.
+    \item $S$: Step.
+    \item $SP$: Salient Point.
+    \item $P_{re}$: Remaining path.
+\end{itemize}
+\end{multicols}
+    
+
+
+
+\begin{algorithm}[H] 
+    \caption{CompleteBehavioralObstacleAvoidance}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} 2D points, initial robot pose, turning radius, polygonal obstacles, grid diameter, vision cone
+        \Statex \textbf{Output:} Dubins path
+        \newline
+        \State $extended\_obstacles, grids, buffer\_points \gets SetupObstacles(polygonal\_obstacles,$
+        \Statex \hspace{9cm} $grid\_diameter, vision\_cone)$
+
+        \State $extended\_obstacles, grids, buffer\_points \gets SetupObstacles(polygonal\_obstacles, $
+        \Statex \hspace{9cm} $grid\_diameter, vision\_cone)$
+        \State $clustered\_points, behavior\_change\_percentage \gets CentroidsAndAutoBehaviorShi f t(2Dpoints)$
+        \State $remaining\_points \gets clustered\_points$
+        \State $covered\_percentage \gets 0$
+        \State $completed\_path \gets []$
+        \While{True}
+            \If{$covered\_percentage < behavior\_change\_percentage$}
+                \State $straight\_path, remaining\_points \gets Behavioral1(extended\_obstacles, grids, buffer\_points,$
+                \Statex \hspace{\algorithmicindent} $remaining\_points, Ns, robot\_pose, vision\_cone, centroid, concurrent\_region\_radii, step)$
+                \State $completed\_path \mathrel{+}= straight\_path$
+                \State $robot\_pose \gets completed\_path[-1]$
+                \State $covered\_percentage \gets UpdateCoveragePercentage(clustered\_points, remaining\_points)$
+            \Else
+                \State $straight\_path, remaining\_points \gets Behavioral2(extended\_obstacles, grids, buffer\_points,$
+                \Statex \hspace{\algorithmicindent} $remaining\_points, Ns, robot\_pose, vision\_cone, centroid, concurrent\_region\_radii, step)$
+                \State $completed\_path \mathrel{+}= straight\_path$
+                \State $robot\_pose \gets completed\_path[-1]$
+                \State $covered\_percentage \gets UpdateCoveragePercentage(completed\_path, remaining\_points)$
+            \EndIf
+            \If{$\text{len}(straight\_path) == 0$}
+                \State \textbf{break}
+            \EndIf
+        \EndWhile
+        \State $dubins\_path \gets DubinsPath(completed\_path, turning\_radius)$
+        \State $remaining\_path \gets PathAroundObstaclesAlgorithm(remaining\_points, turning\_radius)$
+        \State $complete\_dubins\_path \gets dubins\_path + remaining\_path$
+        \State \Return $complete\_dubins\_path$
+    \end{algorithmic}
+\end{algorithm}
+
+
+
+\begin{algorithm}[H]
+    \caption{CompleteBehavioralAlgorithm}
+    \label{alg:complete_behavioral_obstacle_avoidance}
+    \begin{algorithmic}[1]
+    \Require 2D points ($p_{2d}$), initial robot pose ($r_{\text{pos}}$), turning radius ($R_{\text{tu}}$), polygonal obstacles ($OB_p$), grid diameter ($g_d$), vision cone ($VC$) 
+    \Ensure Dubins path $P_{cd}$
+
+    \State $OB_e, g_s, p_{bu} \leftarrow$ SetupObstacles($OB_p$, $g_d$, $VC$)
+    \State $p_{cl}, \delta_{\text{bc}} \leftarrow$ CentroidsAndAutoBehaviorShift($p_{2d}$)
+    \State $p_r \leftarrow p_{cl}$
+    \State $\delta_c \leftarrow 0$
+    \State $P_c \leftarrow []$
+    
+    \While{True}
+        \If{$\delta_c <  \delta_{\text{bc}}$}
+            \State $P_s, p_r \leftarrow$ Behavior\_1($OB_p$, $g_d$, $p_{bu}$, $p_r$, $N_s$, $r_{\text{pos}}$, $VC$, $C$, $R_{\text{conc}}$, $step$)
+        \Else
+            \State $P_s, p_r \leftarrow$ Behavior\_2($OB_p$, $g_d$, $p_{bu}$, $p_r$, $N_s$, $r_{\text{pos}}$, $VC$, $C$, $R_{\text{conc}}$, $step$)
+        \EndIf
+        
+        \State $P_c \mathrel{+}= P_s$
+        \State $r_{\text{pos}} \leftarrow P_c[-1]$
+        \State $\delta_c \leftarrow$ UpdateCoveragePerc($P_c$, $p_r$)
+        
+        \If{$\text{len}(P_s) == 0$}
+            \State \textbf{break}
+        \EndIf
+    \EndWhile
+    
+    \State $P_d \leftarrow$ DubinsPath($P_c$, $R_{\text{tu}}$)
+    \State $P_{re} \leftarrow$ PathAroundObstaclesAlgorithm($p_r$, $R_{\text{tu}}$)
+    \State $P_{cd} \leftarrow P_d + P_{re}$
+
+    \State \Return $P_{cd}$
+    \end{algorithmic}
+\end{algorithm}
+
+
+% \begin{algorithm}[H]
+%     \caption{CompleteBehavioralObstacleAvoidance}
+%     \label{alg:complete_behavioral_obstacle_avoidance}
+%     \begin{algorithmic}[1]
+%     \Require Set of 2D points $P$, initial robot pose $R_{\text{init}}$, turning radius $R_{\text{turn}}$, polygonal obstacles $O$, grid diameter $D_{\text{grid}}$, vision cone $VC$
+%     \Ensure Dubins path $D$
+%     \State $eo, g, bp \leftarrow$ SetupObstacles($O$, $D_{\text{grid}}$, $VC$)
+%     \State $cp, bcp \leftarrow$ CentroidsAndAutoBehaviorShift($P$)
+%     \State $rp \leftarrow cp$
+%     \State $cp \leftarrow 0$
+%     \State $cpd \leftarrow []$
+    
+%     \While{True}
+%         \If{$cp < bcp$}
+%             \State $sp, rp \leftarrow$ Behavioral1($eo$,$g$, $bp$, $rp$, $Ns$, $R_{\text{init}}$, $VC$, $centroid$, $concurrent\_region\_radii$, $step$)
+%         \Else
+%             \State $sp, rp \leftarrow$ Behavioral2($eo$,$g$, $bp$, $rp$, $Ns$, $R_{\text{init}}$, $VC$, $centroid$, $concurrent\_region\_radii$, $step$)
+%         \EndIf
+        
+%         \State $cpd \mathrel{+}= sp$
+%         \State $R_{\text{init}} \leftarrow cpd[-1]$
+%         \State $cp \leftarrow$ UpdateCoveragePercentage($cp$, $rp$)
+        
+%         \If{$\text{len}(sp) == 0$}
+%             \State \textbf{break}
+%         \EndIf
+%     \EndWhile
+    
+%     \State $dp \leftarrow$ DubinsPath($cpd$, $R_{\text{turn}}$)
+%     \State $rp \leftarrow$ PathAroundObstaclesAlgorithm($rp$, $R_{\text{turn}}$)
+%     \State $D \leftarrow dp + rp$
+%     \State \Return $D$
+%     \end{algorithmic}
+%     \end{algorithm}
+    
+
+
+    
+
+
+
+
+
+
+\begin{algorithm}[H]
+    \caption{Behavioral1}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} Extended polygonal obstacles, grids, set of 2D points, number of sample orientations \textit{Ns}, robot pose, vision cone, centroid, concurrent region radii, step
+        \Statex \textbf{Output:} Complete path, remaining points
+        \newline
+        \State $complete\_path \gets []$
+        \State $temporary\_path \gets [[], [], [], \ldots, Ns]$
+        \State $points\_covered \gets [[], [], [], \ldots, Ns]$
+        \State $sample\_orientations \gets SampleTheOrientations(robot\_pose[2], Ns, step)$
+        \For{$i, orientation \in sample\_orientations$}
+            \State $robot\_pose[2] \gets orientation$
+            \While{no point is visible}
+                \State $visible\_points \gets ComputeVisionConePoints(robot\_pose, vision\_cone)$
+                \State $potential\_point \gets FindPotentialPoint(robot\_pose, visible\_points)$
+                \If{$potential\_point$ is None}
+                    \State \textbf{break}
+                \EndIf
+                \State $new\_orientation \gets FromCurrentPoseToPotentialPoint(robot\_pose, potential\_point)$
+                \State $curr\_path \gets [[robot\_pose, potential\_point]]$
+                \State $obstacle\_free\_path \gets ComputeObstacleFreePath(curr\_path, new\_orientation)$
+                \State $temporary\_path[i] \mathrel{+}= obstacle\_free\_path$
+                \State $Intermediate\_points \gets CheckIntermediatePoints()$
+                \State $temporary\_path[i].append(Intermediate\_points)$
+                \State $points\_covered[i].append(len(temporary\_path))$
+                \State $remaining\_points \gets all\_points - temporary\_path$
+                \State $robot\_pose \gets obstacle\_free\_path[-1]$
+            \EndWhile
+        \EndFor
+        \State $best\_orientation\_index \gets argmax(points\_covered[:])$
+        \State $complete\_path \gets temporary\_path[best\_orientation\_index]$
+        \State $robot\_pose \gets complete\_path[-1]$
+        \State $turn\_point \gets PotentialPointToTurn(remaining\_points, concurrent\_region\_radii, robot\_pose)$
+        \State $best\_orientation \gets TowardsCentroid(turn\_point, centroid)$
+        \State $curr\_path \gets [[robot\_pose, turn\_point]]$
+        \State $obstacle\_free\_path \gets ComputeObstacleFreePath(curr\_path, best\_orientation)$
+        \State $complete\_path \mathrel{+}= obstacle\_free\_path$
+        \State $remaining\_points.remove(obstacle\_free\_path)$
+        \State \Return $complete\_path, remaining\_points$
+    \end{algorithmic}
+\end{algorithm}
+
+
+Description of the notations:
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $P_{cu}$: Current path
+    \item $P_{OB free}$: Obstacle free path
+\end{itemize}
+
+\begin{algorithm}[H]
+    \caption{Behavioral1}
+    \label{alg:behavioral1}
+    \begin{algorithmic}[1]
+
+    \Require Extended polygonal obstacles ($OB_p$), grids ($g_d$), buffer points ($p_{bu}$), Set of 2D points ($P_{2d}$), clustered points ($p_{cl}$), number of sample orientations ($N_s$), robot pose ($r_{pos}$), vision cone ($VC$), centroid ($C$), concurrent region radii ($R_{\text{conc}}$), step size ($S$)
+
+    \Ensure Complete straight path $P_{cs}$, remaining points $p_r$
+    \State $P_{cs} \leftarrow []$
+    \State $P_t \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $p_{co} \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $O_{sa} \leftarrow$ SampleTheOrientations($R_{pos}[2]$, $N_s$, $S$)
+    
+    \For{$i, O$ \textbf{in} $O_{sa}$}
+        \State $R_{pos}[2] \leftarrow O$
+        \While{no point is visible}
+            \State $p_v \leftarrow$ ComputeVisionConePoints($r_{pos}$, $VC$)
+            \State $p_{po} \leftarrow$ FindPotentialPoint($r_{pos}$, $p_v$)
+            \If{$p_{po}$ is None}
+                \State \textbf{break}
+            \EndIf
+            \State $O_n \leftarrow$ FromCurrentPoseToPotentialPoint($r_{pos}$, $p_{po}$)
+            \State $P_{cu} \leftarrow$ [[$r_{pos}$, $p_{po}$]]
+            \State $P_{OB free} \leftarrow$ ComputeObstacleFreePath($P_{cu}$, $O_n$)
+
+
+            \State $P_t[i] \mathrel{+}= P_{OB free}$
+            
+            \State $p_{int} \leftarrow$ CheckIntermediatePoints($p_r$)
+            \State $P_t[i].\text{append}(p_{int})$
+            \State $p_c[i].\text{append}(\text{len}(P_t))$
+            \State $p_r \leftarrow p_{cl} - P_t$
+            \State $r_{pos} \leftarrow P_{OB free}[-1]$
+        \EndWhile
+    \EndFor
+    
+    \State $O_{bi} \leftarrow \text{argmax}(p_c[:])$
+    \State $P_{cs} \leftarrow P_t[O_{bi}]$
+    
+    \State $r_{pos} \leftarrow P_{cs}[-1]$
+    \State $p_{tu} \leftarrow$ PotentialPointToTurn($p_r$, $R_{\text{conc}}$, $r_{pos}$)
+    \State $O_b \leftarrow$ TowardsCentroid($p_{tu}$, $C$)
+
+    \State $P_{cu} \leftarrow$ [[$r_{pos}$, $p_{tu}$]]
+    \State $P_{OB free} \leftarrow$ ComputeObstacleFreePath($P_{cu}$, $O_b$)
+
+    \State $P_{cs} \mathrel{+}= P_{OB free}$
+    \State $p_r.\text{remove}([P_{OB free}])$ 
+    
+    \State \Return $P_{cs}$, $p_r$
+    \end{algorithmic}
+    \end{algorithm}
+
+
+
+
+% \begin{algorithm}[H]
+%     \caption{Behavioral1}
+%     \label{alg:behavioral1}
+%     \begin{algorithmic}[1]
+%     \Require Extended polygonal obstacles $EO$, grids $G$, set of 2D points $P$, number of sample orientations $Ns$, robot pose $R$, vision cone $VC$, centroid $C$, concurrent region radii $R_{\text{conc}}$, step size $S$
+%     \Ensure Complete path $CP$, remaining points $RP$
+%     \State $cp \leftarrow []$
+%     \State $tp \leftarrow [[] \text{ for } \_ \text{ in range}(Ns)]$
+%     \State $pc \leftarrow [[] \text{ for } \_ \text{ in range}(Ns)]$
+%     \State $so \leftarrow$ SampleTheOrientations($R[2]$, $Ns$, $S$)
+    
+%     \For{$i, o$ \textbf{in} $so$}
+%         \State $R[2] \leftarrow o$
+%         \While{no point is visible}
+%             \State $vp \leftarrow$ ComputeVisionConePoints($R$, $VC$)
+%             \State $pp \leftarrow$ FindPotentialPoint($R$, $vp$)
+%             \If{$pp$ is None}
+%                 \State \textbf{break}
+%             \EndIf
+%             \State $no \leftarrow$ FromCurrentPoseToPotentialPoint($R$, $pp$)
+%             \State $cpn \leftarrow [[R, pp]]$
+%             \State $ofp \leftarrow$ ComputeObstacleFreePath($cpn$, $no$)
+%             \State $tp[i] \mathrel{+}= ofp$
+%             \State $ip \leftarrow$ CheckIntermediatePoints()
+%             \State $tp[i].\text{append}(ip)$
+%             \State $pc[i].\text{append}(\text{len}(tp))$
+%             \State $RP \leftarrow P - tp$
+%             \State $R \leftarrow$ ofp[-1]
+%         \EndWhile
+%     \EndFor
+    
+%     \State $boi \leftarrow \text{argmax}(pc[:])$
+%     \State $cp \leftarrow tp[boi]$
+%     \State $R \leftarrow cp[-1]$
+%     \State $tp \leftarrow$ PotentialPointToTurn($RP$, $R_{\text{conc}}$, $R$)
+%     \State $bo \leftarrow$ TowardsCentroid($tp$, $C$)
+%     \State $cpn \leftarrow [[R, tp]]$
+%     \State $ofp \leftarrow$ ComputeObstacleFreePath($cpn$, $bo$)
+%     \State $cp \mathrel{+}= ofp$
+%     \State $RP.\text{remove}(ofp)$
+%     \State \Return $cp$, $RP$
+%     \end{algorithmic}
+%     \end{algorithm}
+    
+
+    
+
+
+
+
+
+
+
+
+\begin{algorithm}[H]
+    \caption{BehavioralAlgorithm2}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} Extended polygonal obstacles, grids, set of 2D points, number of sample orientations \textit{Ns}, robot pose, vision cone, centroid, concurrent region radii, step
+        \Statex \textbf{Output:} Complete path, remaining points
+        \newline
+        \State $complete\_path \gets []$
+        \State $temporary\_path \gets [[], [], [], \ldots, Ns]$
+        \State $points\_covered \gets [[], [], [], \ldots, Ns]$
+        \State $sample\_orientations \gets SampleTheOrientations(robot\_pose[2], Ns, step)$
+        \For{$i, orientation \in sample\_orientations$}
+            \State $robot\_pose[2] \gets orientation$
+            \While{no point is visible}
+                \State $visible\_points \gets ComputeVisionConePoints(robot\_pose, vision\_cone)$
+                \State $potential\_point \gets FindPotentialPoint(robot\_pose, visible\_points)$
+                \If{$potential\_point$ is None}
+                    \State \textbf{break}
+                \EndIf
+                \State $new\_orientation \gets FromCurrentPoseToPotentialPoint(robot\_pose, potential\_point)$
+                \State $curr\_path \gets [[robot\_pose, potential\_point]]$
+                \State $obstacle\_free\_path \gets ComputeObstacleFreePath(curr\_path, new\_orientation)$
+                \State $temporary\_path[i] \mathrel{+}= obstacle\_free\_path$
+                \State $Intermediate\_points \gets CheckIntermediatePoints()$
+                \State $temporary\_path[i].append(Intermediate\_points)$
+                \State $points\_covered[i].append(len(temporary\_path))$
+                \State $remaining\_points \gets all\_points - temporary\_path$
+                \State $robot\_pose \gets obstacle\_free\_path[-1]$
+            \EndWhile
+        \EndFor
+        \State $best\_orientation\_index \gets argmax(points\_covered[:])$
+        \State $complete\_path \gets temporary\_path[best\_orientation\_index]$
+        \State $robot\_pose \gets complete\_path[-1]$
+        \State $turn\_point \gets PotentialPointToTurnCCW(remaining\_points, concurrent\_region\_radii, robot\_pose)$
+        \State $best\_orientation \gets VectorsTowardsNextCCWPoint(turn\_point, remaining\_points)$
+        \State $curr\_path \gets [[robot\_pose, turn\_point]]$
+        \State $obstacle\_free\_path \gets ComputeObstacleFreePath(curr\_path, best\_orientation)$
+        \State $complete\_path \mathrel{+}= obstacle\_free\_path$
+        \State $remaining\_points.remove(obstacle\_free\_path)$
+        \State \Return $complete\_path, remaining\_points$
+    \end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+    \caption{BehavioralAlgorithm2}
+    \label{alg:behavioral_algorithm_2}
+    \begin{algorithmic}[1]
+
+    \Require Extended polygonal obstacles ($OB_e$), grids ($g_d$), buffer points ($p_{bu}$), Set of 2D points ($P_{2d}$), clustered points ($p_{cl}$), number of sample orientations ($N_s$), robot pose ($r_{pos}$), vision cone ($VC$), centroid ($C$), concurrent region radii ($R_{\text{conc}}$), step size ($S$)
+
+    \Ensure Complete straight path $P_{cs}$, remaining points $p_r$
+    \State $P_{cs} \leftarrow []$
+    \State $P_t \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $p_{co} \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $O_{sa} \leftarrow$ SampleTheOrientations($R_{pos}[2]$, $N_s$, $S$)
+    
+    \For{$i, O$ \textbf{in} $O_{sa}$}
+        \State $R_{pos}[2] \leftarrow O$
+        \While{no point is visible}
+            \State $p_v \leftarrow$ ComputeVisionConePoints($r_{pos}$, $VC$)
+            \State $p_{po} \leftarrow$ FindPotentialPoint($r_{pos}$, $p_v$)
+            \If{$p_{po}$ is None}
+                \State \textbf{break}
+            \EndIf
+            \State $O_n \leftarrow$ FromCurrentPoseToPotentialPoint($r_{pos}$, $p_{po}$)
+            \State $P_{cu} \leftarrow$ [[$r_{pos}$, $p_{po}$]]
+            \State $P_{OB free} \leftarrow$ ComputeObstacleFreePath($P_{cu}$, $O_n$)
+
+
+            \State $P_t[i] \mathrel{+}= P_{OB free}$
+            
+            \State $p_{int} \leftarrow$ CheckIntermediatePoints($p_r$)
+            \State $P_t[i].\text{append}(p_{int})$
+            \State $p_c[i].\text{append}(\text{len}(P_t))$
+            \State $p_r \leftarrow p_{cl} - P_t$
+            \State $r_{pos} \leftarrow P_{OB free}[-1]$
+        \EndWhile
+    \EndFor
+    
+    \State $O_{bi} \leftarrow \text{argmax}(p_c[:])$
+    \State $P_{cs} \leftarrow P_t[O_{bi}]$
+    
+    \State $r_{pos} \leftarrow P_{cs}[-1]$
+
+    \State $p_{tu} \leftarrow$ PotentialPointToTurnCCW($p_r$, $R_{\text{conc}}$, $r_{pos}$)
+    \State $O_b \leftarrow$ VectorsTowardsNextCCWPoint($p_{tu}$, $p_r$)
+
+
+    \State $P_{cu} \leftarrow$ [[$r_{pos}$, $p_{tu}$]]
+    \State $P_{OB free} \leftarrow$ ComputeObstacleFreePath($P_{cu}$, $O_b$)
+
+    \State $P_{cs} \mathrel{+}= P_{OB free}$
+    \State $p_r.\text{remove}([P_{OB free}])$ 
+    
+    \State \Return $P_{cs}$, $p_r$
+    \end{algorithmic}
+    \end{algorithm}
+
+
+
+% \begin{algorithm}[H]
+%     \caption{BehavioralAlgorithm2}
+%     \label{alg:behavioral_algorithm_2}
+%     \begin{algorithmic}[1]
+%     \Require Extended polygonal obstacles $EO$, grids $G$, set of 2D points $P$, number of sample orientations $Ns$, robot pose $R$, vision cone $VC$, centroid $C$, concurrent region radii $R_{\text{conc}}$, step size $S$
+%     \Ensure Complete path $CP$, remaining points $RP$
+%     \State $cp \leftarrow []$
+%     \State $tp \leftarrow [[] \text{ for } \_ \text{ in range}(Ns)]$
+%     \State $pc \leftarrow [[] \text{ for } \_ \text{ in range}(Ns)]$
+%     \State $so \leftarrow$ SampleTheOrientations($R[2]$, $Ns$, $S$)
+    
+%     \For{$i, o$ \textbf{in} $so$}
+%         \State $R[2] \leftarrow o$
+%         \While{no point is visible}
+%             \State $vp \leftarrow$ ComputeVisionConePoints($R$, $VC$)
+%             \State $pp \leftarrow$ FindPotentialPoint($R$, $vp$)
+%             \If{$pp$ is None}
+%                 \State \textbf{break}
+%             \EndIf
+%             \State $no \leftarrow$ FromCurrentPoseToPotentialPoint($R$, $pp$)
+%             \State $cpn \leftarrow [[R, pp]]$
+%             \State $ofp \leftarrow$ ComputeObstacleFreePath($cpn$, $no$)
+%             \State $tp[i] \mathrel{+}= ofp$
+%             \State $ip \leftarrow$ CheckIntermediatePoints()
+%             \State $tp[i].\text{append}(ip)$
+%             \State $pc[i].\text{append}(\text{len}(tp))$
+%             \State $RP \leftarrow P - tp$
+%             \State $R \leftarrow$ ofp[-1]
+%         \EndWhile
+%     \EndFor
+    
+%     \State $boi \leftarrow \text{argmax}(pc[:])$
+%     \State $cp \leftarrow tp[boi]$
+%     \State $R \leftarrow cp[-1]$
+%     \State $tp \leftarrow$ PotentialPointToTurnCCW($RP$, $R_{\text{conc}}$, $R$)
+%     \State $bo \leftarrow$ VectorsTowardsNextCCWPoint($tp$, $RP$)
+%     \State $cpn \leftarrow [[R, tp]]$
+%     \State $ofp \leftarrow$ ComputeObstacleFreePath($cpn$, $bo$)
+%     \State $cp \mathrel{+}= ofp$
+%     \State $RP.\text{remove}(ofp)$
+%     \State \Return $cp$, $RP$
+%     \end{algorithmic}
+%     \end{algorithm}
+    
+
+\begin{algorithm}[H]
+    \caption{SetupObstacleAlgorithm}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} Polygonal obstacles, grid diameter, vision cone, safe margin
+        \Statex \textbf{Output:} Extended polygonal obstacles, occupancy grids, buffer points
+        \newline
+        \State $distance\_x, distance\_y \gets ComputeDistancesFor90DegreeTurn(vision\_cone)$
+        \State $free\_grid\_distance \gets 1.5 \times distance\_y$
+        \State $extended\_obstacles \gets ExtendPolygonForSafeMargin(polygonal\_obstacles, safe\_margin)$
+        \State $grids \gets ComputeGrid(extended\_obstacles, grid\_diameter, free\_grid\_distance)$
+        \State $buffer\_points \gets PointsSurroundingObstacles(extended\_obstacles)$
+        \State \Return $extended\_obstacles, grids, buffer\_points$
+    \end{algorithmic}
+\end{algorithm}
+
+Description of the notations:
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $dx$: Distance in the x direction at 90degree turn.
+    \item $dy$: Distance in the y direction at 90degree turn.
+    \item $fd$: Free grid space from obstacle edge.  
+\end{itemize}
+
+\begin{algorithm}[H]
+    \caption{SetupObstacleAlgorithm}
+    \label{alg:setup_obstacle_algorithm}
+    \begin{algorithmic}[1]
+    \Require polygonal obstacles ($OB_p$), grid diameter ($g_d$), vision cone ($VC$), safe margin ($sm$)
+    \Ensure Extended polygonal obstacles ($OB_e$), grids ($g_s$), buffer points ($p_{bu}$)
+    \State $dx, dy \leftarrow$ ComputeDistancesFor90DegreeTurn($VC$)
+    \State $fd \leftarrow 1.5 \times dy$
+    \State $OB_e \leftarrow$ ExtendPolygonForSafeMargin($OB_p$, $sm$)
+    \State $g_s \leftarrow$ ComputeGrid($OB_e$, $g_d$, $fd$)
+    \State $p_{bu} \leftarrow$ PointsSurroundingObstacles($OB_e$)
+    \State \Return $OB_e$, $g_s$, $p_{bu}$
+    \end{algorithmic}
+    \end{algorithm}
+
+    
+% \begin{algorithm}[H]
+%     \caption{SetupObstacleAlgorithm}
+%     \label{alg:setup_obstacle_algorithm}
+%     \begin{algorithmic}[1]
+%     \Require Polygonal obstacles $PO$, grid diameter $GD$, vision cone $VC$, safe margin $SM$
+%     \Ensure Extended polygonal obstacles $EO$, occupancy grids $G$, buffer points $BP$
+%     \State $dx, dy \leftarrow$ ComputeDistancesFor90DegreeTurn($VC$)
+%     \State $fd \leftarrow 1.5 \times dy$
+%     \State $eo \leftarrow$ ExtendPolygonForSafeMargin($PO$, $SM$)
+%     \State $g \leftarrow$ ComputeGrid($eo$, $GD$, $fd$)
+%     \State $bp \leftarrow$ PointsSurroundingObstacles($eo$)
+%     \State \Return $eo$, $g$, $bp$
+%     \end{algorithmic}
+%     \end{algorithm}
+
+
+    
+
+    
+
+
+
+\begin{algorithm}[H]
+    \caption{ComputeObstacleFreePath}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} Extended obstacles, grids, buffer points, complete path, current path, current orientation
+        \Statex \textbf{Output:} Obstacle-free path
+        \newline
+        \State $robot\_pose \gets curr\_path[-1]$
+        \State $is\_path\_in\_obstacle, obs\_idx \gets CheckPath(curr\_path, extended\_obstacles)$
+        \If{is\_path\_in\_obstacle}
+            \State $obstacle \gets extended\_obstacles[obs\_idx]$
+            \State $grid \gets grids[obs\_idx]$
+            \State $salient\_points \gets ExtractSalientPoints(obstacle, grid, buffer\_points, robot\_pose)$
+            \State $G.initialize()$
+            \State $step\_length \gets AutoSelectStepLength(robot\_pose, salient\_points)$
+            \State $G, goal\_salient\_point, is\_goal\_found \gets GenerateGraph(G, robot\_pose, salient\_points,$ 
+            \Statex \hspace{9cm} $step\_length, max\_generation)$
+            \If{is\_goal\_found}
+                \State $shortest\_path \gets AStarSearch(G, robot\_pose, goal\_salient\_point)$
+                \State $obstacle\_free\_path \gets shortest\_path$
+                \State \Return $obstacle\_free\_path$
+            \Else
+                \State $robot\_pose \gets complete\_path[-1]$  \Comment{move one step back in the path}
+                \State \textbf{goto} GenerateGraph
+            \EndIf
+        \Else
+            \State \Return $[[curr\_path[-1], curr\_orientation]]$
+        \EndIf
+    \end{algorithmic}
+\end{algorithm}
+
+
+
+Description of the notations:
+\begin{multicols}{2}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $obs_idx$: obstacle index.
+    \item $S_l$: Graph step length.
+    \item $gen_{max}$: Maximum generation for graph.
+    \item $P_{sh}$: Shortest path.
+\end{itemize}
+\end{multicols}
+
+\begin{algorithm}[H]
+    \caption{ComputeObstacleFreePath}
+    \label{alg:compute_obstacle_free_path}
+    \begin{algorithmic}[1]
+    \Require Extended obstacles ($OB_e$), grids ($g_s$), buffer points ($p_{bu}$), complete path ($P_c$), current path ($P_{cu}$), current orientation ($O_{cu}$)
+    \Ensure Obstacle-free path ($P_{OB free}$)
+
+    \State $r_{pos} \leftarrow P_{cu}[-1]$
+    \State $is\_path\_in\_obstacle, obs\_idx \leftarrow$ CheckPath($P_{cu}$, $OB_e$)
+    \If{$is\_path\_in\_obstacle$}
+        \State $OB\leftarrow OB_e[obs\_idx]$
+        \State $g \leftarrow g_s[obs\_idx]$
+        \State $SP \leftarrow$ ExtractSalientPoints($OB$, $g$, $p_{bu}$, $r_{pos}$)
+        \State $G.\text{initialize}()$
+        \State $S_l \leftarrow$ AutoSelectStepLength($r_{pos}$, $SP$)
+        \State $G$, $goal\_SP$, $is\_goal\_found \leftarrow$ GenerateGraph($G$,$r_{pos}$,$SP$,$S_l$,$gen_{max}$)
+        \If{$is\_goal\_found$}
+            \State $P_{sh} \leftarrow$ AStarSearch($G$,$r_{pos}$, $goal\_SP$)
+            \State $P_{OB free} \leftarrow P_{sh}$
+            \State \Return $P_{OB free}$
+        \Else
+            \State $r_{pos} \leftarrow P_c[-1]$ \Comment{Move one step back in the path}
+            \State \textbf{goto} GenerateGraph (step 9)
+        \EndIf
+    \Else
+        \State \Return $[[P_{cu}[-1], O_{cu}]]$
+    \EndIf
+    \end{algorithmic}
+    \end{algorithm}
+
+
+
+
+
+
+% \begin{algorithm}[H]
+%     \caption{ComputeObstacleFreePath}
+%     \label{alg:compute_obstacle_free_path}
+%     \begin{algorithmic}[1]
+%     \Require Extended obstacles $EO$, grids $G$, buffer points $BP$, complete path $CP$, current path $CPN$, current orientation $CO$
+%     \Ensure Obstacle-free path $OFP$
+%     \State $R \leftarrow CPN[-1]$
+%     \State $is\_path\_in\_obstacle, obs\_idx \leftarrow$ CheckPath($CPN$, $EO$)
+%     \If{$is\_path\_in\_obstacle$}
+%         \State $obstacle \leftarrow EO[obs\_idx]$
+%         \State $grid \leftarrow G[obs\_idx]$
+%         \State $salient\_points \leftarrow$ ExtractSalientPoints($obstacle$, $grid$, $BP$, $R$)
+%         \State $G.\text{initialize}()$
+%         \State $sl \leftarrow$ AutoSelectStepLength($R$, $salient\_points$)
+%         \State $G$, $goal\_salient\_point$, $is\_goal\_found \leftarrow$ GenerateGraph($G$,$R$,$salient\_points$,$sl$,$max\_generation$)
+%         \If{$is\_goal\_found$}
+%             \State $shortest\_path \leftarrow$ AStarSearch($G$,$R$, $goal\_salient\_point$)
+%             \State $OFP \leftarrow shortest\_path$
+%             \State \Return $OFP$
+%         \Else
+%             \State $R \leftarrow CP[-1]$ \Comment{Move one step back in the path}
+%             \State \textbf{goto} GenerateGraph
+%         \EndIf
+%     \Else
+%         \State \Return $[[CPN[-1], CO]]$
+%     \EndIf
+%     \end{algorithmic}
+%     \end{algorithm}
+    
+
+    
+
+
+
+\begin{algorithm}[H]
+    \caption{PathAroundObstaclesAlgorithm}
+    \begin{algorithmic}[1]
+        \Statex \textbf{Input:} Extended obstacles, 2D points, robot pose, turning radius
+        \Statex \textbf{Output:} Path
+        \newline
+        \State $points\_list, robot\_obs\_idx \gets PointsCloseToObstacle(extended\_obstacles, 2D\_points)$
+        \State $curr\_points \gets points\_list[robot\_obs\_idx]$    \Comment{Robot  close to an obstacle will be the first.}
+        \State $curr\_obs \gets extended\_obstacles[robot\_obs\_idx]$
+        \State $Path \gets []$
+        \For{$i$ \textbf{in} \textbf{range}(len(extended\_obstacles))}
+            \State $G.initialize()$
+            \State $G \gets GenerateVisibilityGraph(curr\_obs, curr\_points, robot\_pose)$ 
+            \State $path\_through\_all\_points \gets CoverageGraphSearch(G, robot\_pose)$
+            \State $Path \mathrel{+}= path\_through\_all\_points$
+            \State $robot\_pose \gets path\_through\_all\_points[-1]$
+            \State $curr\_obs, obs\_idx \gets FindNearestObstacle(robot\_pose, points\_list)$
+            \State $curr\_points \gets points\_list[obs\_idx]$
+        \EndFor
+        \State \Return $Path$
+    \end{algorithmic}
+\end{algorithm}
+
+Description of the notations:
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $P_{list}$: Points list
+    \item $P_{cu}$: Current points
+    \item $P_{cov}$: path through all points of one obstacle.  
+\end{itemize}
+
+\begin{algorithm}[H]     
+    \caption{PathAroundObstaclesAlgorithm}  
+    \label{alg:path_around_obstacles_algorithm}
+    \begin{algorithmic}[1]
+    \Require Extended obstacles ($OB_e$), 2D points ($P_{2d}$), robot pose ($r_{pos}$), turning radius ($R_{tu}) $
+    \Ensure Path ($P$)
+
+    \State $p_{list}, robot\_obs\_idx \leftarrow$ PointsCloseToObstacle($OB_e$, $P_{2d}$)
+    \State $p_{cu} \leftarrow p_{list}[robot\_obs\_idx]$    \Comment{Robot close to an obstacle will be the first.}
+    \State $OB_{cu} \leftarrow OB_e[robot\_obs\_idx]$
+    \State $P \leftarrow []$
+    \For{$i$ \textbf{in} range(len($OB_e$))}
+        \State $G.\text{initialize}()$
+        \State $G \leftarrow$ GenerateVisibilityGraph($OB_{cu}$, $p_{cu}$, $r_{pos}$)
+        \State $P_{cov} \leftarrow$ CoverageGraphSearch($G$, $r_{pos}$)
+        \State $P \mathrel{+}= P_{cov}$
+        \State $r_{pos} \leftarrow P_{cov}[-1]$
+        \State $OB_{cu}, obs\_idx \leftarrow$ FindNearestObstacle($r_{pos}$, $p_{list}$)
+        \State $p_{cu} \leftarrow p_{list}[obs\_idx]$
+    \EndFor
+    \State \Return $P$
+    \end{algorithmic}
+    \end{algorithm}
+
+
+
+% \begin{algorithm}[H]     
+%     \caption{PathAroundObstaclesAlgorithm}  
+%     \label{alg:path_around_obstacles_algorithm}
+%     \begin{algorithmic}[1]
+%     \Require Extended obstacles $EO$, 2D points $P$, robot pose $R$, turning radius $R\_turn$
+%     \Ensure Path $PATH$
+%     \State $points\_list, robot\_obs\_idx \leftarrow$ PointsCloseToObstacle($EO$, $P$)
+%     \State $curr\_points \leftarrow points\_list[robot\_obs\_idx]$    \Comment{Robot close to an obstacle will be the first.}
+%     \State $curr\_obs \leftarrow EO[robot\_obs\_idx]$
+%     \State $PATH \leftarrow []$
+%     \For{$i$ \textbf{in} range(len($EO$))}
+%         \State $G.\text{initialize}()$
+%         \State $G \leftarrow$ GenerateVisibilityGraph($curr\_obs$, $curr\_points$, $R$)
+%         \State $path\_through\_all\_points \leftarrow$ CoverageGraphSearch($G$, $R$)
+%         \State $PATH += path\_through\_all\_points$
+%         \State $R \leftarrow path\_through\_all\_points[-1]$
+%         \State $curr\_obs, obs\_idx \leftarrow$ FindNearestObstacle($R$, $points\_list$)
+%         \State $curr\_points \leftarrow points\_list[obs\_idx]$
+%     \EndFor
+%     \State \Return $PATH$
+%     \end{algorithmic}
+%     \end{algorithm} 
+    
+
+    
+
+
+\vspace*{6mm}  
+ 
+The algorithm begins by receiving the centroids of the overlaps between the regions of the raw points as input. It takes the initial position and orientation of the robot, where the position remains fixed while the orientation is treated as a temporary orientation. From this temporary orientation, the algorithm considers an angular range of twenty-four degrees on either side. Within this range, it samples six orientations on each side, resulting in a total of thirteen orientations, including the initial orientation.
+
+\vspace*{6mm}  
+
+The algorithm designates the current orientation as the leftmost extreme orientation. Using this position and orientation, it then starts selecting the next point to navigate to. At this stage, the algorithm employs the vision cone mechanism, characterized by an 11-degree angle on either side and extending 100 meters forward. The primary objective at this juncture is to select the next most suitable point within the vision cone.
+
+\vspace*{6mm}  
+
+To determine the next best suitable point, the algorithm extracts the five closest points from the current position and orientation within the vision cone. These points are regarded as intermediate potential points. For each of these intermediate points, the algorithm computes the distribution of points on either side of the current orientation across the entire vision cone. A combined score is then calculated for each intermediate point based on the distance from the robot and the distribution of points in the long run. Both the distance and the distribution are normalized before calculating the combined score. The point with the highest combined score is deemed the best potential candidate and is selected as the next point to navigate to. This scoring method is intelligent as it considers not only the distance but also the future distribution of points, thereby facilitating more efficient coverage as the robot progresses.
+
+\vspace*{6mm}  
+
+Once the best potential point is selected, it becomes the next point for navigation. The robot's orientation at this new point is updated based on the direction vector from the robot to the selected point. The robot then moves to this potential point with the updated orientation. This process is repeated, with the robot continually navigating to the next potential point until no points are visible within the vision cone. This pattern encourages the robot to move in an approximately straight line whenever possible. When the robot can no longer find any points within the vision cone, it indicates that the robot has reached the extreme end of the points. At this point, the number of points covered in this orientation is recorded.
+
+\vspace*{6mm}  
+
+Returning to Initial Position and Orientation
+
+After completing the initial coverage path, the robot will return to its starting position and orientation. The robot then considers the next orientation in the set of thirteen sampled orientations and proceeds to complete an approximately straight path in that direction, recording the number of points covered along each path. This process is repeated for all thirteen orientations. Upon completing paths for all orientations, the orientation that results in the maximum number of points covered is selected as the optimal orientation for further navigation.
+\vspace*{6mm}  
+
+Incorporating Non-Holonomic Constraints for Turns
+\vspace*{6mm}  
+
+When making a turn, the robot must adhere to its non-holonomic constraints. To address this, the algorithm considers a circular region around the robot with defined minimum and maximum radii. The minimum radius is set to one and a half times the robot's minimum turning radius, ensuring feasible turns. The initial maximum radius is set to three times the minimum turning radius. If no points are found within this initial circular region, the outer radius is incrementally increased by two units until the maximum radius limit is reached.
+\vspace*{6mm}  
+
+Within this circular region, the algorithm identifies all potential points and filters them further. The selection process involves evaluating each point based on a combined score, considering both the distance from the robot and the angle differnce between the robot's orientation and the vector from the robot to the potential point. both the entities are normalized before comparison. A lower distance and a smaller orientation deviation result in a higher score for the point. The point with the highest score is selected as the next potential point for the robot to navigate to when making a turn.
+\vspace*{6mm}  
+
+Orientation Towards Centroid
+
+At the beginning of the algorithm, the centroid of the entire set of points is computed. When selecting a point for the turn, the orientation is determined by the vector from the selected point towards this centroid. This selected point becomes the next navigation target, and the orientation towards the centroid becomes the new temporary orientation for the robot.
+
+\vspace*{6mm}  
+
+Continuing the Path and Making Turns
+
+Upon reaching the end of a complete path, the robot needs to execute a turn. This turn is represented by a single completed path, after which the robot continues the same pattern of operation. From the point where the turn is made, the robot selects thirteen orientations and navigates along each one, completing a path and recording the number of points covered. The orientation that results in the maximum number of points covered is then selected as the optimal orientation for continued navigation. This process is iterative and continues throughout the robot's operation.
+
+\vspace*{6mm}  
+
+Focus on Points Near the Centroid
+
+This first behavior of the robot emphasizes covering more points near the centroid of the data and not covering points on the outer sides. Initially, the robot covers a significant number of points with each path. However, as the number of turns increases, the coverage rate decreases. This reduction in efficiency occurs because the robot focuses on points near the centroid as after each turn it faces toward the centroid, resulting in majority of the points covered are in the central region. Consequently, while this behavior ensures substantial coverage, it becomes less efficient over time as fewer new points are covered with each turn.
+
+\vspace*{6mm}  
+
+Coverage Efficiency and Convergence Rate
+
+Although this behavior can cover most or all points in the data, the coverage rate diminishes, and convergence takes longer. This limitation highlights the need for a hierarchical approach with multiple behaviors. By transitioning between behaviors, the algorithm can maintain high efficiency and improve the convergence rate, ensuring comprehensive and timely coverage of all points.
+
+\vspace*{6mm}  
+
+
+
+\textbf{Second behavior: Intermediate behavior:} 
+
+\vspace*{6mm}   
+
+Boundary-Focused Coverage Strategy
+
+The second behavior of the algorithm is designed to enhance the coverage rate and improve the convergence efficiency. Upon transitioning from the first to the second behavior, the algorithm takes all remaining points as input, considering the current position and orientation of the robot. At this stage, the density of uncovered points is lower near the centroid and higher towards the boundaries of the operational area. Therefore, the second algorithm focuses on covering points located along the periphery rather than near the centroid.
+
+\vspace*{6mm}   
+
+Orientation Sampling and Path Selection
+
+The algorithm begins similarly by selecting thirteen orientations from the robot's current position and orientation. The robot navigates along each orientation, completing a path and recording the number of points covered. The orientation resulting in the highest number of points covered is selected as the optimal direction for continued navigation. This ensures that the robot always moves in the direction that maximizes point coverage.
+
+\vspace*{6mm}   
+
+Refined Criteria for Selecting Turning Points
+
+A critical difference in this behavior lies in the method for selecting the next best point to make a turn. The algorithm considers a circular region around the robot with predefined minimum and maximum radii similarly as of first behavior. Within this region, the algorithm evaluates all potential points, applying refined selection criteria. The criteria prioritize points with the smallest absolute orientation difference from the robot's current orientation and the shortest distance from the robot's current position. By doing so, the algorithm ensures that the robot makes smooth, efficient turns that align with its non-holonomic constraints.
+
+\vspace*{6mm}   
+
+The point with the least orientation difference and the shortest distance is chosen as the next point for making a turn. Unlike the first behavior, where the orientation towards the centroid was prioritized, the orientation of this potential point is directed towards the next point along the same moving orientation. For example, if the potential point lies clockwise to the robot's current orientation, the robot's new orientation will aim towards the next nearest point with the smallest clockwise orientation difference, and the same applies for counterclockwise points. This new orientation becomes the temporary orientation, and the robot continues the process of orientation sampling and selection with the goal of maximizing point coverage.
+
+\vspace*{6mm}   
+
+Enhanced Coverage and Convergence
+
+This behavior is particularly effective in covering points along the boundaries and in regions with higher point density, thereby increasing the overall coverage rate and convergence efficiency of the algorithm. While the first behavior predominantly focuses on points near the centroid, the second behavior shifts attention to the boundary points, ensuring a more balanced and comprehensive coverage pattern.
+
+\vspace*{6mm}   
+
+By following a systematic circular pattern, the robot can cover most of the points in the data set. This transition from centroid-focused coverage to boundary-focused coverage allows the algorithm to address the limitations of the first behavior, which tends to become less efficient as more points near the centroid are covered. The hierarchical combination of these behaviors ensures that the robot effectively covers the entire field, optimizing both the coverage rate and the overall efficiency of the operation.
+
+\vspace*{6mm}   
+
+Enhancing Coverage with Intermediate Points
+
+To further improve the coverage rate and convergence of the algorithm, an additional mechanism is incorporated into both the first and the second behaviors. This enhancement involves covering intermediate points along each path between two selected points. The algorithm checks for points that lie close to the current path within a certain threshold distance. Regardless of the distance between the two primary points on the path, these intermediate points are included in the coverage plan.
+
+\vspace*{6mm}   
+
+The orientation for these intermediate points is determined based on their position. If multiple points exist close to the path, the orientation is directed towards the next intermediate point in sequence. For the last intermediate point, the orientation is towards the final end point.
+
+\vspace*{6mm}   
+
+Another criterion for selecting intermediate points depends on the distance between the two primary points of the path. If this distance is substantial, points that are slightly farther but within the threshold are also considered. In such cases, the algorithm allows for a minor compromise on the straightness of the path to cover more points, thereby further enhancing the coverage rate and convergence efficiency.
+
+\vspace*{6mm}   
+
+Efficiency of Combined Behaviors
+
+Both the first and second behaviors, along with the enhancement for intermediate points, ensure complete coverage of the points. These behaviors have been experimentally validated to provide good coverage rates and convergence for the algorithm. However, the efficiency in terms of coverage rate, convergence speed, and path length diminishes after approximately eighty-five to ninety percent of the points are covered. At this stage, the algorithm tends to cover fewer points per turn and makes multiple turns to cover just two or three points.
+
+\vspace*{6mm}   
+
+This inefficiency results in longer paths and higher energy consumption, which contradicts the goal of minimizing path length and conserving energy. This challenge highlights the necessity for a third behavior. The third behavior aims to optimize the final stages of the coverage process by allowing slight deviations from straight paths to cover more points efficiently, thus reducing the overall path length and energy consumption.
+
+\vspace*{6mm}   
+
+
+
+
+
+\textbf{Final Behavior: Completing Coverage: }
+
+
+\vspace*{6mm}   
+
+Final Behavior: Completing Coverage
+The third and final behavior of the algorithm addresses the coverage of the few remaining points, which are sparsely distributed across the area. At this stage, the concept of the vision cone is removed, as maintaining strict straightness is no longer prioritized. Although straight paths are typically more energy-efficient, the robot would consume more energy traveling long straight paths while covering fewer points. Instead, small circular turns with a radius of 3 meters are preferred, allowing the robot to avoid long straight paths of up to 100 meters. This approach optimizes energy usage by prioritizing the coverage of remaining points over path straightness.
+
+\vspace*{6mm}   
+
+To determine the optimal path for these remaining points, the algorithm employs the Dubins open traveling salesman problem (TSP), leveraging the concepts described in a seminal paper by X.
+
+\vspace*{6mm}   
+
+Overview of the Traveling Salesman Problem (TSP)
+The traveling salesman problem is a classic optimization challenge in computer science and operations research. It seeks to find the shortest route that visits a set of cities and returns to the original city, with the primary challenge being to determine the optimal sequence of cities to minimize total travel distance. This problem is NP-hard, meaning there is no known polynomial-time algorithm that can solve it exactly for large instances.
+
+\vspace*{6mm}   
+
+Open Traveling Salesman Problem (Open TSP)
+The open TSP is a variant of the classic TSP where the salesman does not need to return to the starting city after visiting all other cities. This relaxation allows for more flexibility in route planning and can lead to different optimal solutions. The open TSP is particularly useful in scenarios where a return trip is unnecessary or infeasible, such as delivery routes or exploration missions. In our case, the robot does not need to return to the starting point, making the open TSP more suitable for our problem. Nevertheless, the non-holonomic constraints of the robot must be considered.
+
+\vspace*{6mm}   
+
+Dubins Open Traveling Salesman Problem (Dubins Open TSP)
+The Dubins open TSP extends the open TSP by accounting for the non-holonomic constraints of vehicles, such as turning radius and orientation. It seeks to find the shortest path that visits a set of points while respecting the vehicle's kinematic constraints. The Dubins path, named after mathematician L. F. Dubins, provides the shortest path for vehicles with a fixed turning radius. By applying Dubins paths to the open TSP, the algorithm can generate efficient and feasible routes for vehicles with non-holonomic constraints.
+
+\vspace*{6mm}   
+
+Application to the Final Coverage
+The final behavior leverages the Dubins open TSP to efficiently cover the remaining points. Initially, the shortest path between the points is computed using the open TSP. Subsequently, Dubins constraints are applied to ensure the path is feasible for the robot. This method not only ensures complete coverage of the remaining points but also reduces the overall path length and energy consumption. By adopting this approach, the algorithm significantly improves the coverage rate and convergence speed, achieving comprehensive coverage in an efficient manner.
+
+\vspace*{6mm}   
+
+This integrated strategy, comprising the first, second, and final behaviors, enables the robot to cover all points in the agricultural field effectively. Each behavior is tailored to optimize different stages of the coverage process, from focusing on dense central areas to sparsely populated boundaries and finally to the remaining isolated points. This hierarchical and adaptive approach ensures that the robot operates efficiently, minimizing both path length and energy consumption throughout the coverage process.
+
+
+\vspace*{6mm}   
+
+
+
+Hierarchical Behavioral Algorithm for Coverage Path Planning
+These three behaviors are meticulously designed to optimize the coverage of points in an area while minimizing the path length and energy consumption of the robot. The algorithm demonstrates a sophisticated approach to coverage path planning, particularly suited to agricultural fields, but adaptable to other domains as well.
+
+\vspace*{6mm}   
+
+\textbf{Automatic Shift Between Behaviors: }
+A critical aspect of this behavioral algorithm is the decision-making process for shifting from one behavior to the next. Different data distributions require varying coverage percentages to optimize this transition. Determining the optimal shift point is challenging and necessitates extensive experimentation and testing to achieve the best coverage rate and convergence.
+
+\vspace*{6mm}   
+
+The performance of the algorithm can significantly vary depending on when the shift between behaviors occurs. For the same dataset, different coverage percentages for behavior shifts can greatly influence the coverage rate and convergence efficiency. Therefore, it is essential to tailor the shift points for each specific dataset rather than relying on a fixed percentage.
+
+\vspace*{6mm}   
+
+Computing the Optimal Coverage Percentage
+One of the standout features of this behavioral algorithm is its ability to determine the near-optimal coverage percentage for shifting behaviors. Once the dataset is pre-processed, the algorithm computes the best percentage coverage for behavior shifts as follows:
+
+\begin{itemize}
+    \item \textbf{Centroid and Concentric Circles:  }The algorithm first computes the centroid of the dataset. Imaginary concentric circles are then centered at the centroid, with varying radii extending outward until all points are encompassed.
+    \item \textbf{Point Distribution Analysis:  }The percentage of points within each concentric region is calculated. The behavioral shift percentage is determined based on a threshold percentage found through experimentation and testing, which is 50 percent. The points are counted in each region, starting from the innermost circle, and the percentages are accumulated until the threshold is reached.
+    \item \textbf{Threshold Determination:  }The region where the threshold percentage is exceeded dictates the coverage percentage for the behavior shift. If the threshold is reached in the innermost region, indicating a dense point distribution near the centroid, the first behavior will be more effective, and the shift percentage will be automatically set to a higher percent (e.g., 60-70\%). Conversely, if the threshold is reached in the outer regions, suggesting denser distribution near the boundaries, the second behavior becomes more pertinent, and the shift percentage is automatically set to a lower percent (e.g., 30-40\%) by the algorithm.
+\end{itemize} 
+
+\vspace*{6mm}   
+
+This intellectually behavior shifting enables the algorithm to determine the optimal coverage percentage, thereby enhancing the overall coverage rate and convergence efficiency. By integrating these calculated shift points, the hierarchical behavioral algorithm adapts dynamically to different datasets, ensuring that the robot operates efficiently across various scenarios. This adaptive approach significantly improves the algorithm's performance, as demonstrated in the subsequent results.  
+
+\vspace*{6mm}   
+

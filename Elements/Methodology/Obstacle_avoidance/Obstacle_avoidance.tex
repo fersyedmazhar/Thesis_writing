@@ -3,7 +3,7 @@
 
 
 
-\vspace*{6mm}  
+\vspace*{6mm}    
 
 Obstacle Avoidance in Coverage Path Planning
 Obstacle avoidance is a crucial component of coverage path planning (CPP), applicable in various contexts such as agricultural fields, warehouses, and more. In agricultural fields, static obstacles include trees, rocks, houses, and other structures, collectively referred to as keep-out zones. This discussion focuses on the avoidance of static obstacles within the scope of coverage path planning.
@@ -62,6 +62,52 @@ To generate the grid for this approximated obstacle, the algorithm considers the
 
 \vspace*{6mm}  
 
+The pseudocode for the dynamic grid generation for each obstacle is provided in (Algorithm \autoref{alg:setup_obstacle_algorithm})
+
+\vspace*{6mm}  
+
+Convention to be followed for the algorithms:
+\begin{multicols}{2}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $OB$: Obstacle.
+    \item $OB_p$: Polygonal obstacles.
+    \item $OB_e$: Extended obstacles.
+    \item $g$: grid.
+    \item $g_s$: grids.
+    \item $p_{bu}$: Buffer points.
+    \item $SP$: Salient Point.
+    \item $P_{re}$: Remaining path.
+\end{itemize}
+\end{multicols}
+    
+\vspace*{6mm}  
+
+Description of the notations:
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $dx$: Distance in the x direction at 90degree turn.
+    \item $dy$: Distance in the y direction at 90degree turn.
+    \item $fd$: Free grid space from obstacle edge.  
+\end{itemize}
+
+\begin{algorithm}[H]
+    \caption{DynamicGridAlgorithm}
+    \label{alg:setup_obstacle_algorithm}
+    \begin{algorithmic}[1]
+    \Statex \textbf{Input:} polygonal obstacles ($OB_p$), grid diameter ($g_d$), vision cone ($VC$), safe margin ($sm$)
+    \Statex \textbf{Output:} Extended polygonal obstacles ($OB_e$), grids ($g_s$), buffer points ($p_{bu}$)
+    \newline
+    \State $dx, dy \leftarrow$ ComputeDistancesFor90DegreeTurn($VC$)
+    \State $fd \leftarrow 1.5 \times dy$
+    \State $OB_e \leftarrow$ ExtendPolygonForSafeMargin($OB_p$, $sm$)
+    \State $g_s \leftarrow$ ComputeGrid($OB_e$, $g_d$, $fd$)
+    \State $p_{bu} \leftarrow$ PointsSurroundingObstacles($OB_e$)
+    \State \Return $OB_e$, $g_s$, $p_{bu}$
+    \end{algorithmic}
+    \end{algorithm}
+
+\vspace*{6mm}  
+
+
 Once the grid size is determined, the grid cells are generated. The cell size is chosen based on the robot's dimensions: larger robots do not require fine grids as they cannot move cell by cell. Therefore, an appropriate grid cell size is selected to suit the robot's size.
 
 \vspace*{6mm}  
@@ -97,7 +143,194 @@ This section outlines the second phase of the obstacle avoidance algorithm, focu
 
 \vspace*{6mm}  
 
+The pseudocode for the complete algorithm with obstacles is shown in (Algorithm \autoref{alg:complete_behavioral_obstacle_avoidance})
+
+
+\vspace*{6mm}  
+
+
+
+
+
+
+\begin{algorithm}[H]
+    \caption{CompleteBehavioralObstacles}
+    \label{alg:complete_behavioral_obstacle_avoidance}
+    \begin{algorithmic}[1]
+    \Statex \textbf{Input:} 2D points ($p_{2d}$), initial robot pose ($r_{\text{pos}}$), turning radius ($R_{\text{tu}}$), polygonal obstacles ($OB_p$), grid diameter ($g_d$), vision cone ($VC$) 
+    \Statex \textbf{Output:} Dubins path $P_{cd}$
+    \newline
+    \State $OB_e, g_s, p_{bu} \leftarrow$ SetupObstacles($OB_p$, $g_d$, $VC$, $sm$)
+    \State $p_{cl}, \delta_{\text{bc}} \leftarrow$ CentroidsAndAutoBehaviorShift($P_{2d}$, $R_{\text{min}}$, $R_{\text{max}}$, $N$ )
+    \State $p_r \leftarrow p_{cl}$
+    \State $\delta_c \leftarrow 0$
+    \State $P_c \leftarrow []$
+    
+    \While{True}
+        \If{$\delta_c <  \delta_{\text{bc}}$}
+            \State $P_s, p_r \leftarrow$ Behavior\_1($OB_e$, $g_s$, $p_{bu}$, $p_r$, $P_{cl}$, $N_s$, $r_{\text{pos}}$, $VC$, $C$, $R_{\text{conc}}$, $step$)
+        \Else
+            \State $P_s, p_r \leftarrow$ Behavior\_2($OB_e$, $g_s$, $p_{bu}$, $p_r$, $P_{cl}$, $N_s$, $r_{\text{pos}}$, $VC$, $C$, $R_{\text{conc}}$, $step$)
+        \EndIf
+        
+        \State $P_c \mathrel{+}= P_s$
+        \State $r_{\text{pos}} \leftarrow P_c[-1]$
+        \State $\delta_c \leftarrow$ UpdateCoveragePerc($P_c$, $p_r$)
+        
+        \If{$\text{len}(P_s) == 0$}
+            \State \textbf{break}
+        \EndIf
+    \EndWhile
+    
+    \State $P_d \leftarrow$ DubinsPath($P_c$, $R_{\text{tu}}$)
+    \State $P_{re} \leftarrow$ PathAroundObstaclesAlgorithm($OB_e$,$P_r$, $r_{pos}$, $R_{tu}$)
+    \State $P_{cd} \leftarrow P_d + P_{re}$
+
+    \State \Return $P_{cd}$
+    \end{algorithmic}
+\end{algorithm}
+
+
+\vspace*{6mm}  
+
 The path generation process begins as described previously. However, this time, the algorithm includes a mechanism to detect collisions with obstacles. If no obstacles are detected along the planned path, the behavioral algorithm operates normally. When an obstacle is detected, the algorithm initiates a sequence of steps to navigate around it.
+
+\vspace*{6mm}  
+
+The pseudocode for the behavior 1 and behavior 2 with the inclusion of path validity check is shown in (Algorithm \autoref{alg:behavioral1_obs}) and (Algorithm \autoref{alg:behavioral_algorithm_2_obs}) respectively.
+
+\vspace*{6mm}  
+
+
+
+Description of the notations:
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $P_{cu}$: Current path
+    \item $P_{OB free}$: Obstacle free path
+\end{itemize}
+
+\begin{algorithm}[H]
+    \caption{Behavior\_1\_with\_Obstacles}
+    \label{alg:behavioral1_obs}
+    \begin{algorithmic}[1]
+
+    \Statex \textbf{Input:} Extended polygonal obstacles ($OB_e$), grids ($g_s$), buffer points ($p_{bu}$), 2D points ($P_{2d}$), clustered points ($p_{cl}$), number of sample orientations ($N_s$), robot pose ($r_{pos}$), vision cone ($VC$), centroid ($C$), concurrent region radii ($R_{\text{conc}}$), step size ($S$)
+
+    \Statex \textbf{Output:} Complete straight path $P_{cs}$, remaining points $p_r$
+    \newline
+    \State $P_{cs} \leftarrow []$
+    \State $P_t \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $p_{co} \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $O_{sa} \leftarrow$ SampleTheOrientations($R_{pos}[2]$, $N_s$, $S$)
+    
+    \For{$i, O$ \textbf{in} $O_{sa}$}
+        \State $R_{pos}[2] \leftarrow O$
+        \While{no point is visible}
+            \State $p_v \leftarrow$ ComputeVisionConePoints($r_{pos}$, $VC$)
+            \State $p_{po} \leftarrow$ FindPotentialPoint($r_{pos}$, $p_v$)
+            \If{$p_{po}$ is None}
+                \State \textbf{break}
+            \EndIf
+            \State $O_n \leftarrow$ FromCurrentPoseToPotentialPoint($r_{pos}$, $p_{po}$)
+            \State $P_{cu} \leftarrow$ [[$r_{pos}$, $p_{po}$]]
+            \State $P_{OB free} \leftarrow$ ComputeObstacleFreePath($P_{cu}$, $O_n$)
+
+
+            \State $P_t[i] \mathrel{+}= P_{OB free}$
+            
+            \State $p_{int} \leftarrow$ CheckIntermediatePoints($p_r$)
+            \State $P_t[i].\text{append}(p_{int})$
+            \State $p_c[i].\text{append}(\text{len}(P_t))$
+            \State $p_r \leftarrow p_{cl} - P_t$
+            \State $r_{pos} \leftarrow P_{OB free}[-1]$
+        \EndWhile
+    \EndFor
+    
+    \State $O_{bi} \leftarrow \text{argmax}(p_c[:])$
+    \State $P_{cs} \leftarrow P_t[O_{bi}]$
+    
+    \State $r_{pos} \leftarrow P_{cs}[-1]$
+    \State $p_{tu} \leftarrow$ PotentialPointToTurn($p_r$, $R_{\text{conc}}$, $r_{pos}$)
+    \State $O_b \leftarrow$ TowardsCentroid($p_{tu}$, $C$)
+
+    \State $P_{cu} \leftarrow$ [[$r_{pos}$, $p_{tu}$]]
+    \State $P_{OB free} \leftarrow$ ComputeObstacleFreePath($OB_e$, $g_s$, $p_{bu}$, $P_{cs}$, $P_{cu}$, $O_b$)
+
+    \State $P_{cs} \mathrel{+}= P_{OB free}$
+    \State $p_r.\text{remove}([P_{OB free}])$ 
+    
+    \State \Return $P_{cs}$, $p_r$
+    \end{algorithmic}
+    \end{algorithm}
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+\begin{algorithm}[H]
+    \caption{Behavioral\_2\_with\_Obstacles}
+    \label{alg:behavioral_algorithm_2_obs}
+    \begin{algorithmic}[1]
+
+    \Statex \textbf{Input:} Extended polygonal obstacles ($OB_e$), grids ($g_s$), buffer points ($p_{bu}$), 2D points ($P_{2d}$), clustered points ($p_{cl}$), number of sample orientations ($N_s$), robot pose ($r_{pos}$), vision cone ($VC$), centroid ($C$), concurrent region radii ($R_{\text{conc}}$), step size ($S$)
+
+    \Statex \textbf{Output:} Complete straight path $P_{cs}$, remaining points $p_r$
+    \newline
+    \State $P_{cs} \leftarrow []$
+    \State $P_t \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $p_{co} \leftarrow [[] \text{ for } \_ \text{ in range}(N_s)]$
+    \State $O_{sa} \leftarrow$ SampleTheOrientations($R_{pos}[2]$, $N_s$, $S$)
+    
+    \For{$i, O$ \textbf{in} $O_{sa}$}
+        \State $R_{pos}[2] \leftarrow O$
+        \While{no point is visible}
+            \State $p_v \leftarrow$ ComputeVisionConePoints($r_{pos}$, $VC$)
+            \State $p_{po} \leftarrow$ FindPotentialPoint($r_{pos}$, $p_v$)
+            \If{$p_{po}$ is None}
+                \State \textbf{break}
+            \EndIf
+            \State $O_n \leftarrow$ FromCurrentPoseToPotentialPoint($r_{pos}$, $p_{po}$)
+            \State $P_{cu} \leftarrow$ [[$r_{pos}$, $p_{po}$]]
+            \State $P_{OB free} \leftarrow$ ComputeObstacleFreePath($P_{cu}$, $O_n$)
+
+
+            \State $P_t[i] \mathrel{+}= P_{OB free}$
+            
+            \State $p_{int} \leftarrow$ CheckIntermediatePoints($p_r$)
+            \State $P_t[i].\text{append}(p_{int})$
+            \State $p_c[i].\text{append}(\text{len}(P_t))$
+            \State $p_r \leftarrow p_{cl} - P_t$
+            \State $r_{pos} \leftarrow P_{OB free}[-1]$
+        \EndWhile
+    \EndFor
+    
+    \State $O_{bi} \leftarrow \text{argmax}(p_c[:])$
+    \State $P_{cs} \leftarrow P_t[O_{bi}]$
+    
+    \State $r_{pos} \leftarrow P_{cs}[-1]$
+
+    \State $p_{tu} \leftarrow$ PotentialPointToTurnCCW($p_r$, $R_{\text{conc}}$, $r_{pos}$)
+    \State $O_b \leftarrow$ VectorsTowardsNextCCWPoint($p_{tu}$, $p_r$)
+
+
+    \State $P_{cu} \leftarrow$ [[$r_{pos}$, $p_{tu}$]]
+    \State $P_{OB free} \leftarrow$ ComputeObstacleFreePath($OB_e$, $g_s$, $p_{bu}$, $P_{cs}$, $P_{cu}$, $O_b$)
+
+    \State $P_{cs} \mathrel{+}= P_{OB free}$
+    \State $p_r.\text{remove}([P_{OB free}])$ 
+    
+    \State \Return $P_{cs}$, $p_r$
+    \end{algorithmic}
+    \end{algorithm}
 
 \vspace*{6mm}  
 
@@ -144,9 +377,104 @@ If the generated graph does not include the goal point, indicating that the goal
 
 \vspace*{6mm}  
 
+The pseudocode for path validity check and finding obstacle free path is shown in (Algorithm \autoref{alg:compute_obstacle_free_path}) .
+
+\vspace*{6mm}  
+
+Description of the notations:
+\begin{multicols}{2}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $obs\_idx$: obstacle index.
+    \item $S_l$: Graph step length.
+    \item $gen_{max}$: Maximum generation for graph.
+    \item $P_{sh}$: Shortest path.
+\end{itemize}
+\end{multicols}
+
+\begin{algorithm}[H]
+    \caption{ComputeObstacleFreePath}
+    \label{alg:compute_obstacle_free_path}
+    \begin{algorithmic}[1]
+    \Statex \textbf{Input:} Extended obstacles ($OB_e$), grids ($g_s$), buffer points ($p_{bu}$), complete path ($P_c$), current path ($P_{cu}$), current orientation ($O_{cu}$)
+    \Statex \textbf{Output:} Obstacle-free path ($P_{OB free}$)
+    \newline
+    \State $r_{pos} \leftarrow P_{cu}[-1]$
+    \State $is\_path\_in\_obstacle, obs\_idx \leftarrow$ CheckPath($P_{cu}$, $OB_e$)
+    \If{$is\_path\_in\_obstacle$}
+        \State $OB\leftarrow OB_e[obs\_idx]$
+        \State $g \leftarrow g_s[obs\_idx]$
+        \State $SP \leftarrow$ ExtractSalientPoints($OB$, $g$, $p_{bu}$, $r_{pos}$)
+        \State $G.\text{initialize}()$
+        \State $S_l \leftarrow$ AutoSelectStepLength($r_{pos}$, $SP$)
+        \State $G$, $goal\_SP$, $is\_goal\_found \leftarrow$ GenerateGraph($G$,$r_{pos}$,$SP$,$S_l$,$gen_{max}$)
+        \If{$is\_goal\_found$}
+            \State $P_{sh} \leftarrow$ AStarSearch($G$,$r_{pos}$, $goal\_SP$)
+            \State $P_{OB free} \leftarrow P_{sh}$
+            \State \Return $P_{OB free}$
+        \Else
+            \State $r_{pos} \leftarrow P_c[-1]$ \Comment{Move one step back in the path}
+            \State \textbf{goto} GenerateGraph (step 9)
+        \EndIf
+    \Else
+        \State \Return $[[P_{cu}[-1], O_{cu}]]$
+    \EndIf
+    \end{algorithmic}
+    \end{algorithm}
+
+
+\vspace*{6mm}  
+
 This iterative process repeats each time an obstacle is encountered, enabling the robot to efficiently navigate around obstacles and reach its designated goal points. This comprehensive approach ensures robust obstacle avoidance within the coverage path planning algorithm, facilitating efficient and timely completion of tasks.
 
 \vspace*{6mm}  
+
+One last change in the complete coverage with obstacles as compared to the regular coverage is replacing the DOTSP algorithm with another algorithm that can compute path for the remaining points left near the obstacles. Since, after the behavior 2, im this case there will be only some points left that will be close to the obstacles. This happens if the some points are quite close to the obstacles. Path through this points cannot be computed through DOTSP algorithm. Hence, a new algorithm is introduced to compute path through these points. 
+
+\vspace*{6mm}  
+
+
+This algorithm first associate each point to its nearest obstacle. Then, we will end up with each obstacles assciated with some points. Then, the algorithm first generates the visibility graph for each obstacle with points. Then, it will find the shortest path covering all the points of first obstacle. Then, it will move to the next obstacle and cover all the points of that obstacle efficiently and so on. Finally, it will cover all the remaining points close to all the obstacles.
+
+
+\vspace{6mm}  
+
+The pseudocode for this path finding for remaining points is shown in (Algorithm \autoref{alg:path_around_obstacles_algorithm}). 
+
+
+\vspace{6mm}  
+
+
+Description of the notations:
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $P_{list}$: Points list
+    \item $P_{cu}$: Current points
+    \item $P_{cov}$: path through all points close to one obstacle.  
+\end{itemize}
+
+\begin{algorithm}[H]     
+    \caption{PathAroundObstaclesAlgorithm}  
+    \label{alg:path_around_obstacles_algorithm}
+    \begin{algorithmic}[1]
+    \Statex \textbf{Input:} Extended obstacles ($OB_e$), 2D points ($P_{2d}$), robot pose ($r_{pos}$), turning radius ($R_{tu}) $
+    \Statex \textbf{Output:} Path ($P$)
+    \newline
+    
+    \State $p_{list}, robot\_obs\_idx \leftarrow$ PointsCloseToObstacle($OB_e$, $P_{2d}$)
+    \State $p_{cu} \leftarrow p_{list}[robot\_obs\_idx]$    \Comment{Robot close to an obstacle will be the first.}
+    \State $OB_{cu} \leftarrow OB_e[robot\_obs\_idx]$
+    \State $P \leftarrow []$
+    \For{$i$ \textbf{in} range(len($OB_e$))}
+        \State $G.\text{initialize}()$
+        \State $G \leftarrow$ GenerateVisibilityGraph($OB_{cu}$, $p_{cu}$, $r_{pos}$)
+        \State $P_{cov} \leftarrow$ CoverageGraphSearch($G$, $r_{pos}$)
+        \State $P \mathrel{+}= P_{cov}$
+        \State $r_{pos} \leftarrow P_{cov}[-1]$
+        \State $OB_{cu}, obs\_idx \leftarrow$ FindNearestObstacle($r_{pos}$, $p_{list}$)
+        \State $p_{cu} \leftarrow p_{list}[obs\_idx]$
+    \EndFor
+    \State \Return $P$
+    \end{algorithmic}
+    \end{algorithm}
 
 
 
@@ -155,3 +483,15 @@ The obstacle avoidance approach in coverage path planning addresses several crit
 
 
 \vspace*{6mm}  
+
+
+The flowchart of the complete behavioal algorithm with obstacles can be visualized in the (\autoref{fig:ccp_flowchart_obs})
+
+
+% Include an image
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=22cm, width=\textwidth]{Images/flowchart/obs_flowchart.pdf}
+    \caption{CCP Behavioral Algorithm with Obstacles flowchart.}
+    \label{fig:ccp_flowchart_obs} 
+\end{figure} 

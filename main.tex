@@ -11,7 +11,7 @@
 \usepackage{caption}
 \usepackage{graphicx} 
 \usepackage[colorinlistoftodos]{todonotes}
-\usepackage[colorlinks=true, allcolors=black]{hyperref}
+\usepackage[colorlinks=true, allcolors=teal]{hyperref}
 \usepackage{float}
 \usepackage{setspace}
 % \usepackage{subfigure}
@@ -23,7 +23,7 @@
 \titlespacing{\chapter}{0pt}{0pt}{0pt}
 \usepackage{fancyhdr}
 \usepackage{etoolbox}
-\usepackage{appendix}
+% \usepackage{appendix}
 \usepackage{siunitx}
 \usepackage{nomencl}
 \newcommand{\nomunit}[1]{%
@@ -40,7 +40,7 @@
 \clubpenalty10000
 \usepackage{moresize}
 \usepackage{tabularray}
-\usepackage[style=apa]{biblatex}
+\usepackage[style=apa, backend=biber]{biblatex}
 \usepackage{subcaption}
 \usepackage{array}
 \usepackage{adjustbox}
@@ -48,7 +48,7 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{algorithm}
-
+\usepackage[toc,page]{appendix}
 
 \addbibresource{References.bib}
 \DeclareSourcemap{
@@ -212,9 +212,10 @@
 \usepackage{tabularray}
 
 
+
 \begin{document}
 
-\renewcommand{\thesection}{\arabic{section}.} % Change section numbering style
+\renewcommand{\thesection}{\arabic{section}} % Change section numbering style
 
 
 \include{Title/titlepage}
@@ -222,12 +223,12 @@
 % \include{Elements/Abstract/Abstract}
 % \newpage
 
-% \include{Elements/Acknowledgments/Acknowledgement}
-% \newpage
+% \include{Elements/Acknowledgments/Acknowledgement} 
+% \newpage 
 
 
-%\include{Front/Nomenclature}
-%\newpage
+% \include{Front/Nomenclature}
+% \newpage 
 
 % % % \renewcommand{\listfigurename}{Lists of Figures}
 % % % % \rhead{Lists of Figures}
@@ -242,10 +243,10 @@
 % % % % \rhead{Lists of Tables}
 % % % \newpage
 
-% % % \tableofcontents
-% % % \addcontentsline{toc}{chapter}{Table of Contents}
-% % % % \rhead{Table of Contents}
-% % % \newpage
+\tableofcontents
+\addcontentsline{toc}{chapter}{Table of Contents}
+% \rhead{Table of Contents}
+\newpage
 
 
 % Set the page style to "fancy"...
@@ -281,33 +282,40 @@
 
 % Sections start from here  
 
-\include{Elements/Introduction/Introduction}
-\newpage 
+% \include{Elements/Introduction/Introduction}
+% \newpage 
+
+% \include{Elements/Literature_Review/literature_review_all}
+% \newpage
 
 % \include{Elements/Literature_Review/literature_review}
 % \newpage
 
-\include{Elements/Problem_statement/Problem_statement}
-\newpage
+% \include{Elements/Literature_Review/literature_review_obs}
+% \newpage
+
+
+% \include{Elements/Problem_statement/Problem_statement}
+% \newpage
 
 
 % \include{Elements/Experimental_setup/Experimental_setup}
 % \newpage
 
-\include{Elements/Methodology/Brief_description/Brief_description}
-\newpage
+% \include{Elements/Methodology/Brief_description/Brief_description}
+% \newpage
 
 
-\include{Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm_math}
-\newpage
+% \include{Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm_math}
+% \newpage
 
-\include{Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm}
-\newpage
+% \include{Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm}
+% \newpage
 
-\include{Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance}
-\newpage
+% \include{Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance}
+% \newpage
 
-% \include{Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis}
+% \include{Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis} 
 % \newpage 
 
 % \include{Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs}  
@@ -326,9 +334,18 @@
 % \include{Elements/Future_directions/future_directions}
 % \newpage
 
+% \include{Elements/Conclusion/Conclusion}
+% \newpage
 
+% \include{Elements/Bibliography/Bibliography}
+% \newpage
+
+\include{Elements/Appendix/Appendix}
+\newpage
 
 % (\autoref{fig:Dataset})
 % \caption{Dataset.\label{fig:Dataset}}
 
+% (Algorithm \autoref{alg:completebehavioralalgorithm})
+% \hyperlink{cite.dubins}{[1]}
 \end{document}
