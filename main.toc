@@ -1,4 +1,7 @@
 \contentsline {chapter}{Table of Contents}{3}{chapter*.2}%
-\contentsline {section}{\numberline {1}Appendix}{4}{section.Alph0.1}%
-\contentsline {subsection}{\numberline {1.1}Experiment and Metrics Links}{4}{subsection.Alph0.1.1}%
-\contentsline {subsection}{\numberline {1.2}Videos}{4}{subsection.Alph0.1.2}%
+\contentsline {subsection}{\numberline {0.1}Obstacle Avoidance}{4}{subsection.0.0.1}%
+\contentsline {subsubsection}{\numberline {0.1.1}Setup and Dynamic Grid Generation}{4}{subsubsection.0.0.1.1}%
+\contentsline {subsubsection}{\numberline {0.1.2}Path validity checking and obstacle free path generation}{6}{subsubsection.0.0.1.2}%
+\contentsline {section}{\numberline {1}Appendix}{16}{section.Alph0.1}%
+\contentsline {subsection}{\numberline {1.1}Experiment and Metrics Links}{16}{subsection.Alph0.1.1}%
+\contentsline {subsection}{\numberline {1.2}Videos}{16}{subsection.Alph0.1.2}%

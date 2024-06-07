@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  7 JUN 2024 14:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  8 JUN 2024 00:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1283,7 +1283,7 @@ Package translations Info: No language package found. I am going to use `english
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 216.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-) (./main.aux (./Title/titlepage.aux) (./Elements/Appendix/Appendix.aux))
+) (./main.aux (./Title/titlepage.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Appendix/Appendix.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 216.
@@ -1445,7 +1445,7 @@ File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 \openout2 = `Title/titlepage.aux'.
 
  (./Title/titlepage.tex
-<Title/ifros.png, id=23, 366.168pt x 141.52875pt>
+<Title/ifros.png, id=27, 366.168pt x 141.52875pt>
 File: Title/ifros.png Graphic file (type png)
 <use Title/ifros.png>
 Package pdftex.def Info: Title/ifros.png  used on input line 4.
@@ -1496,34 +1496,109 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 \openout7 = `main.toc'.
 
  [3]
-\openout2 = `Elements/Appendix/Appendix.aux'.
+\openout2 = `Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux'.
 
- (./Elements/Appendix/Appendix.tex)
-LaTeX Font Info:    Trying to load font information for U+futs on input line 343.
- (/usr/share/texlive/texmf-dist/tex/latex/fourier/ufuts.fd
+ (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.tex
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 2.
+
+
+Package hyperref Warning: No autoref name for `algorithm' on input line 42.
+
+LaTeX Font Info:    Trying to load font information for U+futs on input line 43.
+(/usr/share/texlive/texmf-dist/tex/latex/fourier/ufuts.fd
 File: ufuts.fd 2004/03/02 Fontinst v1.926 font definitions for U/futs.
 ) [4
 
-] (./main.aux (./Title/titlepage.aux) (./Elements/Appendix/Appendix.aux))
+]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 49.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 70.
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--76
+
+ []
+
+
+Package hyperref Warning: No autoref name for `algorithm' on input line 94.
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 105--107
+
+ []
+
+
+Package hyperref Warning: No autoref name for `algorithm' on input line 138.
+
+
+Package hyperref Warning: No autoref name for `algorithm' on input line 138.
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 157--159
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 224--226
+
+ []
+
+[8] [9] [10]
+
+Package hyperref Warning: No autoref name for `algorithm' on input line 319.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 336--338
+
+ []
+
+[11] [12]
+
+Package hyperref Warning: No autoref name for `algorithm' on input line 375.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 391--393
+
+ []
+
+<Images/flowchart/obs_flowchart.pdf, id=108, 6632.27812pt x 11909.49374pt>
+File: Images/flowchart/obs_flowchart.pdf Graphic file (type pdf)
+<use Images/flowchart/obs_flowchart.pdf>
+Package pdftex.def Info: Images/flowchart/obs_flowchart.pdf  used on input line 424.
+(pdftex.def)             Requested size: 452.87128pt x 625.8575pt.
+[13]) [14]
+Overfull \vbox (22.12064pt too high) has occurred while \output is active []
+
+ [15 <./Images/flowchart/obs_flowchart.pdf>]
+\openout2 = `Elements/Appendix/Appendix.aux'.
+
+ (./Elements/Appendix/Appendix.tex) [16
+
+
+
+] (./main.aux (./Title/titlepage.aux) (./Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance.aux) (./Elements/Appendix/Appendix.aux))
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: FD508B6A9807BA8A85935005ABCAC4C3;551.
+(rerunfilecheck)             Checksum: 088281C0EF641B3664441250809FDB22;704.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44713 strings out of 478287
- 890742 string characters out of 5849290
- 1786824 words of memory out of 5000000
- 62114 multiletter control sequences out of 15000+600000
- 494996 words of font info for 117 fonts, out of 8000000 for 9000
+ 44997 strings out of 478287
+ 896087 string characters out of 5849290
+ 1809330 words of memory out of 5000000
+ 62229 multiletter control sequences out of 15000+600000
+ 508791 words of font info for 210 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  110i,11n,106p,1170b,5160s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-orns.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (4 pages, 58674 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-orns.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (16 pages, 159128 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
- 16 named destinations out of 1000 (max. 500000)
- 44082 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 217 PDF objects out of 1000 (max. 8388607)
+ 172 compressed objects within 2 object streams
+ 40 named destinations out of 1000 (max. 500000)
+ 56383 words of extra memory for PDF output out of 61914 (max. 10000000)
 
