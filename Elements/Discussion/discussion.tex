@@ -1,26 +1,32 @@
 
-\subsection{Discussion}
+\chapter{Discussion}
 
 The results presented in the previous section shed light on the performance of three distinct approaches – the lawnmower approach, behavioral approach, and graph search approach – for weed removal in agricultural fields. Each approach offers unique advantages and challenges, contributing to a comprehensive understanding of their suitability for real-world implementation.
 
-\subsubsection{Lawnmower Approach}
+\vspace{3mm} 
+
+\textbf{Lawnmower Approach}
 
 
 The lawnmower approach is characterized by its simplicity, resulting in consistent and low computation times across all datasets. Its linear path formation facilitates straightforward trajectory planning, making it suitable for smaller field sizes and less complex terrains. However, as the complexity of the field increases, the scalability of the lawnmower approach becomes limited. Furthermore, the linear path formation contributes to longer route lengths, higher field operation times, and increased energy consumption, ultimately impacting operational efficiency. Despite these limitations, the lawnmower approach remains a robust and reliable option for weed removal tasks in simpler agricultural environments. Therefore, if the field is relatively straightforward and compact, and the primary concern is not optimizing route length, minimizing field time, or reducing energy consumption, then the lawnmower approach presents a viable choice.
 
-\subsubsection{Graph Search Approach}
+\vspace{3mm} 
+
+\textbf{Graph Search Approach}
 
 
-The graph search approach is centered around generating optimal paths by conceptualizing the field as a graph, with nodes representing key points of interest. By leveraging graph search algorithms, this approach achieves the shortest route lengths and field operation times, ideal for maximizing efficiency in weed removal operations. However, its notable computational overhead, particularly with larger datasets, poses a significant challenge. Despite its computational demands, the graph search approach prioritizes optimality over simplicity, resulting in longer computation times but ensuring minimal energy consumption for smaller datasets. Nonetheless, its real-time adaptability in dynamic environments is limited, necessitating extensive computational resources for path planning. Despite these challenges, the ability of the graph search approach to identify optimal paths makes it a promising option for weed removal tasks in controlled agricultural settings. It is a suitable choice when computational time and naturally straight paths are not primary concerns, and the main focus is on minimizing route length, energy consumption, and field operation time. However, for larger datasets, the graph search approach will exhibit similar energy consumption as of other aproaches due to the increased presence of curved paths. Therefore, it may not be the most suitable option if energy consumption and computation time are significant concerns, particularly for larger datasets.   
+The graph search approach is centered around generating optimal paths by conceptualizing the field as a graph, with nodes representing key points of interest. By leveraging graph search algorithms, this approach achieves the shortest route lengths and field operation times, ideal for maximizing efficiency in weed removal operations. However, its notable computational overhead, particularly with larger datasets, poses a significant challenge. Despite its computational demands, the graph search approach prioritizes optimality over simplicity, resulting in longer computation times but ensuring minimal energy consumption for smaller datasets. Nonetheless, its real-time adaptability in dynamic environments is limited, necessitating extensive computational resources for path planning. Despite these challenges, the ability of the graph search approach to identify optimal paths makes it a promising option for weed removal tasks in controlled agricultural settings. It is a suitable choice when computational time and naturally straight paths are not primary concerns, and the main focus is on minimizing route length, energy consumption, and field operation time. However, for larger datasets, the graph search approach will exhibit similar energy consumption as of other aproaches due to the increased presence of curved paths. Therefore, it may not be the most suitable option if energy consumption and computation time are significant concerns, particularly for larger datasets. 
 
-\subsubsection{Behavioral Approach}
+\vspace{3mm} 
+
+\textbf{Behavioral Approach}
 
 The behavioral approach offers a versatile and adaptable solution, capable of dynamically adjusting trajectories based on field conditions and encountered obstacles. By prioritizing straight paths, it achieves competitive computation times, especially effective for smaller datasets. However, scalability becomes a concern as the number of points increases, resulting in longer computation times compared to the lawnmower approach but significantly lower than the graph search approach. Despite this, the behavioral approach strikes a pragmatic balance between route length and field operation time, presenting a practical compromise between simplicity and optimality. Its inherent adaptability to diverse field topologies renders it suitable for a broad spectrum of agricultural applications.
 
-\vspace*{6mm} 
+\vspace{3mm} 
 
 In scenarios where straightness is not a primary concern, the behavioral approach can still yield comparable results to the graph search approach by adjusting the region of the robot's vision cone. Thus, the behavioral approach emerges as a promising option for weed removal tasks in complex and varied agricultural environments, where adaptability and operational efficiency are paramount. It serves as a suitable choice when computational time and energy consumption are significant considerations, with a primary emphasis on achieving a balance between route length and field operation time.
 
-\vspace*{6mm} 
+\vspace{3mm} 
 
 However, the current implementation's prioritization of straight paths may not be optimal when straightness and computational time are less critical, and energy consumption, route length, and field operation time take precedence, particularly for smaller datasets. Nonetheless, for larger datasets, the behavioral approach remains a viable option, offering comparable results to the graph search approach and demonstrating its efficacy in addressing the challenges of agricultural field operations.

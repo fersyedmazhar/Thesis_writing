@@ -1,7 +1,73 @@
-\contentsline {chapter}{Table of Contents}{3}{chapter*.2}%
-\contentsline {subsection}{\numberline {0.1}Obstacle Avoidance}{4}{subsection.0.0.1}%
-\contentsline {subsubsection}{\numberline {0.1.1}Setup and Dynamic Grid Generation}{4}{subsubsection.0.0.1.1}%
-\contentsline {subsubsection}{\numberline {0.1.2}Path validity checking and obstacle free path generation}{6}{subsubsection.0.0.1.2}%
-\contentsline {section}{\numberline {1}Appendix}{16}{section.Alph0.1}%
-\contentsline {subsection}{\numberline {1.1}Experiment and Metrics Links}{16}{subsection.Alph0.1.1}%
-\contentsline {subsection}{\numberline {1.2}Videos}{16}{subsection.Alph0.1.2}%
+\contentsline {chapter}{Table of Contents}{3}{chapter*.3}%
+\contentsline {chapter}{Lists of Figures}{5}{chapter*.4}%
+\contentsline {chapter}{Lists of Tables}{6}{chapter*.5}%
+\contentsline {chapter}{\numberline {1}Introduction}{7}{chapter.1}%
+\contentsline {section}{\numberline {1}Background and context}{7}{section.1.1}%
+\contentsline {section}{\numberline {2}Problem statement}{7}{section.1.2}%
+\contentsline {section}{\numberline {3}Research Questions}{8}{section.1.3}%
+\contentsline {section}{\numberline {4}Methodology and Approach}{8}{section.1.4}%
+\contentsline {section}{\numberline {5}Thesis Contributions}{9}{section.1.5}%
+\contentsline {section}{\numberline {6}Thesis Structure}{10}{section.1.6}%
+\contentsline {chapter}{\numberline {2}Literature Review}{12}{chapter.2}%
+\contentsline {section}{\numberline {1}Literature Review for CPP Algorithms.}{12}{section.2.1}%
+\contentsline {subsection}{\numberline {1.1}Dubin's Path}{12}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {1.2}Reeds-Shepp Paths}{14}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {1.3}Travelling Salesman Problem (TSP) with Neighborhoods}{14}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {1.4}Traveling Salesperson Problems for Dubins’ vehicle.}{15}{subsection.2.1.4}%
+\contentsline {subsection}{\numberline {1.5}Dubins Traveling Salesman Problem with Neighborhoods}{15}{subsection.2.1.5}%
+\contentsline {subsection}{\numberline {1.6}DTSPN with Overlappped Regions}{16}{subsection.2.1.6}%
+\contentsline {subsection}{\numberline {1.7}Path planning in confined spaces}{16}{subsection.2.1.7}%
+\contentsline {section}{\numberline {2}Literature Review for Obstacle Avoidance.}{18}{section.2.2}%
+\contentsline {subsection}{\numberline {2.1}Random walk (RW) algorithms}{18}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2}Dynamic Programming}{18}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.3}Artificial Potential Field (APF) Algorithm}{18}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.4}Spanning Tree Coverage Algorithms in coverage path planning}{18}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.5}Sampling-Based Planning Algorithms for Obstacle Avoidance}{19}{subsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Probabilistic Roadmap (PRM)}{19}{subsubsection.2.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Randomized Potential Field (RPF)}{19}{subsubsection.2.2.5.2}%
+\contentsline {subsection}{\numberline {2.6}Greedy Search Algorithms in Coverage Path Planning}{19}{subsection.2.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Dijkstra's Algorithm in Coverage Path Planning}{20}{subsubsection.2.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}A* Algorithm in Coverage Path Planning}{20}{subsubsection.2.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.3}Theta* Algorithm in Coverage Path Planning}{20}{subsubsection.2.2.6.3}%
+\contentsline {subsection}{\numberline {2.7}Combinatorial Planning Techniques}{20}{subsection.2.2.7}%
+\contentsline {subsubsection}{\numberline {2.7.1}Visibility Graphs}{21}{subsubsection.2.2.7.1}%
+\contentsline {subsubsection}{\numberline {2.7.2}Voronoi Diagrams}{21}{subsubsection.2.2.7.2}%
+\contentsline {subsubsection}{\numberline {2.7.3}Exact Cell Decomposition}{21}{subsubsection.2.2.7.3}%
+\contentsline {subsubsection}{\numberline {2.7.4}Approximate Cell Decomposition}{21}{subsubsection.2.2.7.4}%
+\contentsline {subsection}{\numberline {2.8}State Lattice Planning}{21}{subsection.2.2.8}%
+\contentsline {subsection}{\numberline {2.9}Other Classical and Heuristic Algorithms.}{22}{subsection.2.2.9}%
+\contentsline {subsection}{\numberline {2.10}Inspiration drawn from existing approaches}{23}{subsection.2.2.10}%
+\contentsline {chapter}{\numberline {3}Problem Formulation}{25}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Experimental Setup}{26}{chapter.4}%
+\contentsline {section}{\numberline {1}Environment}{26}{section.4.1}%
+\contentsline {section}{\numberline {2}Importance of Weed Removal}{26}{section.4.2}%
+\contentsline {section}{\numberline {3}Constraints}{26}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Methodology}{28}{chapter.5}%
+\contentsline {section}{\numberline {1}Data Preprocessing}{28}{section.5.1}%
+\contentsline {section}{\numberline {2}Behavioral CPP Algorithm}{30}{section.5.2}%
+\contentsline {subsection}{\numberline {2.1}Vision Cone Strategy: }{30}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {2.2}Algorithmic Framework: }{30}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {2.3}Rationale for Hierarchical Approach: }{32}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {2.4}Centroid-Seeking Behavior}{33}{subsection.5.2.4}%
+\contentsline {subsection}{\numberline {2.5}Circumferential-Traversal Behavior:}{35}{subsection.5.2.5}%
+\contentsline {subsection}{\numberline {2.6}Dubins open travelling salesman problem (DOTSP):}{37}{subsection.5.2.6}%
+\contentsline {subsection}{\numberline {2.7}Automatic Shift Between Behaviors: }{39}{subsection.5.2.7}%
+\contentsline {section}{\numberline {3}Obstacle Avoidance}{42}{section.5.3}%
+\contentsline {subsection}{\numberline {3.1}Setup and Dynamic Grid Generation}{42}{subsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Path validity checking and obstacle free path generation}{44}{subsubsection.5.3.1.1}%
+\contentsline {subsection}{\numberline {3.2}Collision Detection and Salient Point Identification}{46}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {3.3}Graph-Based Path Finding}{47}{subsection.5.3.3}%
+\contentsline {chapter}{\numberline {6}Simulation Test and Analysis}{53}{chapter.6}%
+\contentsline {section}{\numberline {1}Simulation Setup}{53}{section.6.1}%
+\contentsline {section}{\numberline {2}Simulation Results and Analysis}{54}{section.6.2}%
+\contentsline {chapter}{\numberline {7}Simulation Test and Analysis with obstacles}{64}{chapter.7}%
+\contentsline {section}{\numberline {1}Simulation Setup}{64}{section.7.1}%
+\contentsline {section}{\numberline {2}Simulation Results and Analysis}{65}{section.7.2}%
+\contentsline {chapter}{\numberline {8}Real robot testing and analysis}{73}{chapter.8}%
+\contentsline {section}{\numberline {1}Experimental Setup}{73}{section.8.1}%
+\contentsline {section}{\numberline {2}Real Robot Results and Analysis:}{75}{section.8.2}%
+\contentsline {chapter}{\numberline {9}Comparison with other approaches.}{79}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Discussion}{83}{chapter.10}%
+\contentsline {chapter}{\numberline {11}Future Directions}{85}{chapter.11}%
+\contentsline {chapter}{\numberline {12}Conclusion}{86}{chapter.12}%
+\contentsline {chapter}{\numberline {A}Appendix}{91}{appendix.A}%

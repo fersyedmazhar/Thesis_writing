@@ -1,23 +1,22 @@
-\section{Problem Statement}
+\chapter{Problem Formulation}
 
-We consider a robotic scenario wherein a four-wheel robot equipped with a mechanical CNC-inspired system for extraction operates within a defined area. The robot, characterized as non-holonomic, integrates the mechanical system beneath it, enabling movement along the x and y directions by approximately 60 cm, and vertically until ground contact. Due to its non-holonomic nature, the robot imposes kinematic constraints on turning, enforcing a minimum turning radius of 2 meters.
+We consider a robotic scenario wherein a four-wheel robot equipped with a mechanical extraction system that operates within a defined rectangular area. Due to its non-holonomic nature, the robot imposes kinematic constraints on turning, enforcing a minimum turning radius of 2 meters.
 
-\vspace*{6mm} 
-
-
-The operational environment comprises grass fields assumed to be uniform without any slopes (z=0), covering a real area of 120x90 square meters. Weed distribution within this area is heterogeneous, with approximately 60 percent of points clustered following a Gaussian distribution with varying variances. Weed positions are obtained via drone-based data collection, utilizing a deep learning model to identify weed locations. This dataset serves as the basis for complete coverage path planning.
-
-\vspace*{6mm} 
+\vspace{3mm}
 
 
-Given the robot's mechanical implementation width of 60 cm, the operational region is discretized into points with each point representing an area of 30 cm, facilitating path planning optimization. The robot's velocity is constrained to 0.8 m/s on straight paths and 0.4 m/s on curved paths.
+The operational environment comprises grass fields assumed to be uniform without any slopes (z=0), covering a real area of 120x90 square meters. Weed distribution within this area is heterogeneous, with approximately 60 percent of points clustered following a Gaussian distribution with varying variances. Weed positions are obtained via drone-based data collection. This dataset serves as the basis for complete coverage path planning.
 
-\vspace*{6mm} 
+\vspace{3mm}
 
 
-The primary objective of this research is to develop a path planning algorithm capable of covering all weed points within the designated area while adhering to the robot's non-holonomic constraints. Additionally, the algorithm aims to generate paths that approximate straight lines where feasible, ensuring comprehensive coverage of all points.
+Given the robot's mechanical extraction implementation width of 60 cm, the operational region of the robot is modeled into points with each point representing an area of 30 cm, facilitating path planning optimization. 
+\vspace{3mm}
 
-\vspace*{6mm} 
+
+The primary objective is to develop a path planning algorithm capable of covering all weed points within the designated area while adhering to the robot's non-holonomic constraints. Additionally, the algorithm aims to generate paths that approximate straight lines where feasible, ensuring comprehensive coverage of all points. The algorithm should prioritize finding the shortest path distance to cover all weed points effectively while meeting the objectives as stated above.
+
+\vspace{3mm}
 
 The objectives of the proposed algorithm include:
 
@@ -25,10 +24,7 @@ The objectives of the proposed algorithm include:
     \item \textbf{Realistic Path Generation:} Develop paths that mimic natural movement patterns, enhancing operational realism.
     \item  \textbf{Computational Efficiency:} Minimize processing time and resources required for path planning.
     \item  \textbf{Energy Conservation:} Optimize energy consumption during path execution, enhancing overall operational efficiency.
-    \item  \textbf{Field Operation Efficiency:} Facilitate efficient field operations, reducing time spent on weed detection and removal processes.
+    \item \textbf{Coverage Rate:} Maintain a high coverage rate of weed points across the dataset, ensuring comprehensive weed removal.   
 \end{itemize}
 
-The algorithm should prioritize finding the shortest path distance to cover all weed points effectively while meeting the aforementioned objectives. The algorithm's performance will be evaluated based on the time taken to generate paths, the distance covered, and the energy consumed during path execution.
-
-\vspace*{6mm} 
-
+ 

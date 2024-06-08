@@ -1,60 +1,132 @@
-\section{Introduction}
-
-In recent years, the intersection of robotics and agriculture has garnered significant attention due to its potential to revolutionize farming practices and address various challenges in crop cultivation and management. One of the critical issues faced by farmers worldwide is the proliferation of weeds in agricultural fields, which not only compete with crops for essential resources but also pose significant threats to livestock health and food safety. In particular, weeds such as Rumex have been identified as major nuisances in grasslands, where their presence can contaminate forage intended for grazing animals, including cows.
-
-\vspace*{6mm}
-
-The purity of grassland vegetation directly impacts the nutritional quality of forage consumed by livestock, thereby influencing the health and productivity of animals. The ingestion of contaminated forage, tainted with toxic or harmful weed species like Rumex, can lead to adverse health effects in cattle, affecting milk quality and quantity, as well as overall animal welfare. Therefore, the effective removal of weeds, particularly Rumex, from grasslands is imperative to ensure the integrity and safety of livestock feed, as well as the sustainability of agricultural operations.
-
-\vspace*{6mm} 
+\chapter{Introduction}
 
 
-In response to this pressing agricultural challenge posed by weed infestation in grasslands, this thesis endeavors to pioneer the development and implementation of an innovative coverage path planning (CPP) algorithm. Unlike conventional approaches, this algorithm prioritizes straight paths to optimize energy efficiency, thereby offering versatility across a spectrum of coverage path planning methodologies. While its primary application lies in weed removal within grasslands, its adaptability extends to diverse agricultural contexts, promising enhanced efficiency and sustainability in autonomous robotic operations. CPP plays a crucial role in guiding autonomous robotic systems to systematically traverse and cover an entire area of interest while minimizing overlap and maximizing efficiency. By leveraging advancements in robotics, artificial intelligence, and sensing technologies, CPP algorithms can enable autonomous agricultural robots to navigate complex terrain, identify weed-infested areas, and perform targeted weed removal tasks with precision and efficacy.
-
-\vspace*{6mm} 
-
-The primary objective of this research is to develop a coverage path planning (CPP) algorithm tailored for the intelligent and systematic removal of Rumex weeds from grasslands, thereby promoting the production of high-quality forage and safeguarding the health of grazing animals. This algorithm aims to optimize coverage efficiency, ensuring that all targeted weeds are effectively identified and removed by the robotic system. Through the integration of advanced robotics algorithms, the proposed approach seeks to enhance the efficacy of weed management practices while minimizing reliance on chemical herbicides and manual labor.
+\section{Background and context}
 
 
-\vspace*{6mm} 
+Have you ever gazed out over a vast agricultural expanse and pondered the potential for technology to transform farming practices? In recent years, the convergence of robotics and agriculture has garnered substantial attention for its capacity to revolutionize farming methodologies and confront various challenges in crop cultivation and management. Among these challenges, the proliferation of weeds in grass fields emerges as a critical concern for farmers worldwide. These weeds not only compete with grass for essential resources but also pose significant threats to livestock health and food safety. In particular, species like Rumex have been identified as major nuisances in grasslands, contaminating forage intended for grazing animals.
 
-This thesis will explore various aspects of coverage path planning (CPP) in the context of agricultural robotics, including but not limited to:
+\vspace*{3mm} 
+
+The nutritional quality of grassland vegetation directly influences the health and productivity of livestock. Contaminated forage, tainted with harmful weed species like Rumex, can induce adverse health effects in cattle, impacting both the quantity and quality of milk production, as well as overall animal welfare. Therefore, the imperative to effectively remove weeds from grasslands becomes apparent, ensuring the integrity and safety of livestock feed and the sustainability of agricultural operations.
+
+\vspace*{3mm} 
+
+Hence, to address this imperative and enhance animal well-being while obtaining organic products, the development of robots and techniques for comprehensive field coverage and weed removal becomes indispensable. This underscores the critical need for robot coverage motion planning techniques to systematically eradicate weeds and optimize agricultural productivity.
+
+\vspace*{3mm} 
+
+
+In response to the pressing agricultural challenge posed by weed infestation in grasslands, numerous robots have been developed for specialized tasks. Each robot is equipped with sensors and sophisticated systems tailored to its specific function. Utilizing data from these sensors, many researchers have proposed distinct coverage path planning (CPP) algorithms to guide the robots in performing their tasks safely and accurately. 
+
+\vspace*{3mm} 
+
+However, there is no generic CPP algorithm applicable to all types of robots and tasks. This limitation highlights the need for an innovative CPP algorithm following te non-hoilonomic constraints of the robot while prioritizing linear trajectories fin the agricultural field. Such an algorithm aims to reduce energy consumption and maintain the quality of the grass, thereby enhancing the efficiency and sustainability of autonomous robotic operations in agriculture. 
+
+\vspace*{3mm} 
+
+The complexity of this task increases when the robot must navigate environments with obstacles, further complicating the path planning problem. As a result, this master thesis aims to design and develop two complete coverage path planning algorithms that respect the non-holonomic constraints of the robot while prioritizing linear trajectories: one for path planning without obstacles and the other for path planning with obstacles.
+
+
+\section{Problem statement}
+
+The challenge of weed infestation in grasslands poses significant threats to agricultural productivity and the quality of organic produce. Current robotic solutions, although advanced, are highly specialized, with each robot designed for specific tasks and equipped with tailored sensor and sophisticated systems. These robots rely on task specific coverage path planning (CPP) algorithms to navigate and perform tasks on agricultural fields. However, existing CPP algorithms are often limited in scope, designed to suit particular robots and specific operational conditions. No universal CPP algorithm exists that can accommodate the diverse range of robots and tasks encountered in agricultural settings.
+
+\vspace*{3mm} 
+
+The complexity of designing such an algorithm is further compounded by the need to consider non-holonomic constraints, which restrict the robot’s movement capabilities, making navigation and task execution more challenging. Additionally, agricultural environments are frequently equipped with obstacles, adding another layer of difficulty to the path planning process. Without a robust, adaptable CPP algorithm, the efficiency and effectiveness of robotic weed removal are significantly compromised. 
+
+\vspace*{3mm} 
+
+This lack of a generic and efficient CPP algorithm shows the need of an innovative, flexible and robust CPP algorithm that respects the non-holonomic constraints of the robot while optimizing linear trajectories. This advancement is crucial for improving the overall sustainability of autonomous robotic operations in agriculture, making it imperative to address this gap in current research and technology.
+
+\section{Research Questions}
+
+The central question of this research is how to develop and implement a coverage path planning (CPP) algorithm for scenarios both with and without obstacles. To address this, we must consider the following research questions, which will guide the development of the proposed CPP algorithm and its evaluation in real-world agricultural settings:
+
+
+\begin{enumerate}
+  \item How should a coverage path planning (CPP) algorithm be designed to respect the non-holonomic constraints of agricultural robots while prioritizing linear trajectories, minimizing computation time and energy consumption, and maintaining a high coverage rate?
+  
+  \item How to design the CPP algorithm that is robust, adaptable, and versatile enough to accommodate a wide range of agricultural and other coverage tasks, ensuring optimal performance in diverse operational conditions?
+  
+  \item What are the specific non-holonomic constraints that need to be considered in the design of a CPP algorithm for agricultural robots?
+
+  \item How can the CPP algorithm be adapted to function effectively in environments with different shapes and sizes of the obstacles?
+  
+  \item What metrics should be used to evaluate the efficiency and effectiveness of the proposed CPP algorithm in real-world agricultural settings?
+  
+  \item How does the proposed CPP algorithm compare to existing algorithms for complete coverage path planning?
+
+\end{enumerate}
+
+
+
+\section{Methodology and Approach}
+
+
+This thesis endeavors to pioneer the development and implementation of an innovative coverage path planning (CPP) algorithm. Unlike conventional approaches, this algorithm prioritizes straight paths to optimize energy efficiency, thereby offering versatility across a spectrum of coverage path planning methodologies. While its primary application lies in weed removal within grasslands, its adaptability extends to diverse agricultural contexts, promising enhanced efficiency and sustainability in autonomous robotic operations. CPP plays a crucial role in guiding autonomous robotic systems to systematically traverse and cover an entire area of interest while minimizing overlap and maximizing efficiency. 
+
+\vspace*{3mm} 
+
+The proposed CPP algorithm consists of two main parts: preprocessing the data to transform points with regions into centroids of the overlaps, and the main behavioral coverage path planning algorithm.
+
+\vspace*{3mm} 
+
+In the preprocessing stage, the algorithm transforms points with regions into centroids of the overlaps. Given the robot's specific width and its capability to remove weeds along this width, this transformation reduces the total number of points by at least 40 percent. This allows the robot to move along the centroids of the overlaps and efficiently remove weeds along its width.
+
+\vspace*{3mm} 
+
+The main algorithm employs a vision cone strategy to prioritize linear trajectories, limiting the next navigation point to be in front of the robot and within a certain angle difference from the current orientation, while adhering to the robot's non-holonomic constraints. The behavioral algorithm consists of three behaviors: Centroid-Seeking Behavior, Circumferential-Traversal Behavior, and Dubins Open Travelling Salesman Problem (DOTSP).
+
+
 \begin{itemize}
-
-  \item Review of Literature: A comprehensive overview of path planning techniques, including coverage path planning (CPP) and alternatives accommodating non-holonomic constraints. It explores classical and heuristic algorithms, their optimization strategies, and computational complexities, underscoring the importance of effective path planning in agricultural robotics. Through synthesizing diverse research streams, this review informs the development of an innovative CPP algorithm for weed removal.
-  
-  \item Methodology: We provide an in-depth exploration of the proposed CPP algorithm designed specifically for autonomous weed removal operations. We elucidate the underlying design principles governing the algorithm's development, emphasizing its adaptability to varying terrain and distinct dataset. Furthermore, we outline the computational framework, detailing the algorithm's implementation and optimization strategies to ensure efficient coverage and weed removal. Additionally, we discuss sensor integration strategies, elucidating how sensor data is utilized for perception and decision-making during weed removal tasks. Finally, we delve into the decision-making processes guiding the robotic system's actions, encompassing strategies for global and local path planning and obstacle avoidance to maximize efficiency and effectiveness in weed management operations.
-  
-  \item Experimental Setup: This section outlines the key considerations for field deployment and validation of the CPP algorithm in real-world grassland environments. It discusses the selection of robotic hardware, focusing on factors such as mobility, durability, and compatibility with the intended application. Additionally, it elaborates on the sensor configurations essential for environmental perception and obstacle detection during weed removal operations. The section also addresses field testing protocols, detailing the procedures for data collection, performance evaluation, and validation of the CPP algorithm's efficacy under actual operating conditions.
-  
-  \item Results and Analysis: This section presents a comprehensive analysis of experimental findings obtained through both simulation and real-world field trials, encompassing various parameters crucial for field robotics. It includes quantitative assessments of weed removal efficiency, coverage completeness, Energy usage, and to name a few. Furthermore, it compares the performance of the proposed CPP algorithm with other state-of-the-art approaches, considering factors such as path optimality, computational efficiency, and adaptability to different environments. Through a rigorous evaluation framework, this analysis provides valuable insights into the effectiveness and applicability of the CPP algorithm in practical agricultural settings.
-  
-  \item Discussion and Implications: This section engages in a thorough analysis of the research findings in the context of existing literature, elucidating the alignment and disparities between the proposed CPP algorithm and previous studies. It identifies the strengths and limitations of the algorithm, considering factors such as computational efficiency, scalability, and adaptability to diverse agricultural environments. Furthermore, it explores potential applications of the CPP algorithm beyond weed removal, highlighting its broader implications for sustainable agriculture and livestock management practices. By synthesizing empirical evidence with theoretical insights, this discussion offers valuable perspectives on the future trajectory of autonomous robotics in agriculture.
-
+  \item Centroid-Seeking Behavior: This behavior navigates the robot using the vision cone to cover the area near the centroid of the dataset.
+  \item Circumferential-Traversal Behavior: This behavior focuses on covering points near the boundary of the dataset, using the vision cone to prioritize linear trajectories. These two behaviors cover at least 95 percent of the points with a high coverage rate.
+  \item Dubins Open Travelling Salesman Problem (DOTSP): For the remaining 5 percent of points, this behavior is invoked to cover the points efficiently, minimizing energy consumption and computation time.
 \end{itemize}
 
-\vspace*{6mm} 
+
+The second algorithm for path planning with obstacles extends the first algorithm with two additional steps: setting up the obstacle and generating a dynamic grid for each obstacle, creating a hybrid space for continuous space path planning and discrete space obstacle avoidance. The second step is path validity checking, ensuring that if the path intersects with an obstacle, the algorithm provides a feasible shortest path to avoid the obstacle and continue with the main algorithm. In this scenario, the third behavior is replaced with a new behavior to efficiently cover the remaining points around the obstacles.  
 
 
-By addressing these key components, this thesis aims to contribute to the advancement of autonomous weed management technologies in the agricultural sector, with a specific focus on improving the health and productivity of grassland ecosystems and ensuring the safety and quality of livestock feed. Through interdisciplinary collaboration and innovative engineering solutions, the integration of CPP algorithms into agricultural robotics holds promise for mitigating weed-related challenges and fostering sustainable farming practices for the benefit of farmers, consumers, and the environment alike.
+\vspace*{3mm} 
 
-\vspace*{6mm} 
+The proposed CPP algorithm will be evaluated using a series of metrics to assess its efficiency and effectiveness in real-world agricultural settings. These metrics include coverage rate, computation time, energy consumption, field operation time, and path length. The algorithm will be compared to existing CPP algorithms to determine its performance and potential for widespread adoption in autonomous robotic operations.
 
 
-By meticulously addressing these critical components, this thesis endeavors to significantly propel the evolution of autonomous weed management technologies within the agricultural domain. With a targeted emphasis on enhancing the health and productivity of grassland ecosystems, as well as safeguarding the safety and quality of livestock feed, the research aims to effect tangible improvements across multiple facets of agricultural sustainability.
 
-\vspace*{6mm} 
 
-Through a concerted effort to foster interdisciplinary collaboration and devise innovative engineering solutions, the integration of Coverage Path Planning (CPP) algorithms into agricultural robotics emerges as a beacon of hope for mitigating the myriad challenges posed by weed infestation. This holistic approach not only promises to alleviate immediate concerns for farmers but also extends its benefits to end consumers and the environment at large.
+\section{Thesis Contributions}
 
-\vspace*{6mm} 
+The contributions of this thesis are multifaceted, spanning both theoretical advancements and practical applications in the field of coverage path planning (CPP) for agricultural and other fields:
 
-By empowering farmers with efficient and effective weed management tools, the research seeks to enhance agricultural productivity while reducing reliance on conventional, often environmentally detrimental, weed control methods. Moreover, by promoting sustainable farming practices, the integration of CPP algorithms holds the potential to foster long-term environmental stewardship and contribute to the preservation of natural ecosystems.
+\begin{enumerate}
 
-\vspace*{6mm} 
+  \item \textbf{Innovative CPP Algorithm Development:} The primary contribution lies in the development of an innovative CPP algorithm that respects the non-holonomic constraints while prioritizing linear trajectories, minimizing computation time, route length and energy consumption, and maintaining a high coverage rate. By incorporating novel behavioral strategies such as centroid-seeking behavior, Circumferential-traversal behavior and DOTSP, the algorithm offers a versatile solution adaptable to various agricultural contexts.
 
-Ultimately, the overarching goal of this thesis is to usher in a new era of agricultural innovation—one characterized by the harmonious coexistence of technological advancement and environmental conservation. By harnessing the power of robotics and leveraging the principles of sustainable agriculture, the research endeavors to create a brighter future for farmers, consumers, and the planet alike.
+  \item \textbf{Innovative CPP with Obstacles Development:} Another major contribution is the design, development and the integration of obstacle setup and checking mechanism to avoid obstacles efficiently. 
+  
+  \item \textbf{Use of Hybrid Space:} The proposed algorithm uses a hybrid space for continuous space path planning and discrete space obstacle avoidance, ensuring efficient and obstacle-free traversal in agricultural environments.
+  
+  \item \textbf{Dynamic Grid Generation based on non-holonomic constraints:} The proposed algorithm generates a dynamic grid for each obstacle, ensuring that the robot can navigate around obstacles while adhering to its non-holonomic constraints.
+  
+  \item \textbf{Evaluation Metrics:} The thesis introduces a set of metrics to evaluate the efficiency and effectiveness of the proposed CPP algorithm in real-world agricultural settings. These metrics include coverage rate, computation time, energy consumption, field operation time, number of turns and path length, providing a comprehensive assessment of the algorithm's performance in various scenarios.
+  
+\end{enumerate}
 
-\vspace*{6mm} 
 
-need to include the algorithm of the paper as did in the first review paper 
+\section{Thesis Structure}
+
+The thesis consists of six chapters, each focusing on a specific aspect of the research and development process. The chapters are structured as follows:
+
+\begin{enumerate}
+  \item \textbf{Introduction:} This chapter provides an overview of the background context, research question, methodology and contributions of the thesis. 
+  \item \textbf{Literature Review:} This chapter provides an overview of existing coverage path planning algorithms. It also discusses the challenges and limitations of current CPP algorithms and highlights the need for an innovative, adaptable, and efficient algorithm to optimize agricultural operations.
+  \item \textbf{Methodology:} This chapter outlines the proposed coverage path planning algorithm, detailing its design, implementation, and evaluation. It also describes the preprocessing and main behavioral algorithms, as well as the metrics used to assess the algorithm's performance.
+  \item \textbf{Results:} This chapter presents the results of the evaluation of the proposed CPP algorithm in real-world agricultural settings. It compares the algorithm's performance to existing CPP algorithms and discusses its potential for widespread adoption in autonomous robotic operations.
+  \item \textbf{Discussion:} This chapter analyzes the results of the evaluation and discusses the implications of the proposed CPP algorithm. It also identifies areas of development to further enhance the algorithm's efficiency and effectiveness.
+  \item \textbf{Future Directions and Conclusion:} This chapter outlines future research directions and concludes the thesis by summarizing the key findings and contributions of the proposed CPP algorithm.
+  
+
+\end{enumerate}

@@ -1,177 +1,40 @@
-\section{Experimental Setup}
+\chapter{Experimental Setup}
 
-\subsection{Environment}
+\section{Environment}
 The environment for our coverage motion planning algorithm is situated in a grass field characterized by small grass uniformly distributed across the area. The grass field is representative of typical agricultural settings, where weed management is essential for maintaining crop quality and productivity. As the grass matures, it is common for various unwanted plants, particularly weeds, to grow sporadically throughout the field. Our primary focus in this study is on the removal of Rumex (commonly known as dock weeds), which pose a significant challenge to farmers. However, the algorithm can be adapted to target other types of weeds based on specific requirements, the only that change would be the detection system to identify the target weed.
 
-\subsection{Importance of Weed Removal}
-Importance of Weed Removal
+\section{Importance of Weed Removal}
+
 We are concentrating on Rumex plants due to their detrimental impact on agricultural productivity and livestock health. Although Rumex plants are not inherently toxic, their presence in cattle feed can adversely affect the quality of milk production. Ensuring the purity of grass fed to cattle is crucial for producing high-quality, bio milk, which is not only more beneficial for human consumption but also promotes better health and well-being of the cattle. Pure grass feed leads to higher nutritional value in milk, contributing to improved dairy products. Therefore, effective weed management, particularly the removal of Rumex plants, is essential for maintaining the quality and productivity of grass fields.
 
 
-\vspace*{6mm} 
+\vspace{3mm} 
 
 
 Traditionally, farmers have resorted to manually removing these weeds, a labor-intensive and time-consuming process. Manual removal becomes particularly arduous in large fields, imposing significant physical strain on farmers and limiting the efficiency of weed management. Automating this process with robotic systems offers a promising solution to enhance agricultural practices and improve farmers' quality of life.
 
-\vspace*{6mm}
 
-\subsection{The Robot}
-
-\subsubsection{Overview}
-
-To efficiently remove weeds from the grass field, we employ a robust, four-wheeled robot specifically designed for this task. This section provides an in-depth look at the robot's external and internal features, highlighting the components that enable it to navigate the field and execute precise weed extraction.
-
-\subsubsection{External Features}
-
-The robot features a four-wheeled design, ensuring stability and effective maneuverability across uneven terrain. The choice of a four-wheeled configuration is crucial as it supports the internal weed extraction system, which occupies most of the internal space. The wheels are equipped with treads suitable for grass fields, providing the necessary traction and mobility.
-
-\vspace*{6mm}
-
-\textbf{Localization and Orientation:} For accurate positioning and orientation in the open field, the robot is equipped with two Real-Time Kinematic (RTK) GPS systems. RTK GPS technology is ideal for this environment, offering centimeter-level accuracy in localization, which is essential for precise navigation and weed targeting.
-
-\vspace*{6mm}
-
-
-\textbf{Vision System:} The robot incorporates two strategically placed cameras. The front-facing camera is oriented towards the ground, scanning for weeds ahead of the robot. This early detection allows the local planner to adjust the robot's path accordingly, ensuring efficient navigation and weed targeting. The second camera is mounted at the bottom center of the robot, directly above the extraction mechanism. This camera provides an accurate view of the weed's position beneath the robot, facilitating precise extraction.
-
-
-\subsubsection{Internal Features}
-
-The internal mechanism of the robot is crucial for the precise and efficient removal of weeds. It comprises several key components: a processing unit, a battery system, and the main weed extraction system.
-
-
-\vspace*{6mm}
-
-
-\textbf{Processing Unit: } The processing unit serves as the brain of the robot, orchestrating the various functions and ensuring smooth operation. It processes data from the cameras and GPS systems, making real-time decisions to control the navigation and extraction processes. The unit is equipped with advanced algorithms for path planning, weed detection, and tool control, enabling the robot to perform its tasks autonomously and efficiently.
-
-
-\vspace*{6mm}
-
-\textbf{Battery System: }
-The robot is powered by a robust battery system designed to provide sufficient energy for extended field operations. The battery pack is engineered for easy replacement, ensuring minimal downtime and continuous operation. This power system supports all onboard electronics, including the processing unit, cameras, GPS, and the weed extraction mechanism.
-
-
-\vspace*{6mm}
-
-
-\textbf{Weed Extraction System: }
-The heart of the weed removal process is the weed extraction system, inspired by CNC machine technology. This system features two moving rails that allow the internal extraction mechanism to move in both the x and y directions. Controlled by the processing unit, these rails provide precise positioning capabilities. The extraction mechanism can move approximately 60 cm in both the x and y directions, covering a significant area beneath the robot. Once a weed is detected, the system moves the tool directly above the weed. The mechanical tool is then lowered in the negative z direction to engage the weed.
-
-\vspace*{6mm}
-
-The extraction tool is designed with sharp implements and rotates at high speed to destroy the weed effectively. This rotation ensures that the weed is thoroughly eradicated and cannot regrow. After destroying the weed, the remnants are left on the field, eliminating the need to carry them, which would otherwise burden the robot. The robot’s internal system, with its 60 cm movement range in both directions, allows for efficient navigation. Each detected weed point can be associated with a circular region within which the robot can maneuver to remove the weed. This approach not only aids in accurate weed extraction but also facilitates efficient path planning. By considering these regions, the planning algorithm can optimize the robot's path to cover all weed points effectively.
-
-\vspace*{6mm}
-
-\textbf{Adaptive Regions and Uncertainty Management: }
-The regions around each weed point also serve to manage uncertainty in weed detection. If the position of a weed is detected with less accuracy, the associated region can be adjusted accordingly. A larger uncertainty reduces the size of the region to ensure the robot remains closer to the center, enhancing the likelihood of successful extraction. This adaptive approach allows the robot to handle variations in detection accuracy, maintaining high efficiency and precision in weed removal. The robot's internal features are meticulously designed to support the complex task of weed removal. The combination of precise movement capabilities, robust processing power, and adaptive region management ensures that the robot can effectively and efficiently eradicate weeds from the grass field.
-
-\subsection{Constraints}
+\section{Constraints}
 
 With a comprehensive understanding of the robot's capabilities and features, it is essential to delve into the constraints that arise due to its mechanical system and the nature of the field in which it operates. These constraints significantly influence the development of an effective motion planning algorithm.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 \textbf{Non-Holonomic Nature:}
 The robot is equipped with four regular wheels, limiting its movement capabilities. Unlike holonomic robots, which can move in any direction, our robot cannot move sideways. It is constrained to forward and backward movements and must make turns to change its direction. This non-holonomic nature adds a layer of complexity to the motion planning algorithm, as it must account for the robot's inability to change its heading instantaneously.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 \textbf{Turning Radius:} The robot has a minimum turning radius of 2 meters, meaning it cannot make sharp turns. This constraint necessitates careful planning to ensure the robot can navigate around obstacles and reach all designated weed points without making turns that exceed its turning capabilities.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 \textbf{Speed Variations:} The robot's speed must be carefully regulated to prevent damage to the grass and ensure precise weed removal. When moving in a straight path, the robot operates at a velocity of 0.8 m/s. However, when making a turn, the velocity is reduced to 0.4 m/s to maintain the 2-meter turning radius. This adjustment helps in maintaining stability and accuracy during turns, which is critical for avoiding collateral damage to the grass and ensuring efficient weed extraction.
 
-\vspace*{6mm}
-
-\textbf{Kinematic Constraints:} Given its non-holonomic nature and the minimum turning radius, the robot cannot change its heading angle at a specific position. Instead, it requires a certain amount of space to turn and align itself in the desired direction. These kinematic constraints must be factored into the motion planning algorithm to ensure smooth and feasible navigation across the field.
-
-\vspace*{6mm}
-
-\textbf{Field Constraints:} The field is covered with grass and scattered weeds, particularly the rumex plants. The random distribution of weeds means the robot must navigate the entire field efficiently to locate and remove all weeds. The algorithm must account for this scattered distribution and plan paths that ensure comprehensive coverage without unnecessary overlaps.
 
 
-\vspace*{6mm}
+\vspace{3mm}
 
 
 
 With a clear understanding of the robot's constraints, we can now proceed to develop a motion planning algorithm that leverages these constraints to ensure comprehensive and efficient weed removal. By integrating considerations for non-holonomic movement, adaptive speed control, optimized coverage, obstacle avoidance, and environmental adaptability, the algorithm will facilitate the robot's autonomous operation, making the weed removal process more efficient and reducing the burden on farmers. This strategic approach not only enhances the robot's performance but also contributes to maintaining the health of the grass and improving the overall quality of the field.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Remnants}
-
-
-Benefits of Robotic Weed Removal
-Deploying robots for weed removal in grass fields presents several advantages:
-
-Increased Efficiency: Robots can operate continuously and systematically cover large areas, ensuring thorough removal of unwanted plants without fatigue.
-Labor Savings: Automating weed removal reduces the need for manual labor, freeing farmers to focus on other essential tasks and reducing physical strain.
-Precision: Advanced sensors and algorithms enable robots to identify and target specific weeds, minimizing damage to the surrounding grass and ensuring effective weed management.
-Health Benefits: By eliminating the need for manual weed removal, farmers can avoid the physical exertion and potential health risks associated with prolonged exposure to outdoor conditions and repetitive movements.
-Enhanced Livestock Health: Ensuring the purity of grass feed leads to healthier cattle, which in turn produce higher-quality milk, enhancing overall dairy production.
-
-
-Experimental Objective
-The primary objective of our experimental setup is to develop and validate a coverage motion planning algorithm that enables robots to efficiently navigate and manage weed removal in grass fields. By leveraging advanced robotic technology, we aim to automate the process of identifying and removing Rumex plants, ultimately improving agricultural productivity and promoting sustainable farming practices.
-
-Methodology
-The experimental setup involves the following key steps:
-
-Field Analysis: Detailed mapping of the grass field to identify the distribution of grass and Rumex plants.
-Algorithm Development: Creating a coverage motion planning algorithm tailored to navigate the field and target Rumex plants for removal.
-Robotic Implementation: Equipping robots with necessary sensors and tools to detect and remove weeds, followed by field testing to ensure operational efficiency.
-Performance Evaluation: Assessing the effectiveness of the robotic system in terms of coverage, weed removal accuracy, and operational efficiency.
-By addressing the challenges of weed management through robotic automation, we aim to revolutionize agricultural practices, making farming more sustainable, efficient, and farmer-friendly. This innovative approach not only enhances the productivity of grass fields but also contributes to the overall well-being of livestock and farmers alike.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Integrating Constraints into Motion Planning
-Understanding the mechanical and field constraints is crucial for developing an effective coverage motion planning algorithm. These constraints guide the design of the algorithm to ensure it is practical and feasible under real-world conditions.
-
-Path Planning with Non-Holonomic Constraints: The algorithm must plan paths that respect the robot's non-holonomic nature. This involves generating smooth, continuous paths that the robot can follow without needing to make sharp turns. Techniques such as Dubins curves, which are designed for non-holonomic vehicles, can be employed to create feasible paths that the robot can navigate.
-
-Adaptive Speed Control: Incorporating variable speed control into the algorithm allows for safe and efficient navigation. The robot should move faster in straight paths to cover more ground quickly and slow down during turns to maintain stability and precision. This adaptive speed control also helps in preventing damage to the grass, ensuring that the robot's operations are minimally invasive.
-
-Coverage Optimization: The algorithm should optimize the coverage pattern to ensure that all weeds are detected and removed efficiently. By considering the robot's 60 cm movement range in both directions, the algorithm can plan paths that cover larger areas without unnecessary backtracking. This optimization reduces the total time and energy required for weed removal.
-
-Obstacle Avoidance and Navigation: The algorithm must include robust obstacle avoidance capabilities to navigate around natural terrain features and any unforeseen obstacles. This ensures the robot can continue its operation smoothly without interruptions.
-
-Handling Environmental Variability: To ensure reliable performance under varying environmental conditions, the algorithm can incorporate sensor feedback to adjust the robot's path and speed in real-time. This adaptability enhances the robot's resilience and operational efficiency.

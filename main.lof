@@ -1,0 +1,56 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1}{\ignorespaces The objective and challenges in coverage path planning (CPP) problems.\relax }}{12}{figure.caption.6}%
+\contentsline {figure}{\numberline {2}{\ignorespaces The classification of coverage path planning (CPP) algorithms.\relax }}{13}{figure.caption.7}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1}{\ignorespaces Centroids of overlapped regions.\relax }}{29}{figure.caption.8}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Vision Cone.\relax }}{31}{figure.caption.9}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Centroids of overlapped regions.\relax }}{38}{figure.caption.10}%
+\contentsline {figure}{\numberline {4}{\ignorespaces CCP Behavioral Algorithm flowchart.\relax }}{40}{figure.caption.11}%
+\contentsline {figure}{\numberline {5}{\ignorespaces CCP Behavioral Algorithm flowchart.\relax }}{41}{figure.caption.12}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Dynamic Grid Generation.\relax }}{43}{figure.caption.13}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Selection of Salient Points.\relax }}{47}{figure.caption.14}%
+\contentsline {figure}{\numberline {8}{\ignorespaces The Effect of Step Length on Graph Generation.\relax }}{48}{figure.caption.15}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Graph Generation and Search.\relax }}{49}{figure.caption.16}%
+\contentsline {figure}{\numberline {10}{\ignorespaces CCP Behavioral Algorithm with Obstacles flowchart.\relax }}{52}{figure.caption.17}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1}{\ignorespaces Dataset.\relax }}{55}{figure.caption.18}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Straight Path.\relax }}{57}{figure.caption.20}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Dubin's Path.\relax }}{58}{figure.caption.21}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Coverage plots.\relax }}{60}{figure.caption.23}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Computation Time.\relax }}{61}{figure.caption.24}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Energy Expenditure.\relax }}{61}{figure.caption.25}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Route Length.\relax }}{62}{figure.caption.26}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Field Operation Time.\relax }}{62}{figure.caption.27}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1}{\ignorespaces Obstacles Dataset.\relax }}{65}{figure.caption.28}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Straight Path.\relax }}{67}{figure.caption.30}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Dubins' Path.\relax }}{67}{figure.caption.31}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Coverage plots.\relax }}{68}{figure.caption.33}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Remaining points after second behavior.\relax }}{69}{figure.caption.34}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Path for remaining points.\relax }}{69}{figure.caption.35}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Computation Time.\relax }}{70}{figure.caption.36}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Energy Expenditure.\relax }}{70}{figure.caption.37}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Route Length.\relax }}{70}{figure.caption.38}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Field Operation Time.\relax }}{71}{figure.caption.39}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Number of Turns.\relax }}{71}{figure.caption.40}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1}{\ignorespaces Real robot.\relax }}{73}{figure.caption.41}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Selected field and points in the region.\relax }}{74}{figure.caption.42}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Distinct Environments.\relax }}{74}{figure.caption.43}%
+\contentsline {figure}{\numberline {4}{\ignorespaces No obstacle Trajectories.\relax }}{75}{figure.caption.44}%
+\contentsline {figure}{\numberline {5}{\ignorespaces obstacle Trajectories.\relax }}{76}{figure.caption.45}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Trajector comparison.\relax }}{76}{figure.caption.46}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Graph search no obstacle trajectories.\relax }}{77}{figure.caption.47}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Trajector comparison.\relax }}{78}{figure.caption.48}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1}{\ignorespaces Computation Time.\relax }}{80}{figure.caption.50}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Energy Expenditure.\relax }}{81}{figure.caption.51}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Route Length.\relax }}{81}{figure.caption.52}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Field Operation Time.\relax }}{81}{figure.caption.53}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

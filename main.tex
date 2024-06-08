@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[12pt]{book}
-\usepackage[a4paper,top=1.5in,bottom=1.5in,left=1in,right=1in]{geometry} 
+\documentclass[12pt, oneside]{book}
+\usepackage[a4paper,top=1in,bottom=1in,left=0.8in,right=0.8in]{geometry} 
 \usepackage{fancyhdr}
 \usepackage{fourier-orns}
 \pagestyle{fancy}
@@ -212,7 +212,6 @@
 \usepackage{tabularray}
 
 
-
 \begin{document}
 
 \renewcommand{\thesection}{\arabic{section}} % Change section numbering style
@@ -220,33 +219,44 @@
 
 \include{Title/titlepage}
 
-% \include{Elements/Abstract/Abstract}
-% \newpage
+\include{Elements/Abstract/Abstract}
+
 
 % \include{Elements/Acknowledgments/Acknowledgement} 
-% \newpage 
 
-
-% \include{Front/Nomenclature}
-% \newpage 
-
-% % % \renewcommand{\listfigurename}{Lists of Figures}
-% % % % \rhead{Lists of Figures}
-% % % \listoffigures 
-% % % \addcontentsline{toc}{chapter}{Lists of Figures}
-
-% % % \newpage
-
-
-% % % \listoftables 
-% % % \addcontentsline{toc}{chapter}{Lists of Tables}
-% % % % \rhead{Lists of Tables}
-% % % \newpage
 
 \tableofcontents
 \addcontentsline{toc}{chapter}{Table of Contents}
 % \rhead{Table of Contents}
-\newpage
+
+
+\renewcommand{\listfigurename}{Lists of Figures}
+% \rhead{Lists of Figures}
+\listoffigures 
+\addcontentsline{toc}{chapter}{Lists of Figures}
+
+
+
+
+\listoftables 
+\addcontentsline{toc}{chapter}{Lists of Tables}
+% \rhead{Lists of Tables}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 % Set the page style to "fancy"...
@@ -259,11 +269,12 @@
 % Set the header and footer for Even
 % pages but omit the zone (L, C or R)
 \fancyhead[R]{\nouppercase{\rightmark\hfill\leftmark}}
-% \fancyhead[L]{\thepage} % Only show page number
+% \fancyhead[R]{\rightmark\hfill\leftmark}
+% \fancyhead[R]{\thepage} % Only show page number
 
 % \fancyhead[R]{\hfill\thepage}
 % \fancyhead[R]{\thepage} % Only show page number
-\fancyfoot[L]{\rule{\textwidth}{0.4pt}\hspace{1cm} Intelligent Field Robotic Systems}
+\fancyfoot[L]{\rule{\textwidth}{0.4pt}\hspace{1cm} MSc in Intelligent Field Robotic Systems}
 % \fancyfoot[R]{\rule{\textwidth}{0.4pt}\hspace{1cm} U6972746} % Add the line before the footer text
 \fancyfoot[R]{\rule{\textwidth}{0.4pt}\hspace{1cm} \thepage} % Add the line before the footer text
 % \fancyfoot[R]{\thepage} % Only show page number
@@ -282,68 +293,64 @@
 
 % Sections start from here  
 
-% \include{Elements/Introduction/Introduction}
-% \newpage 
+\include{Elements/Introduction/Introduction}
+ 
 
 
-% \include{Elements/Literature_Review/literature_review}
-% \newpage
-
-% \include{Elements/Literature_Review/literature_review_obs}
-% \newpage
+\include{Elements/Literature_Review/literature_review}
 
 
-% \include{Elements/Problem_statement/Problem_statement}
-% \newpage
+\include{Elements/Literature_Review/literature_review_obs}
 
 
-% \include{Elements/Experimental_setup/Experimental_setup}
-% \newpage
 
-% \include{Elements/Methodology/Brief_description/Brief_description}
-% \newpage
+\include{Elements/Problem_statement/Problem_statement}
+
+
+
+\include{Elements/Experimental_setup/Experimental_setup}
+
+
+\include{Elements/Methodology/Brief_description/Brief_description}
+
 
 
 % \include{Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm_math}
-% \newpage
 
-% \include{Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm}
-% \newpage
+
+\include{Elements/Methodology/Behavioral_algorithm/Behavioral_algorithm}
+
 
 \include{Elements/Methodology/Obstacle_avoidance/Obstacle_avoidance}
-\newpage
-
-% \include{Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis} 
-% \newpage 
-
-% \include{Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs}  
-% \newpage
-
-% \include{Elements/Simulation_test_and_analysis/Real_robot/Real_robot}  
-% \newpage
 
 
-% \include{Elements/Simulation_test_and_analysis/Comparison/Comparison}  
-% \newpage
+\include{Elements/Simulation_test_and_analysis/Simulation_test_and_analysis/Simulation_test_and_analysis} 
+ 
 
-% \include{Elements/Discussion/discussion}
-% \newpage
+\include{Elements/Simulation_test_and_analysis/Simulation_test_and_analysis_with_obs/Simulation_test_and_analysis_with_obs}  
 
-% \include{Elements/Future_directions/future_directions}
-% \newpage
 
-% \include{Elements/Conclusion/Conclusion}
-% \newpage
+\include{Elements/Simulation_test_and_analysis/Real_robot/Real_robot}  
 
-% \include{Elements/Bibliography/Bibliography}
-% \newpage
+
+
+\include{Elements/Simulation_test_and_analysis/Comparison/Comparison}  
+
+
+\include{Elements/Discussion/discussion}
+
+
+\include{Elements/Future_directions/future_directions}
+
+
+\include{Elements/Conclusion/Conclusion}
+
+
+\include{Elements/Bibliography/Bibliography}
+
 
 \include{Elements/Appendix/Appendix}
-\newpage
 
-% (\autoref{fig:Dataset})
-% \caption{Dataset.\label{fig:Dataset}}
 
-% (Algorithm \autoref{alg:completebehavioralalgorithm})
-% \hyperlink{cite.dubins}{[1]}
+
 \end{document}

@@ -17,11 +17,11 @@ The artificial potential field (APF) algorithm is widely used for obstacle avoid
 
 Spanning Tree Coverage (STC) algorithms as mentioned in the paper \hyperlink{cite.spanning_tree}{[12]} offer a systematic approach to coverage path planning by dividing the workspace into disjoint cells and constructing spanning trees within them. This method allows robots to navigate around or through obstacles for comprehensive coverage. Initially, the workspace is partitioned into cells, and spanning trees are formed within these cells to guide robot movement. However, challenges arise when obstacles obstruct sub-cells within mega-cells, impeding complete coverage.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 To mitigate this issue, researchers have proposed extensions like the full-STC algorithm, enabling robots to maximize area coverage by addressing free sub-cells. Optimization efforts focus on improving cell assignment and task distribution. Auction-based algorithms and wall-following approaches facilitate obstacle navigation within mega-cells. Yet, minimizing backtracking and increasing coverage rates remain priorities, especially in scenarios with partially occupied mega-cells.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 Recent advancements aim to enhance energy efficiency and fault tolerance in real-world applications. Hybrid approaches combining frontier-based exploration with STC algorithms reduce energy consumption. Nonetheless, challenges persist, such as workload distribution imbalance. Despite these challenges, STC algorithms offer a systematic and efficient solution, particularly in environments with static obstacles. However, for large fields and complete coverage, discretization of the complete field is not feasible and optimal due to computational constraints and scalability issues.
 
@@ -42,7 +42,7 @@ The Probabilistic Roadmap (PRM) algorithm constructs a roadmap by randomly sampl
 
 The Rapidly Exploring Random Tree (RRT) algorithm incrementally builds a tree by randomly sampling configurations and expanding the tree toward unexplored regions or towards the goal. RRT is suited for static environments due to its ability to rapidly explore the configuration space without needing a precomputed roadmap. However, while RRT efficiently finds feasible paths, the paths may not always be optimal. Variants like RRT* have been developed to improve path quality by providing asymptotically optimal solutions, addressing challenges in navigating through narrow passages and cluttered spaces.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 
 However, sampling-based algorithms are not ideally suited for complete coverage path planning, as they are primarily designed for point-to-point navigation rather than comprehensive area coverage. Modeling non-holonomic constraints in coverage path planning presents additional challenges that necessitate alternative approaches. Implementing a sampling-based method for complete coverage by generating a roadmap for the entire environment is computationally intensive and impractical for large-scale environments.
@@ -69,7 +69,7 @@ The A* algorithm combines actual and estimated costs to determine the shortest p
 Theta* allows pathfinding in the graph, enabling more flexible and efficient navigation compared to other methods like A*. It is particularly useful for CPP in environments where precise path planning is essential. Practical applications include cleaning robots, where Theta* optimizes local backtracking paths to improve coverage time.
 
 
-\vspace*{6mm} 
+\vspace{3mm} 
  
 The aforementioned graph search approaches are effective when the graph is predefined and the objective is to find the shortest path from source to goal. However, in coverage path planning, the objective shifts to covering the entire area. Prioritizing straight paths makes generating a comprehensive graph for the entire environment computationally expensive  and does not guarantee the generation of an optimal or near-optimal graph over the complete region that ensure the near optimal path. 
 
@@ -84,7 +84,7 @@ demand for reliable path planning algorithms became increasingly pronounced. Tra
 approaches often struggled to cope with the intricacies of real-world environments, leading to
 the development of combinatorial planning techniques.
 
-\vspace*{6mm} 
+\vspace{3mm} 
  
 
 These techniques were invented to provide a structured framework for path planning by
@@ -114,24 +114,22 @@ Exact Cell Decomposition decomposes the free configuration space into trapezoida
 
 Approximate cell decomposition offers a grid-based approach to path planning, dividing the configuration space into fixed or variable-sized grids and labeling each cell as free or occupied to represent free space and obstacles. The advantage of this method is its flexibility in handling obstacles of various shapes and sizes, allowing for greater versatility in navigating complex environments. Pre-generated grids reduce computational time during path planning, resulting in faster planning times compared to methods that require graph generation and search.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 However, approximate cell decomposition has limitations. It will struggle with dynamic obstacles, needing frequent grid updates to accommodate environmental changes, which increases complexity and decreases efficiency. Fixed resolution constraints can limit its ability to represent fine-grained details, affecting accuracy and precision in intricate environments. Additionally, representing a very large region with high-resolution grids will be computationally expensive, as maintaining detailed obstacle and free space information increases computational overhead.
-
-\vspace*{6mm}
 
 \subsection{State Lattice Planning}
 State lattice planning as stated in \hyperlink{cite.state_lattice}{[15]} is a systematic method designed to generate feasible paths for robots navigating continuous environments with non-holonomic constraints. This approach involves discretization, where the continuous space is divided into a finite number of nodes, each representing a possible robot pose, accounting for both position and orientation. The process continues with node expansion, ensuring that each node adheres to the robot's physical constraints, making the generated states traversable. This is followed by connectivity, where expanded states are connected to form a graph that represents possible paths through the environment. Path generation utilizes a graph search algorithm to identify the optimal path from the start to the goal state following the non-holonomic constraints.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 State lattice planning offers several key advantages for robotic navigation. It ensures completeness, guaranteeing that if a feasible path exists, the algorithm will find it. This method also provides an optimal solution by identifying the shortest path, minimizing travel distance and time. Additionally, state lattice planning can dynamically replan paths in real-time in response to environmental changes or new constraints, enhancing the robot’s adaptability and safety in dynamic scenarios. 
 
-\vspace*{6mm}
+\vspace{3mm}
 
 Despite its advantages, state lattice planning has the limitation that generating an approximate straight path often necessitates a dense tree of nodes. This significantly increases computational time, particularly in environments with numerous obstacles. Thus, while state lattice planning provides a robust framework for path planning, its effectiveness can vary based on the specific requirements and constraints of the robotic application.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 
 In addition to these classical techniques, several heuristic algorithms address exploration and coverage problems. These include boustrophedon motion, internal spiral algorithms, Voronoi partition approaches, Brick and Mortar algorithms, to name a few. Each algorithm offers unique strategies and approaches to address specific challenges in exploration and coverage, contributing to the diverse landscape of combinatorial planning in robotics.
@@ -142,27 +140,27 @@ In addition to these classical techniques, several heuristic algorithms address 
 
 In the realm of path planning for robotics, evolutionary algorithms (EAs) and human-inspired approaches have garnered considerable attention for their ability to find optimal or near-optimal solutions to complex optimization problems. One prominent example is Genetic Algorithms (GA), a metaheuristic inspired by natural genetic evolution, which has been extensively employed in solving various path planning problems. GA operates by iteratively evolving a population of potential solutions through mechanisms like crossover and mutation, eventually converging towards a solution that meets predefined criteria.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 
 While GA offers the advantage of global search capability, it often suffers from poor stability and high computation time, particularly in scenarios with large search space complexity. To address these limitations, researchers have proposed enhancements such as multi-objective GA and hybrid approaches combining GA with other techniques like Dynamic Programming (DP) or simulated annealing. These adaptations aim to improve convergence speed and solution quality while mitigating the computational burden.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 
 Another noteworthy EA is Differential Evolution (DE), which offers advantages such as quick convergence and robustness. DE operates by iteratively generating trial vectors through mutation, recombination, and selection processes, making it particularly suitable for optimization problems with complex search spaces. Researchers have explored various modifications to DE, such as combining it with roulette and multi-neighborhood operations, to enhance its performance in path planning tasks.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 
 In addition to EAs, swarm intelligence algorithms have gained prominence for their ability to emulate collective behavior observed in natural systems. Particle Swarm Optimization (PSO), Ant Colony Optimization (ACO), and Bee Colony Optimization (BCO) are notable examples of swarm intelligence algorithms applied to path planning. These algorithms leverage the collective intelligence of swarm agents to efficiently explore and optimize paths in complex environments. However, they may face challenges such as local optima trapping and slow convergence rates, prompting researchers to propose enhancements like distributed algorithms and improved pheromone updating rules.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 
 On the other hand, human-inspired algorithms, such as neural networks and reinforcement learning (RL), draw inspiration from the workings of the human brain to optimize decision-making processes in path planning. Neural networks, including feedforward and convolutional architectures, have been utilized to learn complex mappings between sensory inputs and actions, enabling robots to navigate and plan paths in dynamic environments. Reinforcement learning, a subset of machine learning, allows agents to learn optimal behaviors through trial-and-error interactions with the environment. RL algorithms like Q-learning and Deep Q-Networks (DQN) have shown promise in optimizing path planning tasks, albeit with challenges related to convergence speed and scalability.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 
 Despite their potential, evolutionary and human-inspired approaches will not be suitable for scenarios requiring real-time path planning or where computational efficiency is paramount. These methods typically involve iterative optimization processes that will incur significant computation time, making them less practical for time-sensitive applications. Thus, while these approaches offer valuable insights into path planning optimization, their adoption may depend on the specific requirements and constraints of the robotics task at hand.
@@ -172,7 +170,7 @@ Despite their potential, evolutionary and human-inspired approaches will not be 
 
 From the approaches discussed in the literature review, some are efficient in computation time using heuristics but do not follow non-holonomic constraints. Others follow non-holonomic constraints but do not prioritize naturally straight paths, while some algorithms focus solely on path optimization, resulting in high computational times for generating the optimal path. Hence, it is clear that none of the above approaches can be used directly for our problem statement. A new approach was needed that reduces computational time using heuristics, adheres to non-holonomic constraints, and prioritizes straight paths.
 
-\vspace*{6mm}
+\vspace{3mm}
 
 To develop an efficient and effective path planning algorithm for coverage path planning, inspiration was drawn from state-of-the-art approaches to build and enhance the algorithm. They are listed as follows:
 
